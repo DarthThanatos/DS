@@ -60,7 +60,18 @@ public class Server {
 		}
 	}
 	
+	
 	private static class ServerGC extends Thread{
+		private void cleanHashMap(HashMap map, List<String> deletedNames){
+			Iterator destIter = udpDests.entrySet().iterator();
+			while(destIter.hasNext()){
+				Map.Entry entry = (Map.Entry)destIter.next();
+				if(deletedNames.contains(entry.getKey())){
+					destIter.remove();
+				}
+			}
+		}
+		
 		public void run(){
 			while(true){
 				lock.lock();
@@ -78,14 +89,16 @@ public class Server {
 				}
 				lock.unlock();
 				udpLock.lock();
-				Iterator<Map.Entry<String, DatagramPacket>> destIter = udpDests.entrySet().iterator();
-				while(destIter.hasNext()){
-					Map.Entry<String,DatagramPacket> entry = (Map.Entry<String,DatagramPacket>)destIter.next();
-					if(deletedNames.contains(entry.getKey())){
-						destIter.remove();
-					}
+				cleanHashMap(udpDests,deletedNames);
+				cleanHashMap(clientGroups, deletedNames);
+				for( String deletedUser: deletedNames)recentClientMulticastGroup.remove(deletedUser);
+				for( List<String> usersInGroup : groupsAssignment.values()){
+					for (String deletedUser : deletedNames)
+						usersInGroup.remove(deletedUser);
 				}
+				
 				udpLock.unlock();
+				
 				if(!deletedNames.isEmpty()){
 					System.out.println("Remaining clients: " + Integer.toString(udpDests.size()));
 				}
