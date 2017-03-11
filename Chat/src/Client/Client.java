@@ -79,6 +79,23 @@ public class Client {
 		
 	}
 	
+	private static void sendMultimediaMulticast(char[] cbuf, String clientName){
+		try {
+			System.out.println("Type the name of your multicast group:");
+			String groupName = scanner.nextLine();
+			if(groupName.length() == 0) {
+				System.out.println("Bad group name!");
+				return;
+			}
+			InetAddress address = InetAddress.getByName(ip);
+			DatagramPacket packet = new DatagramPacket(("multicast@" + clientName + "@" + groupName + "@" + new String(cbuf)).getBytes(), actualAsciiLen, address, port);
+			udpServer.send(packet);
+			System.out.println("Sent ascii art msg on multicast");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
 	public static void main(String[]args){
 		try{
 			if(args.length != 3){
@@ -123,7 +140,7 @@ public class Client {
 				udpServerMsgHandler.start();
 				
 				while(shouldContinue){
-					System.out.println("You are: " + clientName + ";\n->Type S to send sth to Server\n->Type M to send multimedia via UDP\n->Type Q to quit:");
+					System.out.println("You are: " + clientName + ";\n->Type S to send sth to Server\n->Type M to send multimedia via UDP\n->Type N to send multimedia on multicast\n->Type Q to quit:");
 					String modeLetter = scanner.nextLine();
 					char mode = modeLetter.length() > 0 ? modeLetter.charAt(0) : 'X';
 					switch(mode){
@@ -134,6 +151,7 @@ public class Client {
 							sendMultimedia(cbuf);
 							break;
 						case 'N':
+							sendMultimediaMulticast(cbuf, clientName);
 							break;
 						case 'Q':
 							shouldContinue = false;

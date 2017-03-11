@@ -21,6 +21,10 @@ public class Server {
 	static LinkedBlockingQueue<String> msgQueue;
 	static LinkedBlockingQueue<String> UDPmsgQueue;
 	static HashMap<String,DatagramPacket> udpDests;
+
+	static HashMap<String, List<String>> groupsAssignment = null;
+	static HashMap<String, List<String>> clientGroups = null;
+	static HashMap<String, String> recentClientMulticastGroup = null;
 	
 	static Set<ServerThread> clientsHandlers;
 	static int N = 10; //amount of Threads in the pool
@@ -137,21 +141,21 @@ public class Server {
 		}
 	}
 	
+	private static String getClientName(DatagramPacket p){
+		String res = "";
+		for(String clientName : udpDests.keySet()){
+			if(udpDests.get(clientName).getAddress().equals(p.getAddress()) &&
+						(udpDests.get(clientName).getPort() == p.getPort()))
+			res = clientName;	
+		}
+		return res;
+	}
+	
 	private static class UDPThread extends Thread{
 		DatagramPacket dest;
 		
 		public UDPThread(DatagramPacket dest){
 			this.dest = dest;
-		}
-		
-		private String getClientName(DatagramPacket p){
-			String res = "";
-			for(String clientName : udpDests.keySet()){
-				if(udpDests.get(clientName).getAddress().equals(p.getAddress()) &&
-							(udpDests.get(clientName).getPort() == p.getPort()))
-				res = clientName;	
-			}
-			return res;
 		}
 		
 		public void run(){
@@ -162,8 +166,9 @@ public class Server {
 				while(iter.hasNext()){
 					Map.Entry entry =  ((Map.Entry)iter.next());
 					DatagramPacket registerPacket = (DatagramPacket) entry.getValue();
-					if(!registerPacket.getAddress().equals(dest.getAddress()) ||
-							!(registerPacket.getPort() == dest.getPort())){	
+					if((!registerPacket.getAddress().equals(dest.getAddress()) ||
+							!(registerPacket.getPort() == dest.getPort())) &&
+							clientGroups.get(entry.getKey()).contains(recentClientMulticastGroup.get(clientName))){ //default = broadcast	
 						registerPacket.setData(new String (clientName + " sends greetings:\n " + new String(dest.getData(),0, dest.getLength())).getBytes());
 						udpServer.send(registerPacket);
 						System.out.println("Sent multimedia to " + entry.getKey() + " from " + clientName);
@@ -212,12 +217,44 @@ public class Server {
                 		destPacket.setData(new String("nameRegistered").getBytes());
                 		udpServer.send(destPacket);
 	                	udpDests.put(msgParts[1],destPacket);
+	                	
+	                	groupsAssignment.get("broadcast").add(msgParts[1]); //assigning user to the default, broadcast group
+	                	clientGroups.put(msgParts[1], new ArrayList<String>());
+	                	clientGroups.get(msgParts[1]).add("broadcast");
+	                	recentClientMulticastGroup.put(msgParts[1], "broadcast");
+	                	
 	                	System.out.println("UDP: Registered " + msgParts[1] + " with udp destination: " + receivePacket.getAddress() + ":" + receivePacket.getPort());
 	                	udpLock.unlock();
 	                }
 	                else{
+	                	udpLock.lock();
+	                	if(msg.split("@")[0].equals("multicast")){
+	                		String clientName = msg.split("@")[1];
+	                		String groupName = msg.split("@")[2];
+	                		String content = msg.split("@")[3];
+	                		
+	                		List<String> userGroupsList = clientGroups.get(clientName);
+	                		if(!userGroupsList.contains(groupName)) userGroupsList.add(groupName);
+	                		if(!groupsAssignment.containsKey(groupName)){
+	                			groupsAssignment.put(groupName, new ArrayList<String>());
+	                			groupsAssignment.get(groupName).add(clientName);
+	                		}
+	                		else{
+	                			if(!groupsAssignment.get(groupName).contains(clientName)){
+		                			groupsAssignment.get(groupName).add(clientName);	                				
+	                			}
+	                		}
+	                		recentClientMulticastGroup.put(clientName, groupName); 
+	                		
+	                		destPacket.setData(content.getBytes());
+	                	}
+	                	else{//broadcast
+	                		String clientName = getClientName(destPacket);
+	                		recentClientMulticastGroup.put(clientName, "broadcast");
+	                	}
 	                	UDPThread udpThread = new UDPThread(destPacket);
 	                	executor.execute(udpThread);
+	                	udpLock.unlock();
 	                }
 				}
 			}catch(Exception e){
@@ -236,6 +273,12 @@ public class Server {
 			
 			lock = new ReentrantLock();
 			udpLock = new ReentrantLock();
+			
+			groupsAssignment = new HashMap<String,List<String>>();
+			groupsAssignment.put("broadcast", new ArrayList<String>()); //setting up default group
+			
+			clientGroups = new HashMap<String, List<String>>();
+			recentClientMulticastGroup = new HashMap<String, String>();
 			
 			TCPChannel tcpChannel = new TCPChannel();
 			tcpChannel.start();
