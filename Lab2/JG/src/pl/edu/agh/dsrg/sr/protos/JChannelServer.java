@@ -40,8 +40,8 @@ public class JChannelServer extends ReceiverAdapter{
         channel=new JChannel(); // use the default config, udp.xml
         ProtocolStack stack= channel.getProtocolStack();
         stack.addProtocol(new SEQUENCER())
-        	 ;//.addProtocol(new FLUSH());
-        stack.init();
+        	 .addProtocol(new FLUSH());
+        //stack.init();
         channel.setReceiver(this);
         channel.connect("operation");
         eventLoop();

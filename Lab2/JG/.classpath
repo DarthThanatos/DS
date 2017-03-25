@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Vobis/Desktop/workspace/DS/Lab2/JG/lib/jgroups-3.6.13.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Vobis/Desktop/workspace/DS/Lab2/JG/lib/protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Robert/Desktop/Robert/agh/java/workspace/DS/Lab2/JG/lib/jgroups-3.6.13.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Robert/Desktop/Robert/agh/java/workspace/DS/Lab2/JG/lib/protobuf-java-2.4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
