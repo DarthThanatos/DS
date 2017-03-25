@@ -1,12 +1,9 @@
 package pl.edu.agh.dsrg.sr.protos;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.jgroups.Address;
@@ -31,9 +28,7 @@ import org.jgroups.protocols.pbcast.NAKACK2;
 import org.jgroups.protocols.pbcast.STABLE;
 import org.jgroups.protocols.pbcast.STATE_TRANSFER;
 import org.jgroups.stack.ProtocolStack;
-import org.jgroups.util.Util;
 
-import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import pl.edu.agh.dsrg.sr.protos.ChatOperationProtos.ChatAction;
@@ -46,10 +41,11 @@ public class Coordinator extends ReceiverAdapter implements Runnable {
     ChatState cs;
     View oldView;
     
-    public Coordinator(ClientPanel cp) throws Exception{
+    public Coordinator(ClientPanel cp, String userName) throws Exception{
        	this.cp = cp;
        	cs = ChatState.newBuilder().getDefaultInstanceForType();
     	System.setProperty("java.net.preferIPv4Stack", "true");
+    	System.out.println(System.getProperty("user.name"));
         channel=new JChannel(false); 
         ProtocolStack stack=  new ProtocolStack();
         channel.setProtocolStack(stack);
@@ -75,35 +71,32 @@ public class Coordinator extends ReceiverAdapter implements Runnable {
         channel.getState(null, 10000);
     }
 
-    public void viewAccepted(View newView){
+    @SuppressWarnings("static-access")
+	public void viewAccepted(View newView){
     	System.out.println("** view: " + newView);
     	System.out.println("In group:");
-    	channel.getView();
     	for (Address adress : newView.getMembers()){
     		System.out.println(adress.toString());
     	}
     	System.out.println("Left:");
     	if(oldView != null)
 	    	for (Address address : newView.leftMembers(oldView, newView)){
-	        	System.out.println(address.toString());    		
+	        	System.out.println(address.toString());
+	        	
 	    	}
     	oldView = newView;
     	
     }
     
-    private boolean stateHasEntry(ChatAction chatAction){
-		for(ChatAction entry : cs.getStateList()){
-			if(entry.equals(chatAction)) return true;
-		}
-    	return false;
-    }
-    
-    private void removeStateEntry(ChatAction chatAction){
-		for(ChatAction entry : cs.getStateList()){
-			if(entry.equals(chatAction)){
-				
+    private void removeStateEntry(List<ChatAction> registered, ChatAction chatAction){
+		Iterator<ChatAction> iter = registered.iterator();
+		while(iter.hasNext()){
+			ChatAction entry = iter.next();
+			if(chatAction.getChannel().equals(entry.getChannel()) &&
+			   chatAction.getNickname().equals(entry.getNickname())){
+				iter.remove();
 			}
-		}    	
+		}
     }
     
     public void receive(Message msg){
@@ -113,14 +106,12 @@ public class Coordinator extends ReceiverAdapter implements Runnable {
 			registered.addAll(cs.getStateList());
 	    	synchronized(registered){	
 				if(chatAction.getAction().equals(ActionType.JOIN)){
-					System.out.println("Adding " + chatAction.toString());
-					if(!registered.contains(chatAction)){
-						registered.add(chatAction);
-					}	
+					System.out.println("Adding " + chatAction.toString() + " with src " + msg.src());
+					registered.add(chatAction);
 				}
 				else{
 					System.out.println("Removing " + chatAction.toString());
-					registered.remove(chatAction);
+					removeStateEntry(registered,chatAction);
 				}
 
 				cs = ChatState.newBuilder().addAllState(registered).build();
@@ -134,19 +125,7 @@ public class Coordinator extends ReceiverAdapter implements Runnable {
     
     
     private void eventLoop(){
-
-        BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
-    	while(true){
-            try {
-            	
-                //Message msg=new Message(null, null, line);
-                //channel.send(msg);
-            }
-
-            catch(Exception e) {
-
-            }
-    	}
+    	while(true);
     }
     
     public void generateChatAction(String channelName, String userName, ActionType actionType) throws Exception{

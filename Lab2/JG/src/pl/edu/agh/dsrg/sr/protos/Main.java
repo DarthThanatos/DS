@@ -8,7 +8,7 @@ public class Main {
     		String multicastIp = args[1];
     		ClientPanel cp = new ClientPanel();
     		//cp.visualize();
-    		Coordinator coord = new Coordinator(cp);
+    		Coordinator coord = new Coordinator(cp, userName);
     		new Thread(coord).start();
     		new Thread(new JChannelClient(userName, multicastIp, cp,coord)).start();
     	}catch(ArrayIndexOutOfBoundsException e){

@@ -69,22 +69,24 @@ public class JChannelClient extends ReceiverAdapter implements Runnable{
         channel.setReceiver(this);
         channel.connect(multicastIp);
     	this.coord.generateChatAction(multicastIp, userName, ActionType.JOIN);
-    }
-
-    public void viewAccepted(View newView){
-    	/*ChatAction ca = ChatAction.newBuilder().setNickname(userName).setAction(ActionType.JOIN).setChannel(multicastIp).build();
-    	ChatMessage cm =  ChatMessage.newBuilder().setMessage("").build();
-    	ChatState cs = ChatState.newBuilder().addState(ca).setState(0, ca).build();
-    	System.out.println("** view: " + newView);
-    	for (Address adress : newView.getMembers()){
-    		System.out.println(adress.toString());
-    	}*/
-    	
+        Runtime.getRuntime().addShutdownHook(
+        new Thread()
+        {
+            public void run()
+            {
+            	try {
+					coord.generateChatAction(multicastIp, userName,ActionType.LEAVE);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        } );
     }
     
     public void receive(Message msg){
     	try {
-			System.out.println("Msg:" + ChatMessage.parseFrom(msg.getBuffer()));
+			System.out.println(ChatMessage.parseFrom(msg.getBuffer()).getMessage());
 		} catch (InvalidProtocolBufferException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +94,6 @@ public class JChannelClient extends ReceiverAdapter implements Runnable{
     
     
     private void eventLoop(){
-
         BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
     	while(true){
             try {
