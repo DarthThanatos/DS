@@ -60,6 +60,7 @@ public class JChannelClient extends ReceiverAdapter{
     	this.coord = coord;
     	System.setProperty("java.net.preferIPv4Stack", "true");
         channel=new JChannel(false); 
+        channel.setName(userName);
         ProtocolStack stack=  new ProtocolStack();
         channel.setProtocolStack(stack);
         stack.addProtocol(new UDP().setValue("mcast_group_addr",InetAddress.getByName(multicastIp)))
@@ -97,11 +98,15 @@ public class JChannelClient extends ReceiverAdapter{
         BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
     	while(true){
             try {
-                System.out.print("[Type quit to go back to menu]> "); System.out.flush();
+                System.out.print("[Type quit to go back to menu " + userName + " " + multicastIp + "]> "); System.out.flush();
                 String line=in.readLine().toLowerCase();
                 if(line.startsWith("quit")){
 					coord.generateChatAction(multicastIp, userName,ActionType.LEAVE);
                     break;
+                }
+                if(line.startsWith("l") && line.length() == 1) {
+                	coord.listChannels();
+                	continue;
                 }
                 line="[" + userName + "] " + line;
                 ChatMessage chatMsg = ChatMessage.newBuilder().setMessage(line).build();

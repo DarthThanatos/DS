@@ -2,6 +2,8 @@ package pl.edu.agh.dsrg.sr.protos;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,25 +11,7 @@ import pl.edu.agh.dsrg.sr.protos.ChatOperationProtos.ChatAction;
 import pl.edu.agh.dsrg.sr.protos.ChatOperationProtos.ChatState;
 
 public class Main {
-    
-	private static void listChannels(Coordinator coord){
-		ChatState cs = coord.getState();
-		HashMap <String, ArrayList<String>> channelsMap = new HashMap<String,ArrayList<String>>();
-		for (ChatAction entry : cs.getStateList()){
-			if(!channelsMap.containsKey(entry.getChannel())){
-				channelsMap.put(entry.getChannel(), new ArrayList<String>());
-			}
-			ArrayList<String> users = channelsMap.get(entry.getChannel());
-			users.add(entry.getNickname());
-		}
-		for(String channel: channelsMap.keySet()){
-			System.out.println("In channel " + channel + ": ");
-			for (String user : channelsMap.get(channel)){
-				System.out.println("\t->" + user);
-			}
-		}
-	}
-	
+    	
     public static void main(String[] args) throws Exception {
     	try{
     		String userName = args[0]; 
@@ -41,16 +25,26 @@ public class Main {
                 String line =in.readLine().toLowerCase();
                 if(line.startsWith("exit")) break;
                 if(line.startsWith("l") && line.length() == 1) {
-                	listChannels(coord);
+                	coord.listChannels();
                 	continue;
                 }
                 String multicastIp = line;                
                 System.out.println("Switching control to channel " + multicastIp);
-                new JChannelClient(userName, multicastIp, coord).start();
+                try{
+                	new JChannelClient(userName, multicastIp, coord).start();
+                }catch(SocketException e){
+                	System.out.println("Not a valid address");
+                }
+                catch(UnknownHostException e){
+                	System.out.println("Not a valid address");                	
+                }
     		}
     		System.exit(0);
     	}catch(ArrayIndexOutOfBoundsException e){
     		System.out.println("Usage: java JChannelClient username");
+    	}
+    	catch(NullPointerException e){
+    		
     	}
     }
 }
