@@ -32,20 +32,33 @@ import pl.edu.agh.dsrg.sr.protos.ChatOperationProtos.ChatAction.ActionType;
 import pl.edu.agh.dsrg.sr.protos.ChatOperationProtos.ChatMessage;
 
 
-public class JChannelClient extends ReceiverAdapter implements Runnable{
+public class JChannelClient extends ReceiverAdapter{
     JChannel channel;
-    ClientPanel cp;
     private static String userName = null;
     private static String multicastIp = null; //"230.0.0.36"
     private Coordinator coord;
     
-    public JChannelClient(String userName, String multicastIp, ClientPanel cp, Coordinator coord) throws Exception{
+    private void atExit(){
+        Runtime.getRuntime().addShutdownHook(
+	        new Thread()
+	        {
+	            public void run()
+	            {
+	            	try {
+						coord.generateChatAction(multicastIp, userName,ActionType.LEAVE);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+	            }
+	        } 
+        );
+    }
+    
+    public JChannelClient(String userName, String multicastIp, Coordinator coord) throws Exception{
     	this.userName = userName;
     	this.multicastIp = multicastIp;
-    	this.cp = cp;
     	this.coord = coord;
     	System.setProperty("java.net.preferIPv4Stack", "true");
-    	System.setProperty("user.name", userName);
         channel=new JChannel(false); 
         ProtocolStack stack=  new ProtocolStack();
         channel.setProtocolStack(stack);
@@ -69,19 +82,6 @@ public class JChannelClient extends ReceiverAdapter implements Runnable{
         channel.setReceiver(this);
         channel.connect(multicastIp);
     	this.coord.generateChatAction(multicastIp, userName, ActionType.JOIN);
-        Runtime.getRuntime().addShutdownHook(
-        new Thread()
-        {
-            public void run()
-            {
-            	try {
-					coord.generateChatAction(multicastIp, userName,ActionType.LEAVE);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-        } );
     }
     
     public void receive(Message msg){
@@ -97,10 +97,12 @@ public class JChannelClient extends ReceiverAdapter implements Runnable{
         BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
     	while(true){
             try {
-                System.out.print("> "); System.out.flush();
+                System.out.print("[Type quit to go back to menu]> "); System.out.flush();
                 String line=in.readLine().toLowerCase();
-                if(line.startsWith("quit") || line.startsWith("exit"))
+                if(line.startsWith("quit")){
+					coord.generateChatAction(multicastIp, userName,ActionType.LEAVE);
                     break;
+                }
                 line="[" + userName + "] " + line;
                 ChatMessage chatMsg = ChatMessage.newBuilder().setMessage(line).build();
                 Message msg=new Message(null, null, chatMsg.toByteArray());
@@ -113,16 +115,9 @@ public class JChannelClient extends ReceiverAdapter implements Runnable{
     	}
     }
 
-	@Override
-	public void run() {
-		try {
-	        eventLoop();
-	        channel.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	public void start() {
+		eventLoop();
+		channel.close();
 	}
 	
 }

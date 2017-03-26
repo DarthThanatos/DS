@@ -2,9 +2,12 @@ package pl.edu.agh.dsrg.sr.protos;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.KeyException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.jgroups.Address;
 import org.jgroups.JChannel;
@@ -29,6 +32,7 @@ import org.jgroups.protocols.pbcast.STABLE;
 import org.jgroups.protocols.pbcast.STATE_TRANSFER;
 import org.jgroups.stack.ProtocolStack;
 
+import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import pl.edu.agh.dsrg.sr.protos.ChatOperationProtos.ChatAction;
@@ -37,15 +41,19 @@ import pl.edu.agh.dsrg.sr.protos.ChatOperationProtos.ChatAction.ActionType;
 
 public class Coordinator extends ReceiverAdapter implements Runnable {
     JChannel channel;
-    ClientPanel cp;
     ChatState cs;
     View oldView;
     
-    public Coordinator(ClientPanel cp, String userName) throws Exception{
-       	this.cp = cp;
+    HashMap<String, ChatAction> registrationMap;
+    
+    public ChatState getState(){
+    	return cs;
+    }
+    
+    public Coordinator(String userName) throws Exception{
        	cs = ChatState.newBuilder().getDefaultInstanceForType();
     	System.setProperty("java.net.preferIPv4Stack", "true");
-    	System.out.println(System.getProperty("user.name"));
+    	registrationMap = new HashMap<String,ChatAction>();
         channel=new JChannel(false); 
         ProtocolStack stack=  new ProtocolStack();
         channel.setProtocolStack(stack);
@@ -68,25 +76,36 @@ public class Coordinator extends ReceiverAdapter implements Runnable {
         stack.init();
         channel.setReceiver(this);
         channel.connect("ChatManagement321321");
-        channel.getState(null, 10000);
+        channel.getState(null, 1000);	
     }
 
-    @SuppressWarnings("static-access")
 	public void viewAccepted(View newView){
     	System.out.println("** view: " + newView);
     	System.out.println("In group:");
     	for (Address adress : newView.getMembers()){
-    		System.out.println(adress.toString());
+    		System.out.println("\t-> " + adress.toString());
     	}
     	System.out.println("Left:");
-    	if(oldView != null)
-	    	for (Address address : newView.leftMembers(oldView, newView)){
-	        	System.out.println(address.toString());
-	        	
-	    	}
-    	oldView = newView;
-    	
+    	if(oldView != null){
+			List<ChatAction> registered = new ArrayList<ChatAction>(); 
+			registered.addAll(cs.getStateList());
+    		Address[][] diff = View.diff(oldView, newView);
+    		System.out.println("Old view is not null " + diff.length + " " + diff[0].length + " " + diff[1].length);
+    		for(int i = 0 ; i < diff[1].length; i++){
+    			for(int j = 0; j < oldView.getMembers().size(); j++){
+    				if(oldView.get(j).toString().equals(diff[1][i].toString())){
+    					System.out.println("Removing: " + registered.get(j).toString().replace("\n",";"));
+    					synchronized(registered){
+    						registered.remove(j);
+    					}
+    				}
+    			}
+    		}
+			cs = ChatState.newBuilder().addAllState(registered).build();
+    	}
+    	oldView = newView;    	
     }
+    
     
     private void removeStateEntry(List<ChatAction> registered, ChatAction chatAction){
 		Iterator<ChatAction> iter = registered.iterator();
@@ -104,19 +123,24 @@ public class Coordinator extends ReceiverAdapter implements Runnable {
 			ChatAction chatAction = ChatAction.parseFrom(msg.getBuffer());
 			List<ChatAction> registered = new ArrayList<ChatAction>(); 
 			registered.addAll(cs.getStateList());
+			String actionUndertook = "";
 	    	synchronized(registered){	
 				if(chatAction.getAction().equals(ActionType.JOIN)){
-					System.out.println("Adding " + chatAction.toString() + " with src " + msg.src());
+					System.out.println("Adding " + chatAction.toString().replace("\n", "; ") + " with src " + msg.src());
 					registered.add(chatAction);
+					actionUndertook = "adding";
+					registrationMap.put(msg.src().toString(), chatAction);
 				}
 				else{
 					System.out.println("Removing " + chatAction.toString());
 					removeStateEntry(registered,chatAction);
+					registrationMap.remove(msg.src().toString());
+					actionUndertook = "removing";
 				}
 
 				cs = ChatState.newBuilder().addAllState(registered).build();
-				System.out.println("State after: "); 
-				for(ChatAction entry: registered) System.out.println(entry.toString());
+				System.out.println("State after: " + actionUndertook); 
+				for(ChatAction entry: registered) System.out.println("\t->" + entry.toString().replace("\n", "; "));
 	    	}
 		} catch (InvalidProtocolBufferException e) {
 			e.printStackTrace();
@@ -136,9 +160,8 @@ public class Coordinator extends ReceiverAdapter implements Runnable {
     
     public void setState(InputStream input) throws Exception{
     	cs = ChatState.parseFrom( input );
-		System.out.println("State after synchronization: "); 
-		for(ChatAction entry: cs.getStateList()) System.out.println(entry.toString());
-		
+		System.out.println("After setState: "); 
+		for(ChatAction entry: cs.getStateList()) System.out.println("\t->" + entry.toString().replace("\n","; "));
     }
     
     public void getState(OutputStream output) throws Exception{
