@@ -16,7 +16,7 @@ public class Z1b_Consumer {
     public static void main(String[] argv) throws Exception {
         // po ponownym odpaleniu wiadomosc nie zostala ponownie odczytana; to samo w trakcie
         // info
-        System.out.println("Z1a CONSUMER");
+        System.out.println("Z1b CONSUMER");
 
         // connection & channel
         ConnectionFactory factory = new ConnectionFactory();

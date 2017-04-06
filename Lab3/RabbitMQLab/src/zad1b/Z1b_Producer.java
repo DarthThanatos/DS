@@ -11,7 +11,7 @@ public class Z1b_Producer {
     public static void main(String[] argv) throws Exception {
 
         // info
-        System.out.println("Z1a PRODUCER");
+        System.out.println("Z1b PRODUCER");
 
         // connection & channel
         ConnectionFactory factory = new ConnectionFactory();
