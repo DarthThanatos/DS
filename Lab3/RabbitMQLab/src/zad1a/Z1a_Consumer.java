@@ -1,4 +1,4 @@
-package rabbitmqlab;
+package zad1a;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -8,13 +8,15 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Z1_Consumer {
+public class Z1a_Consumer {
 
     public static void main(String[] argv) throws Exception {
 
         // info
-        System.out.println("Z1 CONSUMER ulala");
+        System.out.println("Z1a CONSUMER");
 
         // connection & channel
         ConnectionFactory factory = new ConnectionFactory();
@@ -31,7 +33,13 @@ public class Z1_Consumer {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println("Received: " + message);
+                System.out.println("Received: " + message + "; sleeping " + message + " seconds");
+                try {
+                    Thread.sleep(Integer.parseInt(message) * 1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Z1a_Consumer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("End of processing");
             }
         };
 

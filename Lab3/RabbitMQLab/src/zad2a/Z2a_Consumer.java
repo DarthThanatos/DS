@@ -1,32 +1,42 @@
-package rabbitmqlab;
+package zad2a;
 
 import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Z1_Consumer {
-
+public class Z2a_Consumer {
+    
     public static void main(String[] argv) throws Exception {
-
         // info
-        System.out.println("Z1 CONSUMER ulala");
-
+        System.out.println("Z2a CONSUMER");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter routing key: ");
+        String routing_key = br.readLine();
+            
         // connection & channel
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        // queue
-        String QUEUE_NAME = "queue1";
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        // exchange
+        String EXCHANGE_NAME = "exchange2a";
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+        
+        // queue & bind
+        String queueName = channel.queueDeclare().getQueue();
+        channel.queueBind(queueName, EXCHANGE_NAME, routing_key);
+        System.out.println("created queue: " + queueName);
 
-        // consumer (handle msg)
+        // consumer (message handling)
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
@@ -37,10 +47,6 @@ public class Z1_Consumer {
 
         // start listening
         System.out.println("Waiting for messages...");
-        channel.basicConsume(QUEUE_NAME, false, consumer);
-
-        // close
-        //channel.close();
-        //connection.close();
+        channel.basicConsume(queueName, true, consumer);
     }
 }
