@@ -14,9 +14,13 @@ import java.util.logging.Logger;
 public class Z1c_Consumer {
 
     public static void main(String[] argv) throws Exception {
-
+        // Po skonczeniu - nie odczyta wiadomosci ponownie
+        // po wlaczeniu w trakcie (tzn. ubijamy zanim skonczy spac i wlaczamy znowu): odczytuje do momentu w którym dostanie ack
+        // gdy mamy uruchomionych dwu konsumerow, jeden otrzyma spanie 20 sekund, a drugi stoi bezczynny, w momencie ubicia tego pierwszego w trakcie spania, drugi przejmuje zadanie, bo nie zostalo ono potwierdzone
+        // Jak uruchamiamy 2 consumerow i wysylamy na przemian 10 i 1 sekundowe zlecenia na przemian, to jeden otrzymuje 10s zlecenia a drugi 1 sekundowe
+        
         // info
-        System.out.println("Z1a CONSUMER");
+        System.out.println("Z1c CONSUMER");
 
         // connection & channel
         ConnectionFactory factory = new ConnectionFactory();
@@ -25,7 +29,7 @@ public class Z1c_Consumer {
         Channel channel = connection.createChannel();
 
         // queue
-        String QUEUE_NAME = "queue1";
+        String QUEUE_NAME = "queue1c";
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         // consumer (handle msg)

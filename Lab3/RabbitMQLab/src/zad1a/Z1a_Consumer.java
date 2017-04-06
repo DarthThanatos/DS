@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Z1a_Consumer {
-
+    //Po wyslaniu i ponownym uruchomieniu wiadomosc zostala ponownie odczytana
     public static void main(String[] argv) throws Exception {
 
         // info
@@ -25,7 +25,7 @@ public class Z1a_Consumer {
         Channel channel = connection.createChannel();
 
         // queue
-        String QUEUE_NAME = "queue1";
+        String QUEUE_NAME = "queue1a";
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         // consumer (handle msg)

@@ -11,7 +11,7 @@ public class Z1c_Producer {
     public static void main(String[] argv) throws Exception {
 
         // info
-        System.out.println("Z1a !!!! PRODUCER");
+        System.out.println("Z1c PRODUCER");
 
         // connection & channel
         ConnectionFactory factory = new ConnectionFactory();
@@ -20,7 +20,7 @@ public class Z1c_Producer {
         Channel channel = connection.createChannel();
 
         // queue
-        String QUEUE_NAME = "queue1";
+        String QUEUE_NAME = "queue1c";
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);        
 
         // producer (publish msg)

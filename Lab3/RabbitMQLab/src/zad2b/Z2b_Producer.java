@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
 public class Z2b_Producer {
 
     public static void main(String[] argv) throws Exception {
+       
+        //lazy.orange.rabbit
+        //lazy.black.rabbit
+        
         // info
         System.out.println("Z2b PRODUCER");
 

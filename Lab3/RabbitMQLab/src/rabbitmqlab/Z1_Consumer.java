@@ -14,7 +14,7 @@ public class Z1_Consumer {
     public static void main(String[] argv) throws Exception {
 
         // info
-        System.out.println("Z1 CONSUMER ulala");
+        System.out.println("Z1 CONSUMER");
 
         // connection & channel
         ConnectionFactory factory = new ConnectionFactory();

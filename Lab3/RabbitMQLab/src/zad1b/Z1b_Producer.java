@@ -20,7 +20,7 @@ public class Z1b_Producer {
         Channel channel = connection.createChannel();
 
         // queue
-        String QUEUE_NAME = "queue1";
+        String QUEUE_NAME = "queue1b";
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);        
 
         // producer (publish msg)

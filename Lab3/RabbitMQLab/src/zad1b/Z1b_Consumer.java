@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class Z1b_Consumer {
 
     public static void main(String[] argv) throws Exception {
-
+        // po ponownym odpaleniu wiadomosc nie zostala ponownie odczytana; to samo w trakcie
         // info
         System.out.println("Z1a CONSUMER");
 
@@ -25,7 +25,7 @@ public class Z1b_Consumer {
         Channel channel = connection.createChannel();
 
         // queue
-        String QUEUE_NAME = "queue1";
+        String QUEUE_NAME = "queue1b";
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
         // consumer (handle msg)
