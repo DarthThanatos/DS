@@ -1,0 +1,1 @@
+python src/lab_iceclient.py --Ice.Config=config.client

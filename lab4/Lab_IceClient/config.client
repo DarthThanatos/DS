@@ -2,7 +2,11 @@
 # The client reads this property to create the reference to the
 # "hello" object in the server.
 #
+IceStorm.instanceName=IceStorm 
 Calc1.Proxy=calc11:tcp -h localhost -p 10000:udp -h localhost -p 10000:ssl -h localhost -p 10001
+TopicManager.Proxy=IceStorm/TopicManager:tcp -h localhost -p 10000
+SimplePrinter.Proxy=SimplePrinter:tcp -h localhost -p 10000:udp -h localhost -p 10000
+MonitorAdapter.Endpoints=tcp:udp
 
 #
 # Warn about connection exceptions.

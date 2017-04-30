@@ -26,6 +26,71 @@ import Ice, IcePy
 _M_Demo = Ice.openModule('Demo')
 __name__ = 'Demo'
 
+if '_t_stringSeq' not in _M_Demo.__dict__:
+    _M_Demo._t_stringSeq = IcePy.defineSequence('::Demo::stringSeq', (), IcePy._t_string)
+
+if 'DeviceLister' not in _M_Demo.__dict__:
+    _M_Demo.DeviceLister = Ice.createTempClass()
+    class DeviceLister(Ice.Object):
+        def __init__(self):
+            if Ice.getType(self) == _M_Demo.DeviceLister:
+                raise RuntimeError('Demo.DeviceLister is an abstract class')
+
+        def ice_ids(self, current=None):
+            return ('::Demo::DeviceLister', '::Ice::Object')
+
+        def ice_id(self, current=None):
+            return '::Demo::DeviceLister'
+
+        def ice_staticId():
+            return '::Demo::DeviceLister'
+        ice_staticId = staticmethod(ice_staticId)
+
+        def getDevicesNamesList(self, current=None):
+            pass
+
+        def __str__(self):
+            return IcePy.stringify(self, _M_Demo._t_DeviceLister)
+
+        __repr__ = __str__
+
+    _M_Demo.DeviceListerPrx = Ice.createTempClass()
+    class DeviceListerPrx(Ice.ObjectPrx):
+
+        def getDevicesNamesList(self, _ctx=None):
+            return _M_Demo.DeviceLister._op_getDevicesNamesList.invoke(self, ((), _ctx))
+
+        def begin_getDevicesNamesList(self, _response=None, _ex=None, _sent=None, _ctx=None):
+            return _M_Demo.DeviceLister._op_getDevicesNamesList.begin(self, ((), _response, _ex, _sent, _ctx))
+
+        def end_getDevicesNamesList(self, _r):
+            return _M_Demo.DeviceLister._op_getDevicesNamesList.end(self, _r)
+
+        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
+            return _M_Demo.DeviceListerPrx.ice_checkedCast(proxy, '::Demo::DeviceLister', facetOrCtx, _ctx)
+        checkedCast = staticmethod(checkedCast)
+
+        def uncheckedCast(proxy, facet=None):
+            return _M_Demo.DeviceListerPrx.ice_uncheckedCast(proxy, facet)
+        uncheckedCast = staticmethod(uncheckedCast)
+
+        def ice_staticId():
+            return '::Demo::DeviceLister'
+        ice_staticId = staticmethod(ice_staticId)
+
+    _M_Demo._t_DeviceListerPrx = IcePy.defineProxy('::Demo::DeviceLister', DeviceListerPrx)
+
+    _M_Demo._t_DeviceLister = IcePy.defineClass('::Demo::DeviceLister', DeviceLister, -1, (), True, False, None, (), ())
+    DeviceLister._ice_type = _M_Demo._t_DeviceLister
+
+    DeviceLister._op_getDevicesNamesList = IcePy.Operation('getDevicesNamesList', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_Demo._t_stringSeq, False, 0), ())
+
+    _M_Demo.DeviceLister = DeviceLister
+    del DeviceLister
+
+    _M_Demo.DeviceListerPrx = DeviceListerPrx
+    del DeviceListerPrx
+
 if 'Printer' not in _M_Demo.__dict__:
     _M_Demo.Printer = Ice.createTempClass()
     class Printer(Ice.Object):
@@ -87,5 +152,110 @@ if 'Printer' not in _M_Demo.__dict__:
 
     _M_Demo.PrinterPrx = PrinterPrx
     del PrinterPrx
+
+if 'Measurement' not in _M_Demo.__dict__:
+    _M_Demo.Measurement = Ice.createTempClass()
+    class Measurement(object):
+        def __init__(self, tower='', windSpeed=0.0, windDirection=0, temperature=0.0):
+            self.tower = tower
+            self.windSpeed = windSpeed
+            self.windDirection = windDirection
+            self.temperature = temperature
+
+        def __eq__(self, other):
+            if other is None:
+                return False
+            elif not isinstance(other, _M_Demo.Measurement):
+                return NotImplemented
+            else:
+                if self.tower != other.tower:
+                    return False
+                if self.windSpeed != other.windSpeed:
+                    return False
+                if self.windDirection != other.windDirection:
+                    return False
+                if self.temperature != other.temperature:
+                    return False
+                return True
+
+        def __ne__(self, other):
+            return not self.__eq__(other)
+
+        def __str__(self):
+            return IcePy.stringify(self, _M_Demo._t_Measurement)
+
+        __repr__ = __str__
+
+    _M_Demo._t_Measurement = IcePy.defineStruct('::Demo::Measurement', Measurement, (), (
+        ('tower', (), IcePy._t_string),
+        ('windSpeed', (), IcePy._t_float),
+        ('windDirection', (), IcePy._t_short),
+        ('temperature', (), IcePy._t_float)
+    ))
+
+    _M_Demo.Measurement = Measurement
+    del Measurement
+
+if 'Monitor' not in _M_Demo.__dict__:
+    _M_Demo.Monitor = Ice.createTempClass()
+    class Monitor(Ice.Object):
+        def __init__(self):
+            if Ice.getType(self) == _M_Demo.Monitor:
+                raise RuntimeError('Demo.Monitor is an abstract class')
+
+        def ice_ids(self, current=None):
+            return ('::Demo::Monitor', '::Ice::Object')
+
+        def ice_id(self, current=None):
+            return '::Demo::Monitor'
+
+        def ice_staticId():
+            return '::Demo::Monitor'
+        ice_staticId = staticmethod(ice_staticId)
+
+        def report(self, m, current=None):
+            pass
+
+        def __str__(self):
+            return IcePy.stringify(self, _M_Demo._t_Monitor)
+
+        __repr__ = __str__
+
+    _M_Demo.MonitorPrx = Ice.createTempClass()
+    class MonitorPrx(Ice.ObjectPrx):
+
+        def report(self, m, _ctx=None):
+            return _M_Demo.Monitor._op_report.invoke(self, ((m, ), _ctx))
+
+        def begin_report(self, m, _response=None, _ex=None, _sent=None, _ctx=None):
+            return _M_Demo.Monitor._op_report.begin(self, ((m, ), _response, _ex, _sent, _ctx))
+
+        def end_report(self, _r):
+            return _M_Demo.Monitor._op_report.end(self, _r)
+
+        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
+            return _M_Demo.MonitorPrx.ice_checkedCast(proxy, '::Demo::Monitor', facetOrCtx, _ctx)
+        checkedCast = staticmethod(checkedCast)
+
+        def uncheckedCast(proxy, facet=None):
+            return _M_Demo.MonitorPrx.ice_uncheckedCast(proxy, facet)
+        uncheckedCast = staticmethod(uncheckedCast)
+
+        def ice_staticId():
+            return '::Demo::Monitor'
+        ice_staticId = staticmethod(ice_staticId)
+
+    _M_Demo._t_MonitorPrx = IcePy.defineProxy('::Demo::Monitor', MonitorPrx)
+
+    _M_Demo._t_Monitor = IcePy.defineClass('::Demo::Monitor', Monitor, -1, (), True, False, None, (), ())
+    Monitor._ice_type = _M_Demo._t_Monitor
+
+    Monitor._op_report = IcePy.Operation('report', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), _M_Demo._t_Measurement, False, 0),), (), None, ())
+
+    _M_Demo.Monitor = Monitor
+    del Monitor
+
+    _M_Demo.MonitorPrx = MonitorPrx
+    del MonitorPrx
 
 # End of module Demo
