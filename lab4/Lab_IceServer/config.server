@@ -5,6 +5,27 @@
 #
 Adapter1.Endpoints=tcp -h localhost -p 10000:udp -h localhost -p 10000:ssl -h localhost -p 10001
 SimplePrinter.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+
+LaboratoryRoom.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+
+MoistureSensor_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+MoistureSensor_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+Sensor_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+Sensor_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+BodyTemperatureSensor_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+BodyTemperatureSensor_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+Printer_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+Printer_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+AsciiPrinter_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+AsciiPrinter_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+InterpretingPrinter_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+InterpretingPrinter_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+Camera_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+Camera_One_State.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+Camera_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+ZoomingCamera_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+ZoomingCamera_Two.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
+
 #
 # Warn about connection exceptions
 #

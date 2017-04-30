@@ -20,11 +20,11 @@
 
 package Demo;
 
-public interface PrinterPrx extends Ice.ObjectPrx
+public interface PrinterPrx extends DevicePrx
 {
-    public String printString(String s);
+    public PrinterStatePrx printString(String s);
 
-    public String printString(String s, java.util.Map<String, String> __ctx);
+    public PrinterStatePrx printString(String s, java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_printString(String s);
 
@@ -39,24 +39,58 @@ public interface PrinterPrx extends Ice.ObjectPrx
     public Ice.AsyncResult begin_printString(String s, java.util.Map<String, String> __ctx, Callback_Printer_printString __cb);
 
     public Ice.AsyncResult begin_printString(String s, 
-                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_printString(String s, 
-                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_printString(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_printString(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb);
 
-    public String end_printString(Ice.AsyncResult __result);
+    public PrinterStatePrx end_printString(Ice.AsyncResult __result);
+
+    public void fillInk();
+
+    public void fillInk(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_fillInk();
+
+    public Ice.AsyncResult begin_fillInk(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_fillInk(Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_fillInk(java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_fillInk(Callback_Printer_fillInk __cb);
+
+    public Ice.AsyncResult begin_fillInk(java.util.Map<String, String> __ctx, Callback_Printer_fillInk __cb);
+
+    public Ice.AsyncResult begin_fillInk(IceInternal.Functional_VoidCallback __responseCb, 
+                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_fillInk(IceInternal.Functional_VoidCallback __responseCb, 
+                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                         IceInternal.Functional_BoolCallback __sentCb);
+
+    public Ice.AsyncResult begin_fillInk(java.util.Map<String, String> __ctx, 
+                                         IceInternal.Functional_VoidCallback __responseCb, 
+                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_fillInk(java.util.Map<String, String> __ctx, 
+                                         IceInternal.Functional_VoidCallback __responseCb, 
+                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                         IceInternal.Functional_BoolCallback __sentCb);
+
+    public void end_fillInk(Ice.AsyncResult __result);
 }

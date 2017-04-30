@@ -8,6 +8,7 @@ client_name = "Nameless-One"
 print "Ice args:", sys.argv
 ic = Ice.initialize(sys.argv)
 topic_manager_base = ic.stringToProxy("DemoIceStorm/TopicManager:default -h localhost -p 9999")
+camera_one_base =  ic.propertyToProxy("Camera_One.Proxy")
 topic_manager = IceStorm.TopicManagerPrx.checkedCast(topic_manager_base)
 adapter = ic.createObjectAdapter("MonitorAdapter")
 
@@ -101,12 +102,17 @@ def release_device():
     print "to-do"
     msvcrt.getch()
 
+def registerDeviceTopics(devicesNamesList):
+    pass
+
 status = 0
 try:
     #base = ic.stringToProxy("SimplePrinter:tcp -h localhost -p 10000:udp -h localhost -p 10000")
     base = ic.propertyToProxy("SimplePrinter.Proxy")
+    labRoomBase = ic.propertyToProxy("LaboratoryRoom.Proxy")
     printer = Demo.PrinterPrx.checkedCast(base)
-    
+    labRoom = Demo.LaboratoryRoomPrx.checkedCast(labRoomBase)
+    devicesNamesList =  labRoom.getDevicesNamesList()
     if not printer:
         raise RuntimeError("Invalid proxy")
     
@@ -136,7 +142,7 @@ try:
         elif user_option == "2":
             start_observing()
         elif user_option == "3":
-            list_devices()
+            list_devices(devicesNamesList)
         elif user_option == "4":
             list_observed_devices()
         elif user_option == "5":

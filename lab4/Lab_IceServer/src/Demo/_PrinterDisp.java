@@ -31,6 +31,7 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
 
     public static final String[] __ids =
     {
+        "::Demo::Device",
         "::Demo::Printer",
         "::Ice::Object"
     };
@@ -57,20 +58,40 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
 
     public String ice_id()
     {
-        return __ids[0];
+        return __ids[1];
     }
 
     public String ice_id(Ice.Current __current)
     {
-        return __ids[0];
+        return __ids[1];
     }
 
     public static String ice_staticId()
     {
-        return __ids[0];
+        return __ids[1];
     }
 
-    public final String printString(String s)
+    public final void feedBattery()
+    {
+        feedBattery(null);
+    }
+
+    public final String getName()
+    {
+        return getName(null);
+    }
+
+    public final DeviceStatePrx getState()
+    {
+        return getState(null);
+    }
+
+    public final void fillInk()
+    {
+        fillInk(null);
+    }
+
+    public final PrinterStatePrx printString(String s)
     {
         return printString(s, null);
     }
@@ -82,15 +103,28 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
         String s;
         s = __is.readString();
         __inS.endReadParams();
-        String __ret = __obj.printString(s, __current);
+        PrinterStatePrx __ret = __obj.printString(s, __current);
         IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeString(__ret);
+        PrinterStatePrxHelper.__write(__os, __ret);
         __inS.__endWriteParams(true);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
+    public static Ice.DispatchStatus ___fillInk(Printer __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        __inS.readEmptyParams();
+        __obj.fillInk(__current);
+        __inS.__writeEmptyParams();
         return Ice.DispatchStatus.DispatchOK;
     }
 
     private final static String[] __all =
     {
+        "feedBattery",
+        "fillInk",
+        "getName",
+        "getState",
         "ice_id",
         "ice_ids",
         "ice_isA",
@@ -110,21 +144,37 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
         {
             case 0:
             {
-                return ___ice_id(this, in, __current);
+                return _DeviceDisp.___feedBattery(this, in, __current);
             }
             case 1:
             {
-                return ___ice_ids(this, in, __current);
+                return ___fillInk(this, in, __current);
             }
             case 2:
             {
-                return ___ice_isA(this, in, __current);
+                return _DeviceDisp.___getName(this, in, __current);
             }
             case 3:
             {
-                return ___ice_ping(this, in, __current);
+                return _DeviceDisp.___getState(this, in, __current);
             }
             case 4:
+            {
+                return ___ice_id(this, in, __current);
+            }
+            case 5:
+            {
+                return ___ice_ids(this, in, __current);
+            }
+            case 6:
+            {
+                return ___ice_isA(this, in, __current);
+            }
+            case 7:
+            {
+                return ___ice_ping(this, in, __current);
+            }
+            case 8:
             {
                 return ___printString(this, in, __current);
             }

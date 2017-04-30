@@ -20,7 +20,9 @@
 
 package Demo;
 
-public interface _PrinterOperations
+public interface _PrinterOperations extends _DeviceOperations
 {
-    String printString(String s, Ice.Current __current);
+    PrinterStatePrx printString(String s, Ice.Current __current);
+
+    void fillInk(Ice.Current __current);
 }

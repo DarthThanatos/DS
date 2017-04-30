@@ -21,7 +21,7 @@
 package Demo;
 
 public abstract class Callback_Printer_printString
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<String>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<Demo.PrinterStatePrx>
 {
     public final void __completed(Ice.AsyncResult __result)
     {

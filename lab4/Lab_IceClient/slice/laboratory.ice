@@ -12,7 +12,7 @@ module Demo {
         string getName();
         DeviceState* getState();
         void feedBattery();
-    }
+    };
 
     interface LaboratoryRoom {
         stringSeq getDevicesNamesList();
@@ -23,7 +23,7 @@ module Demo {
         float verticalAngle;
     };
 
-    class ZoomingCameraState extens CameraState{
+    class ZoomingCameraState extends CameraState{
         int zoomLvl;
     };
     
@@ -37,7 +37,7 @@ module Demo {
 
     interface ZoomingCamera extends Camera{
         ZoomingCameraState* zoom(int lvl);
-    }
+    };
 
     
 
@@ -54,7 +54,7 @@ module Demo {
         stringSeq interpretedParts;
     };
 
-    interface Printer enxtends Device{
+    interface Printer extends Device{
         PrinterState* printString(string s);
         void fillInk();
     };
@@ -74,45 +74,45 @@ module Demo {
         float temperature; // degrees Celsius
     };
 
-    enum diode_color {RED, GREEN, BLUE};
+    enum diodecolor {RED, GREEN, BLUE};
     class SensorState extends DeviceState{
         float speedInMilesPerHour;
         float speedInMetresPerHour;    
-        diode_color speedColor;
+        diodecolor speedColor;
     };
 
     class BodyTemperatureState extends SensorState{
         float temperatureInCentimeters;
         float temperatureInFahrenheits;
-        diode_color temperatureColor;
+        diodecolor temperatureColor;
     };
     
-    MoistureSensorState extends SensorState{
+    class MoistureSensorState extends SensorState{
         int mouistureLvl;
-        diode_color moistureColor;
+        diodecolor moistureColor;
     };
     
     enum speed {SLOW, MEDIUM, QUICK}; 
     
     interface Sensor extends Device{
-        SensorState* measureMotion(speed object);
+        SensorState* measureMotion(speed speedObj);
     };
     
     enum moisture {DRY, WET, OCEAN};
 
     interface MoistureSensor extends Sensor{
-        MoistureSensorState* measureMoisture(moisture object);
+        MoistureSensorState* measureMoisture(moisture moistureObj);
     };
     
     enum temperature {COLD, COOL, WARM};
 
     interface BodyTemperatureSensor extends Sensor{
-        BodyTemperatureState* measureBodyTemperature(temperature object);
+        BodyTemperatureState* measureBodyTemperature(temperature temperatureObj);
     };
 
     interface Reporter{
         void report(DeviceState* state);
-    }
+    };
 
     interface Monitor {
         void report(Measurement m);

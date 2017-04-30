@@ -6,6 +6,10 @@ IceStorm.instanceName=IceStorm
 Calc1.Proxy=calc11:tcp -h localhost -p 10000:udp -h localhost -p 10000:ssl -h localhost -p 10001
 TopicManager.Proxy=IceStorm/TopicManager:tcp -h localhost -p 10000
 SimplePrinter.Proxy=SimplePrinter:tcp -h localhost -p 10000:udp -h localhost -p 10000
+Camera_One.Proxy=Camera_One:tcp -h localhost -p 10000:udp -h localhost -p 10000
+Camera_One_State.Proxy=Camera_One_State:tcp -h localhost -p 10000:udp -h localhost -p 10000
+LaboratoryRoom.Proxy=LaboratoryRoom:tcp -h localhost -p 10000:udp -h localhost -p 10000
+
 MonitorAdapter.Endpoints=tcp:udp
 
 #

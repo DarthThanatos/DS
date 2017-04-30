@@ -5,7 +5,10 @@
  */
 package lab_iceserver;
 
+import Demo.LaboratoryRoom;
 import Demo.Printer;
+import lab_iceserver.camera.CameraI;
+import lab_iceserver.devicemanager.LaboratoryRoomI;
 
 public class Lab_IceServer {
     public static void
@@ -18,7 +21,12 @@ public class Lab_IceServer {
             Ice.ObjectAdapter adapter =
                 ic.createObjectAdapterWithEndpoints("SimplePrinterAdapter", "tcp -h localhost -p 10000:udp -h localhost -p 10000");
             Ice.Object object = new PrinterI();
+            
+            Ice.Object cameraObject = new CameraI(ic);
+            String[] devicesNames = {"Camera_One"};
+            Ice.Object labRoom = new LaboratoryRoomI(devicesNames);
             adapter.add(object, ic.stringToIdentity("SimplePrinter"));
+            adapter.add(cameraObject, ic.stringToIdentity("Camera_One"));
             adapter.activate();
             System.out.println("Waiting for shutdown... entering main loop");
             ic.waitForShutdown();

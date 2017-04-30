@@ -21,9 +21,10 @@
 package Demo;
 
 public interface Printer extends Ice.Object,
-                                 _PrinterOperations, _PrinterOperationsNC
+                                 _PrinterOperations, _PrinterOperationsNC,
+                                 Device
 {
     public static final String ice_staticId = "::Demo::Printer";
 
-    public static final long serialVersionUID = 888368824L;
+    public static final long serialVersionUID = 2027725251L;
 }

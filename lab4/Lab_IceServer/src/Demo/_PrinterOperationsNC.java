@@ -20,7 +20,9 @@
 
 package Demo;
 
-public interface _PrinterOperationsNC
+public interface _PrinterOperationsNC extends _DeviceOperationsNC
 {
-    String printString(String s);
+    PrinterStatePrx printString(String s);
+
+    void fillInk();
 }
