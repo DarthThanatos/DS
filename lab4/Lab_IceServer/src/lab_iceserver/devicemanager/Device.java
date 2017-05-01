@@ -12,6 +12,8 @@ import Ice.Current;
  */
 public class Device extends Demo._DeviceDisp{
 
+    protected int batteryLevel;
+    
     @Override
     public String getName(Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -24,7 +26,7 @@ public class Device extends Demo._DeviceDisp{
 
     @Override
     public void feedBattery(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

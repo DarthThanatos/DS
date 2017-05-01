@@ -21,7 +21,7 @@
 package Demo;
 
 public abstract class Callback_Camera_turnUp
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<Demo.CameraState>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackVoidUE
 {
     public final void __completed(Ice.AsyncResult __result)
     {

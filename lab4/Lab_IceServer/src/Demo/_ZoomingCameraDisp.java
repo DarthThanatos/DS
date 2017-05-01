@@ -72,24 +72,28 @@ public abstract class _ZoomingCameraDisp extends Ice.ObjectImpl implements Zoomi
         return __ids[2];
     }
 
-    public final CameraState turnDown(float angle)
+    public final void turnDown(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnDown(angle, null);
+        turnDown(angle, null);
     }
 
     public final void turnLeft(float angle)
+        throws RotationOutOfRangeException
     {
         turnLeft(angle, null);
     }
 
-    public final CameraState turnRight(float angle)
+    public final void turnRight(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnRight(angle, null);
+        turnRight(angle, null);
     }
 
-    public final CameraState turnUp(float angle)
+    public final void turnUp(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnUp(angle, null);
+        turnUp(angle, null);
     }
 
     public final void feedBattery()
@@ -112,9 +116,10 @@ public abstract class _ZoomingCameraDisp extends Ice.ObjectImpl implements Zoomi
         return listActions(null);
     }
 
-    public final ZoomingCameraStatePrx zoom(int lvl)
+    public final void zoom(int lvl)
+        throws ZoomOutOfRangeException
     {
-        return zoom(lvl, null);
+        zoom(lvl, null);
     }
 
     public static Ice.DispatchStatus ___zoom(ZoomingCamera __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -124,11 +129,17 @@ public abstract class _ZoomingCameraDisp extends Ice.ObjectImpl implements Zoomi
         int lvl;
         lvl = __is.readInt();
         __inS.endReadParams();
-        ZoomingCameraStatePrx __ret = __obj.zoom(lvl, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        ZoomingCameraStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.zoom(lvl, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(ZoomOutOfRangeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

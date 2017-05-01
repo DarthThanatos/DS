@@ -16,7 +16,7 @@ import Ice.Current;
 public class ZoomingCameraI extends Demo._ZoomingCameraDisp{
 
     @Override
-    public ZoomingCameraStatePrx zoom(int lvl, Current __current) {
+    public void zoom(int lvl, Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -41,17 +41,17 @@ public class ZoomingCameraI extends Demo._ZoomingCameraDisp{
     }
 
     @Override
-    public CameraState turnRight(float angle, Current __current) {
+    public void turnRight(float angle, Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public CameraState turnUp(float angle, Current __current) {
+    public void turnUp(float angle, Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public CameraState turnDown(float angle, Current __current) {
+    public void turnDown(float angle, Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

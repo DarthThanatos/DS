@@ -22,7 +22,8 @@ package Demo;
 
 public interface _PrinterOperationsNC extends _DeviceOperationsNC
 {
-    PrinterStatePrx printString(String s);
+    String printString(String s)
+        throws OutOfInkException;
 
     void fillInk();
 }

@@ -96,7 +96,8 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
         fillInk(null);
     }
 
-    public final PrinterStatePrx printString(String s)
+    public final String printString(String s)
+        throws OutOfInkException
     {
         return printString(s, null);
     }
@@ -108,11 +109,19 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
         String s;
         s = __is.readString();
         __inS.endReadParams();
-        PrinterStatePrx __ret = __obj.printString(s, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        PrinterStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            String __ret = __obj.printString(s, __current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(__ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(OutOfInkException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     public static Ice.DispatchStatus ___fillInk(Printer __obj, IceInternal.Incoming __inS, Ice.Current __current)

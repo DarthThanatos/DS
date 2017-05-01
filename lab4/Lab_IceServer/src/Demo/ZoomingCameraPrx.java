@@ -22,9 +22,11 @@ package Demo;
 
 public interface ZoomingCameraPrx extends CameraPrx
 {
-    public ZoomingCameraStatePrx zoom(int lvl);
+    public void zoom(int lvl)
+        throws ZoomOutOfRangeException;
 
-    public ZoomingCameraStatePrx zoom(int lvl, java.util.Map<String, String> __ctx);
+    public void zoom(int lvl, java.util.Map<String, String> __ctx)
+        throws ZoomOutOfRangeException;
 
     public Ice.AsyncResult begin_zoom(int lvl);
 
@@ -39,24 +41,29 @@ public interface ZoomingCameraPrx extends CameraPrx
     public Ice.AsyncResult begin_zoom(int lvl, java.util.Map<String, String> __ctx, Callback_ZoomingCamera_zoom __cb);
 
     public Ice.AsyncResult begin_zoom(int lvl, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_zoom(int lvl, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                       IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_zoom(int lvl, 
                                       java.util.Map<String, String> __ctx, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_zoom(int lvl, 
                                       java.util.Map<String, String> __ctx, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                       IceInternal.Functional_BoolCallback __sentCb);
 
-    public ZoomingCameraStatePrx end_zoom(Ice.AsyncResult __result);
+    public void end_zoom(Ice.AsyncResult __result)
+        throws ZoomOutOfRangeException;
 }

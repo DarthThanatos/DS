@@ -22,5 +22,6 @@ package Demo;
 
 public interface _SensorOperations extends _DeviceOperations
 {
-    SensorStatePrx measureMotion(speed speedObj, Ice.Current __current);
+    void measureMotion(float speed, Ice.Current __current)
+        throws BrokenDiodeException;
 }

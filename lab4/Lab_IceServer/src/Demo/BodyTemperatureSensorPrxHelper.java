@@ -27,94 +27,102 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
 {
     private static final String __measureBodyTemperature_name = "measureBodyTemperature";
 
-    public BodyTemperatureStatePrx measureBodyTemperature(temperature temperatureObj)
+    public void measureBodyTemperature(float temperature)
+        throws BrokenDiodeException
     {
-        return measureBodyTemperature(temperatureObj, null, false);
+        measureBodyTemperature(temperature, null, false);
     }
 
-    public BodyTemperatureStatePrx measureBodyTemperature(temperature temperatureObj, java.util.Map<String, String> __ctx)
+    public void measureBodyTemperature(float temperature, java.util.Map<String, String> __ctx)
+        throws BrokenDiodeException
     {
-        return measureBodyTemperature(temperatureObj, __ctx, true);
+        measureBodyTemperature(temperature, __ctx, true);
     }
 
-    private BodyTemperatureStatePrx measureBodyTemperature(temperature temperatureObj, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void measureBodyTemperature(float temperature, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws BrokenDiodeException
     {
         __checkTwowayOnly(__measureBodyTemperature_name);
-        return end_measureBodyTemperature(begin_measureBodyTemperature(temperatureObj, __ctx, __explicitCtx, true, null));
+        end_measureBodyTemperature(begin_measureBodyTemperature(temperature, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj)
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature)
     {
-        return begin_measureBodyTemperature(temperatureObj, null, false, false, null);
+        return begin_measureBodyTemperature(temperature, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, java.util.Map<String, String> __ctx)
     {
-        return begin_measureBodyTemperature(temperatureObj, __ctx, true, false, null);
+        return begin_measureBodyTemperature(temperature, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, Ice.Callback __cb)
     {
-        return begin_measureBodyTemperature(temperatureObj, null, false, false, __cb);
+        return begin_measureBodyTemperature(temperature, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_measureBodyTemperature(temperatureObj, __ctx, true, false, __cb);
+        return begin_measureBodyTemperature(temperature, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, Callback_BodyTemperatureSensor_measureBodyTemperature __cb)
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, Callback_BodyTemperatureSensor_measureBodyTemperature __cb)
     {
-        return begin_measureBodyTemperature(temperatureObj, null, false, false, __cb);
+        return begin_measureBodyTemperature(temperature, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, java.util.Map<String, String> __ctx, Callback_BodyTemperatureSensor_measureBodyTemperature __cb)
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, java.util.Map<String, String> __ctx, Callback_BodyTemperatureSensor_measureBodyTemperature __cb)
     {
-        return begin_measureBodyTemperature(temperatureObj, __ctx, true, false, __cb);
+        return begin_measureBodyTemperature(temperature, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, 
-                                                        IceInternal.Functional_GenericCallback1<BodyTemperatureStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, 
+                                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureBodyTemperature(temperatureObj, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_measureBodyTemperature(temperature, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, 
-                                                        IceInternal.Functional_GenericCallback1<BodyTemperatureStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, 
+                                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                         IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureBodyTemperature(temperatureObj, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureBodyTemperature(temperature, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, 
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, 
                                                         java.util.Map<String, String> __ctx, 
-                                                        IceInternal.Functional_GenericCallback1<BodyTemperatureStatePrx> __responseCb, 
+                                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureBodyTemperature(temperatureObj, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_measureBodyTemperature(temperature, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, 
+    public Ice.AsyncResult begin_measureBodyTemperature(float temperature, 
                                                         java.util.Map<String, String> __ctx, 
-                                                        IceInternal.Functional_GenericCallback1<BodyTemperatureStatePrx> __responseCb, 
+                                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                         IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureBodyTemperature(temperatureObj, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureBodyTemperature(temperature, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, 
+    private Ice.AsyncResult begin_measureBodyTemperature(float temperature, 
                                                          java.util.Map<String, String> __ctx, 
                                                          boolean __explicitCtx, 
                                                          boolean __synchronous, 
-                                                         IceInternal.Functional_GenericCallback1<BodyTemperatureStatePrx> __responseCb, 
+                                                         IceInternal.Functional_VoidCallback __responseCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                          IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureBodyTemperature(temperatureObj, __ctx, __explicitCtx, __synchronous, 
-                                            new IceInternal.Functional_TwowayCallbackArg1<Demo.BodyTemperatureStatePrx>(__responseCb, __exceptionCb, __sentCb)
+        return begin_measureBodyTemperature(temperature, __ctx, __explicitCtx, __synchronous, 
+                                            new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                                 {
                                                     public final void __completed(Ice.AsyncResult __result)
                                                     {
@@ -123,7 +131,7 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
                                                 });
     }
 
-    private Ice.AsyncResult begin_measureBodyTemperature(temperature temperatureObj, 
+    private Ice.AsyncResult begin_measureBodyTemperature(float temperature, 
                                                          java.util.Map<String, String> __ctx, 
                                                          boolean __explicitCtx, 
                                                          boolean __synchronous, 
@@ -135,7 +143,7 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
         {
             __result.prepare(__measureBodyTemperature_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
-            temperature.__write(__os, temperatureObj);
+            __os.writeFloat(temperature);
             __result.endWriteParams();
             __result.invoke();
         }
@@ -146,7 +154,8 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
         return __result;
     }
 
-    public BodyTemperatureStatePrx end_measureBodyTemperature(Ice.AsyncResult __iresult)
+    public void end_measureBodyTemperature(Ice.AsyncResult __iresult)
+        throws BrokenDiodeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __measureBodyTemperature_name);
         try
@@ -157,16 +166,16 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
                 {
                     __result.throwUserException();
                 }
+                catch(BrokenDiodeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            BodyTemperatureStatePrx __ret;
-            __ret = BodyTemperatureStatePrxHelper.__read(__is);
-            __result.endReadParams();
-            return __ret;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -177,13 +186,17 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
         }
     }
 
-    static public void __measureBodyTemperature_completed(Ice.TwowayCallbackArg1<BodyTemperatureStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __measureBodyTemperature_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.BodyTemperatureSensorPrx __proxy = (Demo.BodyTemperatureSensorPrx)__result.getProxy();
-        BodyTemperatureStatePrx __ret = null;
         try
         {
-            __ret = __proxy.end_measureBodyTemperature(__result);
+            __proxy.end_measureBodyTemperature(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -195,7 +208,7 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     private static final String __feedBattery_name = "feedBattery";
@@ -807,94 +820,102 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
 
     private static final String __measureMotion_name = "measureMotion";
 
-    public SensorStatePrx measureMotion(speed speedObj)
+    public void measureMotion(float speed)
+        throws BrokenDiodeException
     {
-        return measureMotion(speedObj, null, false);
+        measureMotion(speed, null, false);
     }
 
-    public SensorStatePrx measureMotion(speed speedObj, java.util.Map<String, String> __ctx)
+    public void measureMotion(float speed, java.util.Map<String, String> __ctx)
+        throws BrokenDiodeException
     {
-        return measureMotion(speedObj, __ctx, true);
+        measureMotion(speed, __ctx, true);
     }
 
-    private SensorStatePrx measureMotion(speed speedObj, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void measureMotion(float speed, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws BrokenDiodeException
     {
         __checkTwowayOnly(__measureMotion_name);
-        return end_measureMotion(begin_measureMotion(speedObj, __ctx, __explicitCtx, true, null));
+        end_measureMotion(begin_measureMotion(speed, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj)
+    public Ice.AsyncResult begin_measureMotion(float speed)
     {
-        return begin_measureMotion(speedObj, null, false, false, null);
+        return begin_measureMotion(speed, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, null);
+        return begin_measureMotion(speed, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, Ice.Callback __cb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __cb);
+        return begin_measureMotion(speed, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __cb);
+        return begin_measureMotion(speed, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, Callback_Sensor_measureMotion __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, Callback_Sensor_measureMotion __cb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __cb);
+        return begin_measureMotion(speed, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx, Callback_Sensor_measureMotion __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx, Callback_Sensor_measureMotion __cb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __cb);
+        return begin_measureMotion(speed, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_measureMotion(speed, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureMotion(speed, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
                                                java.util.Map<String, String> __ctx, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_measureMotion(speed, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
                                                java.util.Map<String, String> __ctx, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureMotion(speed, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    private Ice.AsyncResult begin_measureMotion(float speed, 
                                                 java.util.Map<String, String> __ctx, 
                                                 boolean __explicitCtx, 
                                                 boolean __synchronous, 
-                                                IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                                IceInternal.Functional_VoidCallback __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                 IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMotion(speedObj, __ctx, __explicitCtx, __synchronous, 
-                                   new IceInternal.Functional_TwowayCallbackArg1<Demo.SensorStatePrx>(__responseCb, __exceptionCb, __sentCb)
+        return begin_measureMotion(speed, __ctx, __explicitCtx, __synchronous, 
+                                   new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                        {
                                            public final void __completed(Ice.AsyncResult __result)
                                            {
@@ -903,7 +924,7 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
                                        });
     }
 
-    private Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    private Ice.AsyncResult begin_measureMotion(float speed, 
                                                 java.util.Map<String, String> __ctx, 
                                                 boolean __explicitCtx, 
                                                 boolean __synchronous, 
@@ -915,7 +936,7 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
         {
             __result.prepare(__measureMotion_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
-            speed.__write(__os, speedObj);
+            __os.writeFloat(speed);
             __result.endWriteParams();
             __result.invoke();
         }
@@ -926,7 +947,8 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
         return __result;
     }
 
-    public SensorStatePrx end_measureMotion(Ice.AsyncResult __iresult)
+    public void end_measureMotion(Ice.AsyncResult __iresult)
+        throws BrokenDiodeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __measureMotion_name);
         try
@@ -937,16 +959,16 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
                 {
                     __result.throwUserException();
                 }
+                catch(BrokenDiodeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            SensorStatePrx __ret;
-            __ret = SensorStatePrxHelper.__read(__is);
-            __result.endReadParams();
-            return __ret;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -957,13 +979,17 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
         }
     }
 
-    static public void __measureMotion_completed(Ice.TwowayCallbackArg1<SensorStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __measureMotion_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.SensorPrx __proxy = (Demo.SensorPrx)__result.getProxy();
-        SensorStatePrx __ret = null;
         try
         {
-            __ret = __proxy.end_measureMotion(__result);
+            __proxy.end_measureMotion(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -975,7 +1001,7 @@ public final class BodyTemperatureSensorPrxHelper extends Ice.ObjectPrxHelperBas
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     /**

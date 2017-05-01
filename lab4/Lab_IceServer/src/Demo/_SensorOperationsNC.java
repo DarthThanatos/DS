@@ -22,5 +22,6 @@ package Demo;
 
 public interface _SensorOperationsNC extends _DeviceOperationsNC
 {
-    SensorStatePrx measureMotion(speed speedObj);
+    void measureMotion(float speed)
+        throws BrokenDiodeException;
 }

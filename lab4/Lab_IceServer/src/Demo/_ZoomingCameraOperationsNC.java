@@ -22,5 +22,6 @@ package Demo;
 
 public interface _ZoomingCameraOperationsNC extends _CameraOperationsNC
 {
-    ZoomingCameraStatePrx zoom(int lvl);
+    void zoom(int lvl)
+        throws ZoomOutOfRangeException;
 }

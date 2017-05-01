@@ -21,7 +21,7 @@
 package Demo;
 
 public abstract class Callback_AsciiPrinter_prettyPrint
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<Demo.AsciiPrinterStatePrx>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1UE<String>
 {
     public final void __completed(Ice.AsyncResult __result)
     {

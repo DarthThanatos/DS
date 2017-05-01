@@ -22,41 +22,48 @@ package Demo;
 
 public interface SensorPrx extends DevicePrx
 {
-    public SensorStatePrx measureMotion(speed speedObj);
+    public void measureMotion(float speed)
+        throws BrokenDiodeException;
 
-    public SensorStatePrx measureMotion(speed speedObj, java.util.Map<String, String> __ctx);
+    public void measureMotion(float speed, java.util.Map<String, String> __ctx)
+        throws BrokenDiodeException;
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj);
+    public Ice.AsyncResult begin_measureMotion(float speed);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx);
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, Ice.Callback __cb);
+    public Ice.AsyncResult begin_measureMotion(float speed, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, Callback_Sensor_measureMotion __cb);
+    public Ice.AsyncResult begin_measureMotion(float speed, Callback_Sensor_measureMotion __cb);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx, Callback_Sensor_measureMotion __cb);
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx, Callback_Sensor_measureMotion __cb);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                IceInternal.Functional_BoolCallback __sentCb);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
                                                java.util.Map<String, String> __ctx, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
                                                java.util.Map<String, String> __ctx, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                IceInternal.Functional_BoolCallback __sentCb);
 
-    public SensorStatePrx end_measureMotion(Ice.AsyncResult __result);
+    public void end_measureMotion(Ice.AsyncResult __result)
+        throws BrokenDiodeException;
 }

@@ -22,5 +22,6 @@ package Demo;
 
 public interface _BodyTemperatureSensorOperationsNC extends _SensorOperationsNC
 {
-    BodyTemperatureStatePrx measureBodyTemperature(temperature temperatureObj);
+    void measureBodyTemperature(float temperature)
+        throws BrokenDiodeException;
 }

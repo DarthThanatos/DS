@@ -71,24 +71,28 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         return __ids[0];
     }
 
-    public final CameraState turnDown(float angle)
+    public final void turnDown(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnDown(angle, null);
+        turnDown(angle, null);
     }
 
     public final void turnLeft(float angle)
+        throws RotationOutOfRangeException
     {
         turnLeft(angle, null);
     }
 
-    public final CameraState turnRight(float angle)
+    public final void turnRight(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnRight(angle, null);
+        turnRight(angle, null);
     }
 
-    public final CameraState turnUp(float angle)
+    public final void turnUp(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnUp(angle, null);
+        turnUp(angle, null);
     }
 
     public final void feedBattery()
@@ -118,9 +122,17 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        __obj.turnLeft(angle, __current);
-        __inS.__writeEmptyParams();
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.turnLeft(angle, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(RotationOutOfRangeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     public static Ice.DispatchStatus ___turnRight(Camera __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -130,12 +142,17 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        CameraState __ret = __obj.turnRight(angle, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeObject(__ret);
-        __os.writePendingObjects();
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.turnRight(angle, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(RotationOutOfRangeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     public static Ice.DispatchStatus ___turnUp(Camera __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -145,12 +162,17 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        CameraState __ret = __obj.turnUp(angle, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeObject(__ret);
-        __os.writePendingObjects();
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.turnUp(angle, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(RotationOutOfRangeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     public static Ice.DispatchStatus ___turnDown(Camera __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -160,12 +182,17 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        CameraState __ret = __obj.turnDown(angle, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeObject(__ret);
-        __os.writePendingObjects();
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.turnDown(angle, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(RotationOutOfRangeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

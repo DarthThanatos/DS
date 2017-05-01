@@ -22,5 +22,6 @@ package Demo;
 
 public interface _InterpretingPrinterOperationsNC extends _PrinterOperationsNC
 {
-    InterpretingPrinterStatePrx interpretAndPrint();
+    String interpretAndPrint(String s)
+        throws OutOfInkException;
 }

@@ -2,13 +2,6 @@ module Demo {
 
     sequence<string> stringSeq;
 
-    class DeviceState{
-        float batteryLevel;
-        string lastUserName;
-        long operationTime;
-        string formatToString();
-    };
-
     interface Device{
         string getName();
         string getState();
@@ -35,102 +28,69 @@ module Demo {
         void releaseDevice(string deviceId, string userId) throws NotKnownDeviceException, DeviceNotControlledException;
     };
     
-    class CameraState extends DeviceState{
-        float horizontalAngle;
-        float verticalAngle;
+    exception RotationOutOfRangeException{
+        float minVertical;
+        float maxVertival;
+        float actual;
+        string reason;
     };
 
-    class ZoomingCameraState extends CameraState{
-        int zoomLvl;
-    };
-    
     interface Camera extends Device{
-        void turnLeft(float angle);
-        CameraState turnRight(float angle);
-        CameraState turnUp(float angle);
-        CameraState turnDown(float angle);
+        void turnLeft(float angle) throws RotationOutOfRangeException;
+        void turnRight(float angle) throws RotationOutOfRangeException;
+        void turnUp(float angle) throws RotationOutOfRangeException;
+        void turnDown(float angle) throws RotationOutOfRangeException;
     };
     
+    exception ZoomOutOfRangeException{
+        int maxLvl;
+        int actualLvl;
+        string reason;
+    };
 
     interface ZoomingCamera extends Camera{
-        ZoomingCameraState* zoom(int lvl);
+        void zoom(int lvl) throws ZoomOutOfRangeException;
     };
 
-    class PrinterState extends DeviceState{
-        int inkLevel;
-        string result;
-    };
-
-    class AsciiPrinterState extends PrinterState{
-        string prettyResult;
-    };
-
-    class InterpretingPrinterState extends PrinterState{
-        stringSeq interpretedParts;
+    exception OutOfInkException{
+        int actualInkLvl;
+        int requiredInkLvl;
+        string reason;
     };
 
     interface Printer extends Device{
-        PrinterState* printString(string s);
+        string printString(string s) throws OutOfInkException;
         void fillInk();
     };
 
     interface AsciiPrinter extends Printer{
-        AsciiPrinterState* prettyPrint(string s);
+        string prettyPrint(string s) throws OutOfInkException;
     };
     
     interface InterpretingPrinter extends Printer{
-        InterpretingPrinterState* interpretAndPrint();
+        string interpretAndPrint(string s) throws OutOfInkException;
     };
 
-    struct Measurement {
-        string tower; // tower id
-        float windSpeed; // knots
-        short windDirection; // degrees
-        float temperature; // degrees Celsius
+    exception BrokenDiodeException{
+        float maxMeasuredValue;
+        float actualMeasuredValue;
+        string reason;
     };
 
-    enum diodecolor {RED, GREEN, BLUE};
-    class SensorState extends DeviceState{
-        float speedInMilesPerHour;
-        float speedInMetresPerHour;    
-        diodecolor speedColor;
-    };
-
-    class BodyTemperatureState extends SensorState{
-        float temperatureInCentimeters;
-        float temperatureInFahrenheits;
-        diodecolor temperatureColor;
-    };
-    
-    class MoistureSensorState extends SensorState{
-        int mouistureLvl;
-        diodecolor moistureColor;
-    };
-    
-    enum speed {SLOW, MEDIUM, QUICK}; 
-    
     interface Sensor extends Device{
-        SensorState* measureMotion(speed speedObj);
+        void measureMotion(float speed) throws BrokenDiodeException;
     };
-    
-    enum moisture {DRY, WET, OCEAN};
 
     interface MoistureSensor extends Sensor{
-        MoistureSensorState* measureMoisture(moisture moistureObj);
+        void measureMoisture(float moisture) throws BrokenDiodeException;
     };
     
-    enum temperature {COLD, COOL, WARM};
-
     interface BodyTemperatureSensor extends Sensor{
-        BodyTemperatureState* measureBodyTemperature(temperature temperatureObj);
+        void measureBodyTemperature(float temperature) throws BrokenDiodeException;
     };
 
     interface Reporter{
-        //void report(DeviceState* state);
         void report(string msg);
     };
 
-    interface Monitor {
-        void report(Measurement m);
-    };
 };

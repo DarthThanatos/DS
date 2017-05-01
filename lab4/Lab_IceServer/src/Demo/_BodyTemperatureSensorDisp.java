@@ -72,9 +72,10 @@ public abstract class _BodyTemperatureSensorDisp extends Ice.ObjectImpl implemen
         return __ids[0];
     }
 
-    public final BodyTemperatureStatePrx measureBodyTemperature(temperature temperatureObj)
+    public final void measureBodyTemperature(float temperature)
+        throws BrokenDiodeException
     {
-        return measureBodyTemperature(temperatureObj, null);
+        measureBodyTemperature(temperature, null);
     }
 
     public final void feedBattery()
@@ -97,23 +98,30 @@ public abstract class _BodyTemperatureSensorDisp extends Ice.ObjectImpl implemen
         return listActions(null);
     }
 
-    public final SensorStatePrx measureMotion(speed speedObj)
+    public final void measureMotion(float speed)
+        throws BrokenDiodeException
     {
-        return measureMotion(speedObj, null);
+        measureMotion(speed, null);
     }
 
     public static Ice.DispatchStatus ___measureBodyTemperature(BodyTemperatureSensor __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
-        temperature temperatureObj;
-        temperatureObj = temperature.__read(__is);
+        float temperature;
+        temperature = __is.readFloat();
         __inS.endReadParams();
-        BodyTemperatureStatePrx __ret = __obj.measureBodyTemperature(temperatureObj, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        BodyTemperatureStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.measureBodyTemperature(temperature, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(BrokenDiodeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

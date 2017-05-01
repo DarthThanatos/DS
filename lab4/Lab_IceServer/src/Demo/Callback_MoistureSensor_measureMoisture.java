@@ -21,7 +21,7 @@
 package Demo;
 
 public abstract class Callback_MoistureSensor_measureMoisture
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<Demo.MoistureSensorStatePrx>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackVoidUE
 {
     public final void __completed(Ice.AsyncResult __result)
     {

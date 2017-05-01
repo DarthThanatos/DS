@@ -22,5 +22,6 @@ package Demo;
 
 public interface _BodyTemperatureSensorOperations extends _SensorOperations
 {
-    BodyTemperatureStatePrx measureBodyTemperature(temperature temperatureObj, Ice.Current __current);
+    void measureBodyTemperature(float temperature, Ice.Current __current)
+        throws BrokenDiodeException;
 }

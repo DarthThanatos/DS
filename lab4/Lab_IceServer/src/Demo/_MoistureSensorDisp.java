@@ -92,28 +92,36 @@ public abstract class _MoistureSensorDisp extends Ice.ObjectImpl implements Mois
         return listActions(null);
     }
 
-    public final MoistureSensorStatePrx measureMoisture(moisture moistureObj)
+    public final void measureMoisture(float moisture)
+        throws BrokenDiodeException
     {
-        return measureMoisture(moistureObj, null);
+        measureMoisture(moisture, null);
     }
 
-    public final SensorStatePrx measureMotion(speed speedObj)
+    public final void measureMotion(float speed)
+        throws BrokenDiodeException
     {
-        return measureMotion(speedObj, null);
+        measureMotion(speed, null);
     }
 
     public static Ice.DispatchStatus ___measureMoisture(MoistureSensor __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
-        moisture moistureObj;
-        moistureObj = moisture.__read(__is);
+        float moisture;
+        moisture = __is.readFloat();
         __inS.endReadParams();
-        MoistureSensorStatePrx __ret = __obj.measureMoisture(moistureObj, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        MoistureSensorStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.measureMoisture(moisture, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(BrokenDiodeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

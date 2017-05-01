@@ -22,7 +22,8 @@ package Demo;
 
 public interface _PrinterOperations extends _DeviceOperations
 {
-    PrinterStatePrx printString(String s, Ice.Current __current);
+    String printString(String s, Ice.Current __current)
+        throws OutOfInkException;
 
     void fillInk(Ice.Current __current);
 }

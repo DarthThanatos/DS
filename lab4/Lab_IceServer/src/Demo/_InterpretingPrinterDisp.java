@@ -92,9 +92,10 @@ public abstract class _InterpretingPrinterDisp extends Ice.ObjectImpl implements
         return listActions(null);
     }
 
-    public final InterpretingPrinterStatePrx interpretAndPrint()
+    public final String interpretAndPrint(String s)
+        throws OutOfInkException
     {
-        return interpretAndPrint(null);
+        return interpretAndPrint(s, null);
     }
 
     public final void fillInk()
@@ -102,7 +103,8 @@ public abstract class _InterpretingPrinterDisp extends Ice.ObjectImpl implements
         fillInk(null);
     }
 
-    public final PrinterStatePrx printString(String s)
+    public final String printString(String s)
+        throws OutOfInkException
     {
         return printString(s, null);
     }
@@ -110,12 +112,23 @@ public abstract class _InterpretingPrinterDisp extends Ice.ObjectImpl implements
     public static Ice.DispatchStatus ___interpretAndPrint(InterpretingPrinter __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
-        __inS.readEmptyParams();
-        InterpretingPrinterStatePrx __ret = __obj.interpretAndPrint(__current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        InterpretingPrinterStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        IceInternal.BasicStream __is = __inS.startReadParams();
+        String s;
+        s = __is.readString();
+        __inS.endReadParams();
+        try
+        {
+            String __ret = __obj.interpretAndPrint(s, __current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(__ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(OutOfInkException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

@@ -91,23 +91,30 @@ public abstract class _SensorDisp extends Ice.ObjectImpl implements Sensor
         return listActions(null);
     }
 
-    public final SensorStatePrx measureMotion(speed speedObj)
+    public final void measureMotion(float speed)
+        throws BrokenDiodeException
     {
-        return measureMotion(speedObj, null);
+        measureMotion(speed, null);
     }
 
     public static Ice.DispatchStatus ___measureMotion(Sensor __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
-        speed speedObj;
-        speedObj = speed.__read(__is);
+        float speed;
+        speed = __is.readFloat();
         __inS.endReadParams();
-        SensorStatePrx __ret = __obj.measureMotion(speedObj, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        SensorStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            __obj.measureMotion(speed, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(BrokenDiodeException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

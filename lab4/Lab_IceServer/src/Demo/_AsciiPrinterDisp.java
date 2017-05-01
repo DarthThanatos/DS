@@ -72,7 +72,8 @@ public abstract class _AsciiPrinterDisp extends Ice.ObjectImpl implements AsciiP
         return __ids[0];
     }
 
-    public final AsciiPrinterStatePrx prettyPrint(String s)
+    public final String prettyPrint(String s)
+        throws OutOfInkException
     {
         return prettyPrint(s, null);
     }
@@ -102,7 +103,8 @@ public abstract class _AsciiPrinterDisp extends Ice.ObjectImpl implements AsciiP
         fillInk(null);
     }
 
-    public final PrinterStatePrx printString(String s)
+    public final String printString(String s)
+        throws OutOfInkException
     {
         return printString(s, null);
     }
@@ -114,11 +116,19 @@ public abstract class _AsciiPrinterDisp extends Ice.ObjectImpl implements AsciiP
         String s;
         s = __is.readString();
         __inS.endReadParams();
-        AsciiPrinterStatePrx __ret = __obj.prettyPrint(s, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        AsciiPrinterStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            String __ret = __obj.prettyPrint(s, __current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(__ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(OutOfInkException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

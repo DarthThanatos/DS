@@ -22,9 +22,11 @@ package Demo;
 
 public interface CameraPrx extends DevicePrx
 {
-    public void turnLeft(float angle);
+    public void turnLeft(float angle)
+        throws RotationOutOfRangeException;
 
-    public void turnLeft(float angle, java.util.Map<String, String> __ctx);
+    public void turnLeft(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException;
 
     public Ice.AsyncResult begin_turnLeft(float angle);
 
@@ -40,29 +42,36 @@ public interface CameraPrx extends DevicePrx
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           java.util.Map<String, String> __ctx, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           java.util.Map<String, String> __ctx, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public void end_turnLeft(Ice.AsyncResult __result);
+    public void end_turnLeft(Ice.AsyncResult __result)
+        throws RotationOutOfRangeException;
 
-    public CameraState turnRight(float angle);
+    public void turnRight(float angle)
+        throws RotationOutOfRangeException;
 
-    public CameraState turnRight(float angle, java.util.Map<String, String> __ctx);
+    public void turnRight(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException;
 
     public Ice.AsyncResult begin_turnRight(float angle);
 
@@ -77,30 +86,37 @@ public interface CameraPrx extends DevicePrx
     public Ice.AsyncResult begin_turnRight(float angle, java.util.Map<String, String> __ctx, Callback_Camera_turnRight __cb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
                                            java.util.Map<String, String> __ctx, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
                                            java.util.Map<String, String> __ctx, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb);
 
-    public CameraState end_turnRight(Ice.AsyncResult __result);
+    public void end_turnRight(Ice.AsyncResult __result)
+        throws RotationOutOfRangeException;
 
-    public CameraState turnUp(float angle);
+    public void turnUp(float angle)
+        throws RotationOutOfRangeException;
 
-    public CameraState turnUp(float angle, java.util.Map<String, String> __ctx);
+    public void turnUp(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException;
 
     public Ice.AsyncResult begin_turnUp(float angle);
 
@@ -115,30 +131,37 @@ public interface CameraPrx extends DevicePrx
     public Ice.AsyncResult begin_turnUp(float angle, java.util.Map<String, String> __ctx, Callback_Camera_turnUp __cb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
                                         java.util.Map<String, String> __ctx, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
                                         java.util.Map<String, String> __ctx, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb);
 
-    public CameraState end_turnUp(Ice.AsyncResult __result);
+    public void end_turnUp(Ice.AsyncResult __result)
+        throws RotationOutOfRangeException;
 
-    public CameraState turnDown(float angle);
+    public void turnDown(float angle)
+        throws RotationOutOfRangeException;
 
-    public CameraState turnDown(float angle, java.util.Map<String, String> __ctx);
+    public void turnDown(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException;
 
     public Ice.AsyncResult begin_turnDown(float angle);
 
@@ -153,24 +176,29 @@ public interface CameraPrx extends DevicePrx
     public Ice.AsyncResult begin_turnDown(float angle, java.util.Map<String, String> __ctx, Callback_Camera_turnDown __cb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public CameraState end_turnDown(Ice.AsyncResult __result);
+    public void end_turnDown(Ice.AsyncResult __result)
+        throws RotationOutOfRangeException;
 }

@@ -15,11 +15,6 @@ import Ice.Current;
 public class CameraStateI extends CameraState{
 
     public CameraStateI(){
-        batteryLevel = 100;
-        horizontalAngle = 45;
-        verticalAngle = 0;
-        operationTime = 10;
-        lastUserName = "";
     }
     
     public CameraStateI(float batteryLevel, long operationTime,String lastUserName, float horizontalAngle, float verticalAngle){

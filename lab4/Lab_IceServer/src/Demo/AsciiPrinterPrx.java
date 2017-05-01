@@ -22,9 +22,11 @@ package Demo;
 
 public interface AsciiPrinterPrx extends PrinterPrx
 {
-    public AsciiPrinterStatePrx prettyPrint(String s);
+    public String prettyPrint(String s)
+        throws OutOfInkException;
 
-    public AsciiPrinterStatePrx prettyPrint(String s, java.util.Map<String, String> __ctx);
+    public String prettyPrint(String s, java.util.Map<String, String> __ctx)
+        throws OutOfInkException;
 
     public Ice.AsyncResult begin_prettyPrint(String s);
 
@@ -39,24 +41,29 @@ public interface AsciiPrinterPrx extends PrinterPrx
     public Ice.AsyncResult begin_prettyPrint(String s, java.util.Map<String, String> __ctx, Callback_AsciiPrinter_prettyPrint __cb);
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb);
 
-    public AsciiPrinterStatePrx end_prettyPrint(Ice.AsyncResult __result);
+    public String end_prettyPrint(Ice.AsyncResult __result)
+        throws OutOfInkException;
 }

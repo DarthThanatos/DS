@@ -22,5 +22,6 @@ package Demo;
 
 public interface _AsciiPrinterOperations extends _PrinterOperations
 {
-    AsciiPrinterStatePrx prettyPrint(String s, Ice.Current __current);
+    String prettyPrint(String s, Ice.Current __current)
+        throws OutOfInkException;
 }

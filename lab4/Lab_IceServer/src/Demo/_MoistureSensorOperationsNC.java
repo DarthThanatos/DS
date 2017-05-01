@@ -22,5 +22,6 @@ package Demo;
 
 public interface _MoistureSensorOperationsNC extends _SensorOperationsNC
 {
-    MoistureSensorStatePrx measureMoisture(moisture moistureObj);
+    void measureMoisture(float moisture)
+        throws BrokenDiodeException;
 }

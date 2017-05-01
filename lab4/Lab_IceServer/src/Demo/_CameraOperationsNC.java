@@ -22,11 +22,15 @@ package Demo;
 
 public interface _CameraOperationsNC extends _DeviceOperationsNC
 {
-    void turnLeft(float angle);
+    void turnLeft(float angle)
+        throws RotationOutOfRangeException;
 
-    CameraState turnRight(float angle);
+    void turnRight(float angle)
+        throws RotationOutOfRangeException;
 
-    CameraState turnUp(float angle);
+    void turnUp(float angle)
+        throws RotationOutOfRangeException;
 
-    CameraState turnDown(float angle);
+    void turnDown(float angle)
+        throws RotationOutOfRangeException;
 }

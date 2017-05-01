@@ -29,75 +29,6 @@ __name__ = 'Demo'
 if '_t_stringSeq' not in _M_Demo.__dict__:
     _M_Demo._t_stringSeq = IcePy.defineSequence('::Demo::stringSeq', (), IcePy._t_string)
 
-if 'DeviceState' not in _M_Demo.__dict__:
-    _M_Demo.DeviceState = Ice.createTempClass()
-    class DeviceState(Ice.Object):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0):
-            if Ice.getType(self) == _M_Demo.DeviceState:
-                raise RuntimeError('Demo.DeviceState is an abstract class')
-            self.batteryLevel = batteryLevel
-            self.lastUserName = lastUserName
-            self.operationTime = operationTime
-
-        def ice_ids(self, current=None):
-            return ('::Demo::DeviceState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::DeviceState'
-
-        def ice_staticId():
-            return '::Demo::DeviceState'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def formatToString(self, current=None):
-            pass
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_DeviceState)
-
-        __repr__ = __str__
-
-    _M_Demo.DeviceStatePrx = Ice.createTempClass()
-    class DeviceStatePrx(Ice.ObjectPrx):
-
-        def formatToString(self, _ctx=None):
-            return _M_Demo.DeviceState._op_formatToString.invoke(self, ((), _ctx))
-
-        def begin_formatToString(self, _response=None, _ex=None, _sent=None, _ctx=None):
-            return _M_Demo.DeviceState._op_formatToString.begin(self, ((), _response, _ex, _sent, _ctx))
-
-        def end_formatToString(self, _r):
-            return _M_Demo.DeviceState._op_formatToString.end(self, _r)
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.DeviceStatePrx.ice_checkedCast(proxy, '::Demo::DeviceState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.DeviceStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::DeviceState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_DeviceStatePrx = IcePy.defineProxy('::Demo::DeviceState', DeviceStatePrx)
-
-    _M_Demo._t_DeviceState = IcePy.defineClass('::Demo::DeviceState', DeviceState, -1, (), True, False, None, (), (
-        ('batteryLevel', (), IcePy._t_float, False, 0),
-        ('lastUserName', (), IcePy._t_string, False, 0),
-        ('operationTime', (), IcePy._t_long, False, 0)
-    ))
-    DeviceState._ice_type = _M_Demo._t_DeviceState
-
-    DeviceState._op_formatToString = IcePy.Operation('formatToString', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), IcePy._t_string, False, 0), ())
-
-    _M_Demo.DeviceState = DeviceState
-    del DeviceState
-
-    _M_Demo.DeviceStatePrx = DeviceStatePrx
-    del DeviceStatePrx
-
 if 'Device' not in _M_Demo.__dict__:
     _M_Demo.Device = Ice.createTempClass()
     class Device(Ice.Object):
@@ -357,109 +288,32 @@ if 'LaboratoryRoom' not in _M_Demo.__dict__:
     _M_Demo.LaboratoryRoomPrx = LaboratoryRoomPrx
     del LaboratoryRoomPrx
 
-if 'CameraState' not in _M_Demo.__dict__:
-    _M_Demo.CameraState = Ice.createTempClass()
-    class CameraState(_M_Demo.DeviceState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, horizontalAngle=0.0, verticalAngle=0.0):
-            if Ice.getType(self) == _M_Demo.CameraState:
-                raise RuntimeError('Demo.CameraState is an abstract class')
-            _M_Demo.DeviceState.__init__(self, batteryLevel, lastUserName, operationTime)
-            self.horizontalAngle = horizontalAngle
-            self.verticalAngle = verticalAngle
-
-        def ice_ids(self, current=None):
-            return ('::Demo::CameraState', '::Demo::DeviceState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::CameraState'
-
-        def ice_staticId():
-            return '::Demo::CameraState'
-        ice_staticId = staticmethod(ice_staticId)
+if 'RotationOutOfRangeException' not in _M_Demo.__dict__:
+    _M_Demo.RotationOutOfRangeException = Ice.createTempClass()
+    class RotationOutOfRangeException(Ice.UserException):
+        def __init__(self, minVertical=0.0, maxVertival=0.0, actual=0.0, reason=''):
+            self.minVertical = minVertical
+            self.maxVertival = maxVertival
+            self.actual = actual
+            self.reason = reason
 
         def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_CameraState)
+            return IcePy.stringifyException(self)
 
         __repr__ = __str__
 
-    _M_Demo.CameraStatePrx = Ice.createTempClass()
-    class CameraStatePrx(_M_Demo.DeviceStatePrx):
+        _ice_name = 'Demo::RotationOutOfRangeException'
 
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.CameraStatePrx.ice_checkedCast(proxy, '::Demo::CameraState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.CameraStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::CameraState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_CameraStatePrx = IcePy.defineProxy('::Demo::CameraState', CameraStatePrx)
-
-    _M_Demo._t_CameraState = IcePy.defineClass('::Demo::CameraState', CameraState, -1, (), True, False, _M_Demo._t_DeviceState, (), (
-        ('horizontalAngle', (), IcePy._t_float, False, 0),
-        ('verticalAngle', (), IcePy._t_float, False, 0)
+    _M_Demo._t_RotationOutOfRangeException = IcePy.defineException('::Demo::RotationOutOfRangeException', RotationOutOfRangeException, (), False, None, (
+        ('minVertical', (), IcePy._t_float, False, 0),
+        ('maxVertival', (), IcePy._t_float, False, 0),
+        ('actual', (), IcePy._t_float, False, 0),
+        ('reason', (), IcePy._t_string, False, 0)
     ))
-    CameraState._ice_type = _M_Demo._t_CameraState
+    RotationOutOfRangeException._ice_type = _M_Demo._t_RotationOutOfRangeException
 
-    _M_Demo.CameraState = CameraState
-    del CameraState
-
-    _M_Demo.CameraStatePrx = CameraStatePrx
-    del CameraStatePrx
-
-if 'ZoomingCameraState' not in _M_Demo.__dict__:
-    _M_Demo.ZoomingCameraState = Ice.createTempClass()
-    class ZoomingCameraState(_M_Demo.CameraState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, horizontalAngle=0.0, verticalAngle=0.0, zoomLvl=0):
-            if Ice.getType(self) == _M_Demo.ZoomingCameraState:
-                raise RuntimeError('Demo.ZoomingCameraState is an abstract class')
-            _M_Demo.CameraState.__init__(self, batteryLevel, lastUserName, operationTime, horizontalAngle, verticalAngle)
-            self.zoomLvl = zoomLvl
-
-        def ice_ids(self, current=None):
-            return ('::Demo::CameraState', '::Demo::DeviceState', '::Demo::ZoomingCameraState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::ZoomingCameraState'
-
-        def ice_staticId():
-            return '::Demo::ZoomingCameraState'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_ZoomingCameraState)
-
-        __repr__ = __str__
-
-    _M_Demo.ZoomingCameraStatePrx = Ice.createTempClass()
-    class ZoomingCameraStatePrx(_M_Demo.CameraStatePrx):
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.ZoomingCameraStatePrx.ice_checkedCast(proxy, '::Demo::ZoomingCameraState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.ZoomingCameraStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::ZoomingCameraState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_ZoomingCameraStatePrx = IcePy.defineProxy('::Demo::ZoomingCameraState', ZoomingCameraStatePrx)
-
-    _M_Demo._t_ZoomingCameraState = IcePy.defineClass('::Demo::ZoomingCameraState', ZoomingCameraState, -1, (), True, False, _M_Demo._t_CameraState, (), (('zoomLvl', (), IcePy._t_int, False, 0),))
-    ZoomingCameraState._ice_type = _M_Demo._t_ZoomingCameraState
-
-    _M_Demo.ZoomingCameraState = ZoomingCameraState
-    del ZoomingCameraState
-
-    _M_Demo.ZoomingCameraStatePrx = ZoomingCameraStatePrx
-    del ZoomingCameraStatePrx
+    _M_Demo.RotationOutOfRangeException = RotationOutOfRangeException
+    del RotationOutOfRangeException
 
 if 'Camera' not in _M_Demo.__dict__:
     _M_Demo.Camera = Ice.createTempClass()
@@ -551,16 +405,41 @@ if 'Camera' not in _M_Demo.__dict__:
     _M_Demo._t_Camera = IcePy.defineClass('::Demo::Camera', Camera, -1, (), True, False, None, (_M_Demo._t_Device,), ())
     Camera._ice_type = _M_Demo._t_Camera
 
-    Camera._op_turnLeft = IcePy.Operation('turnLeft', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, ())
-    Camera._op_turnRight = IcePy.Operation('turnRight', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), ((), _M_Demo._t_CameraState, False, 0), ())
-    Camera._op_turnUp = IcePy.Operation('turnUp', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), ((), _M_Demo._t_CameraState, False, 0), ())
-    Camera._op_turnDown = IcePy.Operation('turnDown', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), ((), _M_Demo._t_CameraState, False, 0), ())
+    Camera._op_turnLeft = IcePy.Operation('turnLeft', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, (_M_Demo._t_RotationOutOfRangeException,))
+    Camera._op_turnRight = IcePy.Operation('turnRight', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, (_M_Demo._t_RotationOutOfRangeException,))
+    Camera._op_turnUp = IcePy.Operation('turnUp', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, (_M_Demo._t_RotationOutOfRangeException,))
+    Camera._op_turnDown = IcePy.Operation('turnDown', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, (_M_Demo._t_RotationOutOfRangeException,))
 
     _M_Demo.Camera = Camera
     del Camera
 
     _M_Demo.CameraPrx = CameraPrx
     del CameraPrx
+
+if 'ZoomOutOfRangeException' not in _M_Demo.__dict__:
+    _M_Demo.ZoomOutOfRangeException = Ice.createTempClass()
+    class ZoomOutOfRangeException(Ice.UserException):
+        def __init__(self, maxLvl=0, actualLvl=0, reason=''):
+            self.maxLvl = maxLvl
+            self.actualLvl = actualLvl
+            self.reason = reason
+
+        def __str__(self):
+            return IcePy.stringifyException(self)
+
+        __repr__ = __str__
+
+        _ice_name = 'Demo::ZoomOutOfRangeException'
+
+    _M_Demo._t_ZoomOutOfRangeException = IcePy.defineException('::Demo::ZoomOutOfRangeException', ZoomOutOfRangeException, (), False, None, (
+        ('maxLvl', (), IcePy._t_int, False, 0),
+        ('actualLvl', (), IcePy._t_int, False, 0),
+        ('reason', (), IcePy._t_string, False, 0)
+    ))
+    ZoomOutOfRangeException._ice_type = _M_Demo._t_ZoomOutOfRangeException
+
+    _M_Demo.ZoomOutOfRangeException = ZoomOutOfRangeException
+    del ZoomOutOfRangeException
 
 if 'ZoomingCamera' not in _M_Demo.__dict__:
     _M_Demo.ZoomingCamera = Ice.createTempClass()
@@ -616,7 +495,7 @@ if 'ZoomingCamera' not in _M_Demo.__dict__:
     _M_Demo._t_ZoomingCamera = IcePy.defineClass('::Demo::ZoomingCamera', ZoomingCamera, -1, (), True, False, None, (_M_Demo._t_Camera,), ())
     ZoomingCamera._ice_type = _M_Demo._t_ZoomingCamera
 
-    ZoomingCamera._op_zoom = IcePy.Operation('zoom', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0),), (), ((), _M_Demo._t_ZoomingCameraStatePrx, False, 0), ())
+    ZoomingCamera._op_zoom = IcePy.Operation('zoom', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0),), (), None, (_M_Demo._t_ZoomOutOfRangeException,))
 
     _M_Demo.ZoomingCamera = ZoomingCamera
     del ZoomingCamera
@@ -624,159 +503,30 @@ if 'ZoomingCamera' not in _M_Demo.__dict__:
     _M_Demo.ZoomingCameraPrx = ZoomingCameraPrx
     del ZoomingCameraPrx
 
-if 'PrinterState' not in _M_Demo.__dict__:
-    _M_Demo.PrinterState = Ice.createTempClass()
-    class PrinterState(_M_Demo.DeviceState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, inkLevel=0, result=''):
-            if Ice.getType(self) == _M_Demo.PrinterState:
-                raise RuntimeError('Demo.PrinterState is an abstract class')
-            _M_Demo.DeviceState.__init__(self, batteryLevel, lastUserName, operationTime)
-            self.inkLevel = inkLevel
-            self.result = result
-
-        def ice_ids(self, current=None):
-            return ('::Demo::DeviceState', '::Demo::PrinterState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::PrinterState'
-
-        def ice_staticId():
-            return '::Demo::PrinterState'
-        ice_staticId = staticmethod(ice_staticId)
+if 'OutOfInkException' not in _M_Demo.__dict__:
+    _M_Demo.OutOfInkException = Ice.createTempClass()
+    class OutOfInkException(Ice.UserException):
+        def __init__(self, actualInkLvl=0, requiredInkLvl=0, reason=''):
+            self.actualInkLvl = actualInkLvl
+            self.requiredInkLvl = requiredInkLvl
+            self.reason = reason
 
         def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_PrinterState)
+            return IcePy.stringifyException(self)
 
         __repr__ = __str__
 
-    _M_Demo.PrinterStatePrx = Ice.createTempClass()
-    class PrinterStatePrx(_M_Demo.DeviceStatePrx):
+        _ice_name = 'Demo::OutOfInkException'
 
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.PrinterStatePrx.ice_checkedCast(proxy, '::Demo::PrinterState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.PrinterStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::PrinterState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_PrinterStatePrx = IcePy.defineProxy('::Demo::PrinterState', PrinterStatePrx)
-
-    _M_Demo._t_PrinterState = IcePy.defineClass('::Demo::PrinterState', PrinterState, -1, (), True, False, _M_Demo._t_DeviceState, (), (
-        ('inkLevel', (), IcePy._t_int, False, 0),
-        ('result', (), IcePy._t_string, False, 0)
+    _M_Demo._t_OutOfInkException = IcePy.defineException('::Demo::OutOfInkException', OutOfInkException, (), False, None, (
+        ('actualInkLvl', (), IcePy._t_int, False, 0),
+        ('requiredInkLvl', (), IcePy._t_int, False, 0),
+        ('reason', (), IcePy._t_string, False, 0)
     ))
-    PrinterState._ice_type = _M_Demo._t_PrinterState
+    OutOfInkException._ice_type = _M_Demo._t_OutOfInkException
 
-    _M_Demo.PrinterState = PrinterState
-    del PrinterState
-
-    _M_Demo.PrinterStatePrx = PrinterStatePrx
-    del PrinterStatePrx
-
-if 'AsciiPrinterState' not in _M_Demo.__dict__:
-    _M_Demo.AsciiPrinterState = Ice.createTempClass()
-    class AsciiPrinterState(_M_Demo.PrinterState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, inkLevel=0, result='', prettyResult=''):
-            if Ice.getType(self) == _M_Demo.AsciiPrinterState:
-                raise RuntimeError('Demo.AsciiPrinterState is an abstract class')
-            _M_Demo.PrinterState.__init__(self, batteryLevel, lastUserName, operationTime, inkLevel, result)
-            self.prettyResult = prettyResult
-
-        def ice_ids(self, current=None):
-            return ('::Demo::AsciiPrinterState', '::Demo::DeviceState', '::Demo::PrinterState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::AsciiPrinterState'
-
-        def ice_staticId():
-            return '::Demo::AsciiPrinterState'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_AsciiPrinterState)
-
-        __repr__ = __str__
-
-    _M_Demo.AsciiPrinterStatePrx = Ice.createTempClass()
-    class AsciiPrinterStatePrx(_M_Demo.PrinterStatePrx):
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.AsciiPrinterStatePrx.ice_checkedCast(proxy, '::Demo::AsciiPrinterState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.AsciiPrinterStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::AsciiPrinterState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_AsciiPrinterStatePrx = IcePy.defineProxy('::Demo::AsciiPrinterState', AsciiPrinterStatePrx)
-
-    _M_Demo._t_AsciiPrinterState = IcePy.defineClass('::Demo::AsciiPrinterState', AsciiPrinterState, -1, (), True, False, _M_Demo._t_PrinterState, (), (('prettyResult', (), IcePy._t_string, False, 0),))
-    AsciiPrinterState._ice_type = _M_Demo._t_AsciiPrinterState
-
-    _M_Demo.AsciiPrinterState = AsciiPrinterState
-    del AsciiPrinterState
-
-    _M_Demo.AsciiPrinterStatePrx = AsciiPrinterStatePrx
-    del AsciiPrinterStatePrx
-
-if 'InterpretingPrinterState' not in _M_Demo.__dict__:
-    _M_Demo.InterpretingPrinterState = Ice.createTempClass()
-    class InterpretingPrinterState(_M_Demo.PrinterState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, inkLevel=0, result='', interpretedParts=None):
-            if Ice.getType(self) == _M_Demo.InterpretingPrinterState:
-                raise RuntimeError('Demo.InterpretingPrinterState is an abstract class')
-            _M_Demo.PrinterState.__init__(self, batteryLevel, lastUserName, operationTime, inkLevel, result)
-            self.interpretedParts = interpretedParts
-
-        def ice_ids(self, current=None):
-            return ('::Demo::DeviceState', '::Demo::InterpretingPrinterState', '::Demo::PrinterState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::InterpretingPrinterState'
-
-        def ice_staticId():
-            return '::Demo::InterpretingPrinterState'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_InterpretingPrinterState)
-
-        __repr__ = __str__
-
-    _M_Demo.InterpretingPrinterStatePrx = Ice.createTempClass()
-    class InterpretingPrinterStatePrx(_M_Demo.PrinterStatePrx):
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.InterpretingPrinterStatePrx.ice_checkedCast(proxy, '::Demo::InterpretingPrinterState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.InterpretingPrinterStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::InterpretingPrinterState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_InterpretingPrinterStatePrx = IcePy.defineProxy('::Demo::InterpretingPrinterState', InterpretingPrinterStatePrx)
-
-    _M_Demo._t_InterpretingPrinterState = IcePy.defineClass('::Demo::InterpretingPrinterState', InterpretingPrinterState, -1, (), True, False, _M_Demo._t_PrinterState, (), (('interpretedParts', (), _M_Demo._t_stringSeq, False, 0),))
-    InterpretingPrinterState._ice_type = _M_Demo._t_InterpretingPrinterState
-
-    _M_Demo.InterpretingPrinterState = InterpretingPrinterState
-    del InterpretingPrinterState
-
-    _M_Demo.InterpretingPrinterStatePrx = InterpretingPrinterStatePrx
-    del InterpretingPrinterStatePrx
+    _M_Demo.OutOfInkException = OutOfInkException
+    del OutOfInkException
 
 if 'Printer' not in _M_Demo.__dict__:
     _M_Demo.Printer = Ice.createTempClass()
@@ -844,7 +594,7 @@ if 'Printer' not in _M_Demo.__dict__:
     _M_Demo._t_Printer = IcePy.defineClass('::Demo::Printer', Printer, -1, (), True, False, None, (_M_Demo._t_Device,), ())
     Printer._ice_type = _M_Demo._t_Printer
 
-    Printer._op_printString = IcePy.Operation('printString', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), _M_Demo._t_PrinterStatePrx, False, 0), ())
+    Printer._op_printString = IcePy.Operation('printString', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), IcePy._t_string, False, 0), (_M_Demo._t_OutOfInkException,))
     Printer._op_fillInk = IcePy.Operation('fillInk', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), None, ())
 
     _M_Demo.Printer = Printer
@@ -907,7 +657,7 @@ if 'AsciiPrinter' not in _M_Demo.__dict__:
     _M_Demo._t_AsciiPrinter = IcePy.defineClass('::Demo::AsciiPrinter', AsciiPrinter, -1, (), True, False, None, (_M_Demo._t_Printer,), ())
     AsciiPrinter._ice_type = _M_Demo._t_AsciiPrinter
 
-    AsciiPrinter._op_prettyPrint = IcePy.Operation('prettyPrint', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), _M_Demo._t_AsciiPrinterStatePrx, False, 0), ())
+    AsciiPrinter._op_prettyPrint = IcePy.Operation('prettyPrint', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), IcePy._t_string, False, 0), (_M_Demo._t_OutOfInkException,))
 
     _M_Demo.AsciiPrinter = AsciiPrinter
     del AsciiPrinter
@@ -932,7 +682,7 @@ if 'InterpretingPrinter' not in _M_Demo.__dict__:
             return '::Demo::InterpretingPrinter'
         ice_staticId = staticmethod(ice_staticId)
 
-        def interpretAndPrint(self, current=None):
+        def interpretAndPrint(self, s, current=None):
             pass
 
         def __str__(self):
@@ -943,11 +693,11 @@ if 'InterpretingPrinter' not in _M_Demo.__dict__:
     _M_Demo.InterpretingPrinterPrx = Ice.createTempClass()
     class InterpretingPrinterPrx(_M_Demo.PrinterPrx):
 
-        def interpretAndPrint(self, _ctx=None):
-            return _M_Demo.InterpretingPrinter._op_interpretAndPrint.invoke(self, ((), _ctx))
+        def interpretAndPrint(self, s, _ctx=None):
+            return _M_Demo.InterpretingPrinter._op_interpretAndPrint.invoke(self, ((s, ), _ctx))
 
-        def begin_interpretAndPrint(self, _response=None, _ex=None, _sent=None, _ctx=None):
-            return _M_Demo.InterpretingPrinter._op_interpretAndPrint.begin(self, ((), _response, _ex, _sent, _ctx))
+        def begin_interpretAndPrint(self, s, _response=None, _ex=None, _sent=None, _ctx=None):
+            return _M_Demo.InterpretingPrinter._op_interpretAndPrint.begin(self, ((s, ), _response, _ex, _sent, _ctx))
 
         def end_interpretAndPrint(self, _r):
             return _M_Demo.InterpretingPrinter._op_interpretAndPrint.end(self, _r)
@@ -969,7 +719,7 @@ if 'InterpretingPrinter' not in _M_Demo.__dict__:
     _M_Demo._t_InterpretingPrinter = IcePy.defineClass('::Demo::InterpretingPrinter', InterpretingPrinter, -1, (), True, False, None, (_M_Demo._t_Printer,), ())
     InterpretingPrinter._ice_type = _M_Demo._t_InterpretingPrinter
 
-    InterpretingPrinter._op_interpretAndPrint = IcePy.Operation('interpretAndPrint', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_Demo._t_InterpretingPrinterStatePrx, False, 0), ())
+    InterpretingPrinter._op_interpretAndPrint = IcePy.Operation('interpretAndPrint', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), IcePy._t_string, False, 0), (_M_Demo._t_OutOfInkException,))
 
     _M_Demo.InterpretingPrinter = InterpretingPrinter
     del InterpretingPrinter
@@ -977,260 +727,30 @@ if 'InterpretingPrinter' not in _M_Demo.__dict__:
     _M_Demo.InterpretingPrinterPrx = InterpretingPrinterPrx
     del InterpretingPrinterPrx
 
-if 'Measurement' not in _M_Demo.__dict__:
-    _M_Demo.Measurement = Ice.createTempClass()
-    class Measurement(object):
-        def __init__(self, tower='', windSpeed=0.0, windDirection=0, temperature=0.0):
-            self.tower = tower
-            self.windSpeed = windSpeed
-            self.windDirection = windDirection
-            self.temperature = temperature
-
-        def __eq__(self, other):
-            if other is None:
-                return False
-            elif not isinstance(other, _M_Demo.Measurement):
-                return NotImplemented
-            else:
-                if self.tower != other.tower:
-                    return False
-                if self.windSpeed != other.windSpeed:
-                    return False
-                if self.windDirection != other.windDirection:
-                    return False
-                if self.temperature != other.temperature:
-                    return False
-                return True
-
-        def __ne__(self, other):
-            return not self.__eq__(other)
+if 'BrokenDiodeException' not in _M_Demo.__dict__:
+    _M_Demo.BrokenDiodeException = Ice.createTempClass()
+    class BrokenDiodeException(Ice.UserException):
+        def __init__(self, maxMeasuredValue=0.0, actualMeasuredValue=0.0, reason=''):
+            self.maxMeasuredValue = maxMeasuredValue
+            self.actualMeasuredValue = actualMeasuredValue
+            self.reason = reason
 
         def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_Measurement)
+            return IcePy.stringifyException(self)
 
         __repr__ = __str__
 
-    _M_Demo._t_Measurement = IcePy.defineStruct('::Demo::Measurement', Measurement, (), (
-        ('tower', (), IcePy._t_string),
-        ('windSpeed', (), IcePy._t_float),
-        ('windDirection', (), IcePy._t_short),
-        ('temperature', (), IcePy._t_float)
+        _ice_name = 'Demo::BrokenDiodeException'
+
+    _M_Demo._t_BrokenDiodeException = IcePy.defineException('::Demo::BrokenDiodeException', BrokenDiodeException, (), False, None, (
+        ('maxMeasuredValue', (), IcePy._t_float, False, 0),
+        ('actualMeasuredValue', (), IcePy._t_float, False, 0),
+        ('reason', (), IcePy._t_string, False, 0)
     ))
+    BrokenDiodeException._ice_type = _M_Demo._t_BrokenDiodeException
 
-    _M_Demo.Measurement = Measurement
-    del Measurement
-
-if 'diodecolor' not in _M_Demo.__dict__:
-    _M_Demo.diodecolor = Ice.createTempClass()
-    class diodecolor(Ice.EnumBase):
-
-        def __init__(self, _n, _v):
-            Ice.EnumBase.__init__(self, _n, _v)
-
-        def valueOf(self, _n):
-            if _n in self._enumerators:
-                return self._enumerators[_n]
-            return None
-        valueOf = classmethod(valueOf)
-
-    diodecolor.RED = diodecolor("RED", 0)
-    diodecolor.GREEN = diodecolor("GREEN", 1)
-    diodecolor.BLUE = diodecolor("BLUE", 2)
-    diodecolor._enumerators = { 0:diodecolor.RED, 1:diodecolor.GREEN, 2:diodecolor.BLUE }
-
-    _M_Demo._t_diodecolor = IcePy.defineEnum('::Demo::diodecolor', diodecolor, (), diodecolor._enumerators)
-
-    _M_Demo.diodecolor = diodecolor
-    del diodecolor
-
-if 'SensorState' not in _M_Demo.__dict__:
-    _M_Demo.SensorState = Ice.createTempClass()
-    class SensorState(_M_Demo.DeviceState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, speedInMilesPerHour=0.0, speedInMetresPerHour=0.0, speedColor=_M_Demo.diodecolor.RED):
-            if Ice.getType(self) == _M_Demo.SensorState:
-                raise RuntimeError('Demo.SensorState is an abstract class')
-            _M_Demo.DeviceState.__init__(self, batteryLevel, lastUserName, operationTime)
-            self.speedInMilesPerHour = speedInMilesPerHour
-            self.speedInMetresPerHour = speedInMetresPerHour
-            self.speedColor = speedColor
-
-        def ice_ids(self, current=None):
-            return ('::Demo::DeviceState', '::Demo::SensorState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::SensorState'
-
-        def ice_staticId():
-            return '::Demo::SensorState'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_SensorState)
-
-        __repr__ = __str__
-
-    _M_Demo.SensorStatePrx = Ice.createTempClass()
-    class SensorStatePrx(_M_Demo.DeviceStatePrx):
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.SensorStatePrx.ice_checkedCast(proxy, '::Demo::SensorState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.SensorStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::SensorState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_SensorStatePrx = IcePy.defineProxy('::Demo::SensorState', SensorStatePrx)
-
-    _M_Demo._t_SensorState = IcePy.defineClass('::Demo::SensorState', SensorState, -1, (), True, False, _M_Demo._t_DeviceState, (), (
-        ('speedInMilesPerHour', (), IcePy._t_float, False, 0),
-        ('speedInMetresPerHour', (), IcePy._t_float, False, 0),
-        ('speedColor', (), _M_Demo._t_diodecolor, False, 0)
-    ))
-    SensorState._ice_type = _M_Demo._t_SensorState
-
-    _M_Demo.SensorState = SensorState
-    del SensorState
-
-    _M_Demo.SensorStatePrx = SensorStatePrx
-    del SensorStatePrx
-
-if 'BodyTemperatureState' not in _M_Demo.__dict__:
-    _M_Demo.BodyTemperatureState = Ice.createTempClass()
-    class BodyTemperatureState(_M_Demo.SensorState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, speedInMilesPerHour=0.0, speedInMetresPerHour=0.0, speedColor=_M_Demo.diodecolor.RED, temperatureInCentimeters=0.0, temperatureInFahrenheits=0.0, temperatureColor=_M_Demo.diodecolor.RED):
-            if Ice.getType(self) == _M_Demo.BodyTemperatureState:
-                raise RuntimeError('Demo.BodyTemperatureState is an abstract class')
-            _M_Demo.SensorState.__init__(self, batteryLevel, lastUserName, operationTime, speedInMilesPerHour, speedInMetresPerHour, speedColor)
-            self.temperatureInCentimeters = temperatureInCentimeters
-            self.temperatureInFahrenheits = temperatureInFahrenheits
-            self.temperatureColor = temperatureColor
-
-        def ice_ids(self, current=None):
-            return ('::Demo::BodyTemperatureState', '::Demo::DeviceState', '::Demo::SensorState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::BodyTemperatureState'
-
-        def ice_staticId():
-            return '::Demo::BodyTemperatureState'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_BodyTemperatureState)
-
-        __repr__ = __str__
-
-    _M_Demo.BodyTemperatureStatePrx = Ice.createTempClass()
-    class BodyTemperatureStatePrx(_M_Demo.SensorStatePrx):
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.BodyTemperatureStatePrx.ice_checkedCast(proxy, '::Demo::BodyTemperatureState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.BodyTemperatureStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::BodyTemperatureState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_BodyTemperatureStatePrx = IcePy.defineProxy('::Demo::BodyTemperatureState', BodyTemperatureStatePrx)
-
-    _M_Demo._t_BodyTemperatureState = IcePy.defineClass('::Demo::BodyTemperatureState', BodyTemperatureState, -1, (), True, False, _M_Demo._t_SensorState, (), (
-        ('temperatureInCentimeters', (), IcePy._t_float, False, 0),
-        ('temperatureInFahrenheits', (), IcePy._t_float, False, 0),
-        ('temperatureColor', (), _M_Demo._t_diodecolor, False, 0)
-    ))
-    BodyTemperatureState._ice_type = _M_Demo._t_BodyTemperatureState
-
-    _M_Demo.BodyTemperatureState = BodyTemperatureState
-    del BodyTemperatureState
-
-    _M_Demo.BodyTemperatureStatePrx = BodyTemperatureStatePrx
-    del BodyTemperatureStatePrx
-
-if 'MoistureSensorState' not in _M_Demo.__dict__:
-    _M_Demo.MoistureSensorState = Ice.createTempClass()
-    class MoistureSensorState(_M_Demo.SensorState):
-        def __init__(self, batteryLevel=0.0, lastUserName='', operationTime=0, speedInMilesPerHour=0.0, speedInMetresPerHour=0.0, speedColor=_M_Demo.diodecolor.RED, mouistureLvl=0, moistureColor=_M_Demo.diodecolor.RED):
-            if Ice.getType(self) == _M_Demo.MoistureSensorState:
-                raise RuntimeError('Demo.MoistureSensorState is an abstract class')
-            _M_Demo.SensorState.__init__(self, batteryLevel, lastUserName, operationTime, speedInMilesPerHour, speedInMetresPerHour, speedColor)
-            self.mouistureLvl = mouistureLvl
-            self.moistureColor = moistureColor
-
-        def ice_ids(self, current=None):
-            return ('::Demo::DeviceState', '::Demo::MoistureSensorState', '::Demo::SensorState', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::MoistureSensorState'
-
-        def ice_staticId():
-            return '::Demo::MoistureSensorState'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_MoistureSensorState)
-
-        __repr__ = __str__
-
-    _M_Demo.MoistureSensorStatePrx = Ice.createTempClass()
-    class MoistureSensorStatePrx(_M_Demo.SensorStatePrx):
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.MoistureSensorStatePrx.ice_checkedCast(proxy, '::Demo::MoistureSensorState', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.MoistureSensorStatePrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::MoistureSensorState'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_MoistureSensorStatePrx = IcePy.defineProxy('::Demo::MoistureSensorState', MoistureSensorStatePrx)
-
-    _M_Demo._t_MoistureSensorState = IcePy.defineClass('::Demo::MoistureSensorState', MoistureSensorState, -1, (), True, False, _M_Demo._t_SensorState, (), (
-        ('mouistureLvl', (), IcePy._t_int, False, 0),
-        ('moistureColor', (), _M_Demo._t_diodecolor, False, 0)
-    ))
-    MoistureSensorState._ice_type = _M_Demo._t_MoistureSensorState
-
-    _M_Demo.MoistureSensorState = MoistureSensorState
-    del MoistureSensorState
-
-    _M_Demo.MoistureSensorStatePrx = MoistureSensorStatePrx
-    del MoistureSensorStatePrx
-
-if 'speed' not in _M_Demo.__dict__:
-    _M_Demo.speed = Ice.createTempClass()
-    class speed(Ice.EnumBase):
-
-        def __init__(self, _n, _v):
-            Ice.EnumBase.__init__(self, _n, _v)
-
-        def valueOf(self, _n):
-            if _n in self._enumerators:
-                return self._enumerators[_n]
-            return None
-        valueOf = classmethod(valueOf)
-
-    speed.SLOW = speed("SLOW", 0)
-    speed.MEDIUM = speed("MEDIUM", 1)
-    speed.QUICK = speed("QUICK", 2)
-    speed._enumerators = { 0:speed.SLOW, 1:speed.MEDIUM, 2:speed.QUICK }
-
-    _M_Demo._t_speed = IcePy.defineEnum('::Demo::speed', speed, (), speed._enumerators)
-
-    _M_Demo.speed = speed
-    del speed
+    _M_Demo.BrokenDiodeException = BrokenDiodeException
+    del BrokenDiodeException
 
 if 'Sensor' not in _M_Demo.__dict__:
     _M_Demo.Sensor = Ice.createTempClass()
@@ -1249,7 +769,7 @@ if 'Sensor' not in _M_Demo.__dict__:
             return '::Demo::Sensor'
         ice_staticId = staticmethod(ice_staticId)
 
-        def measureMotion(self, speedObj, current=None):
+        def measureMotion(self, speed, current=None):
             pass
 
         def __str__(self):
@@ -1260,11 +780,11 @@ if 'Sensor' not in _M_Demo.__dict__:
     _M_Demo.SensorPrx = Ice.createTempClass()
     class SensorPrx(_M_Demo.DevicePrx):
 
-        def measureMotion(self, speedObj, _ctx=None):
-            return _M_Demo.Sensor._op_measureMotion.invoke(self, ((speedObj, ), _ctx))
+        def measureMotion(self, speed, _ctx=None):
+            return _M_Demo.Sensor._op_measureMotion.invoke(self, ((speed, ), _ctx))
 
-        def begin_measureMotion(self, speedObj, _response=None, _ex=None, _sent=None, _ctx=None):
-            return _M_Demo.Sensor._op_measureMotion.begin(self, ((speedObj, ), _response, _ex, _sent, _ctx))
+        def begin_measureMotion(self, speed, _response=None, _ex=None, _sent=None, _ctx=None):
+            return _M_Demo.Sensor._op_measureMotion.begin(self, ((speed, ), _response, _ex, _sent, _ctx))
 
         def end_measureMotion(self, _r):
             return _M_Demo.Sensor._op_measureMotion.end(self, _r)
@@ -1286,36 +806,13 @@ if 'Sensor' not in _M_Demo.__dict__:
     _M_Demo._t_Sensor = IcePy.defineClass('::Demo::Sensor', Sensor, -1, (), True, False, None, (_M_Demo._t_Device,), ())
     Sensor._ice_type = _M_Demo._t_Sensor
 
-    Sensor._op_measureMotion = IcePy.Operation('measureMotion', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), _M_Demo._t_speed, False, 0),), (), ((), _M_Demo._t_SensorStatePrx, False, 0), ())
+    Sensor._op_measureMotion = IcePy.Operation('measureMotion', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, (_M_Demo._t_BrokenDiodeException,))
 
     _M_Demo.Sensor = Sensor
     del Sensor
 
     _M_Demo.SensorPrx = SensorPrx
     del SensorPrx
-
-if 'moisture' not in _M_Demo.__dict__:
-    _M_Demo.moisture = Ice.createTempClass()
-    class moisture(Ice.EnumBase):
-
-        def __init__(self, _n, _v):
-            Ice.EnumBase.__init__(self, _n, _v)
-
-        def valueOf(self, _n):
-            if _n in self._enumerators:
-                return self._enumerators[_n]
-            return None
-        valueOf = classmethod(valueOf)
-
-    moisture.DRY = moisture("DRY", 0)
-    moisture.WET = moisture("WET", 1)
-    moisture.OCEAN = moisture("OCEAN", 2)
-    moisture._enumerators = { 0:moisture.DRY, 1:moisture.WET, 2:moisture.OCEAN }
-
-    _M_Demo._t_moisture = IcePy.defineEnum('::Demo::moisture', moisture, (), moisture._enumerators)
-
-    _M_Demo.moisture = moisture
-    del moisture
 
 if 'MoistureSensor' not in _M_Demo.__dict__:
     _M_Demo.MoistureSensor = Ice.createTempClass()
@@ -1334,7 +831,7 @@ if 'MoistureSensor' not in _M_Demo.__dict__:
             return '::Demo::MoistureSensor'
         ice_staticId = staticmethod(ice_staticId)
 
-        def measureMoisture(self, moistureObj, current=None):
+        def measureMoisture(self, moisture, current=None):
             pass
 
         def __str__(self):
@@ -1345,11 +842,11 @@ if 'MoistureSensor' not in _M_Demo.__dict__:
     _M_Demo.MoistureSensorPrx = Ice.createTempClass()
     class MoistureSensorPrx(_M_Demo.SensorPrx):
 
-        def measureMoisture(self, moistureObj, _ctx=None):
-            return _M_Demo.MoistureSensor._op_measureMoisture.invoke(self, ((moistureObj, ), _ctx))
+        def measureMoisture(self, moisture, _ctx=None):
+            return _M_Demo.MoistureSensor._op_measureMoisture.invoke(self, ((moisture, ), _ctx))
 
-        def begin_measureMoisture(self, moistureObj, _response=None, _ex=None, _sent=None, _ctx=None):
-            return _M_Demo.MoistureSensor._op_measureMoisture.begin(self, ((moistureObj, ), _response, _ex, _sent, _ctx))
+        def begin_measureMoisture(self, moisture, _response=None, _ex=None, _sent=None, _ctx=None):
+            return _M_Demo.MoistureSensor._op_measureMoisture.begin(self, ((moisture, ), _response, _ex, _sent, _ctx))
 
         def end_measureMoisture(self, _r):
             return _M_Demo.MoistureSensor._op_measureMoisture.end(self, _r)
@@ -1371,36 +868,13 @@ if 'MoistureSensor' not in _M_Demo.__dict__:
     _M_Demo._t_MoistureSensor = IcePy.defineClass('::Demo::MoistureSensor', MoistureSensor, -1, (), True, False, None, (_M_Demo._t_Sensor,), ())
     MoistureSensor._ice_type = _M_Demo._t_MoistureSensor
 
-    MoistureSensor._op_measureMoisture = IcePy.Operation('measureMoisture', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), _M_Demo._t_moisture, False, 0),), (), ((), _M_Demo._t_MoistureSensorStatePrx, False, 0), ())
+    MoistureSensor._op_measureMoisture = IcePy.Operation('measureMoisture', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, (_M_Demo._t_BrokenDiodeException,))
 
     _M_Demo.MoistureSensor = MoistureSensor
     del MoistureSensor
 
     _M_Demo.MoistureSensorPrx = MoistureSensorPrx
     del MoistureSensorPrx
-
-if 'temperature' not in _M_Demo.__dict__:
-    _M_Demo.temperature = Ice.createTempClass()
-    class temperature(Ice.EnumBase):
-
-        def __init__(self, _n, _v):
-            Ice.EnumBase.__init__(self, _n, _v)
-
-        def valueOf(self, _n):
-            if _n in self._enumerators:
-                return self._enumerators[_n]
-            return None
-        valueOf = classmethod(valueOf)
-
-    temperature.COLD = temperature("COLD", 0)
-    temperature.COOL = temperature("COOL", 1)
-    temperature.WARM = temperature("WARM", 2)
-    temperature._enumerators = { 0:temperature.COLD, 1:temperature.COOL, 2:temperature.WARM }
-
-    _M_Demo._t_temperature = IcePy.defineEnum('::Demo::temperature', temperature, (), temperature._enumerators)
-
-    _M_Demo.temperature = temperature
-    del temperature
 
 if 'BodyTemperatureSensor' not in _M_Demo.__dict__:
     _M_Demo.BodyTemperatureSensor = Ice.createTempClass()
@@ -1419,7 +893,7 @@ if 'BodyTemperatureSensor' not in _M_Demo.__dict__:
             return '::Demo::BodyTemperatureSensor'
         ice_staticId = staticmethod(ice_staticId)
 
-        def measureBodyTemperature(self, temperatureObj, current=None):
+        def measureBodyTemperature(self, temperature, current=None):
             pass
 
         def __str__(self):
@@ -1430,11 +904,11 @@ if 'BodyTemperatureSensor' not in _M_Demo.__dict__:
     _M_Demo.BodyTemperatureSensorPrx = Ice.createTempClass()
     class BodyTemperatureSensorPrx(_M_Demo.SensorPrx):
 
-        def measureBodyTemperature(self, temperatureObj, _ctx=None):
-            return _M_Demo.BodyTemperatureSensor._op_measureBodyTemperature.invoke(self, ((temperatureObj, ), _ctx))
+        def measureBodyTemperature(self, temperature, _ctx=None):
+            return _M_Demo.BodyTemperatureSensor._op_measureBodyTemperature.invoke(self, ((temperature, ), _ctx))
 
-        def begin_measureBodyTemperature(self, temperatureObj, _response=None, _ex=None, _sent=None, _ctx=None):
-            return _M_Demo.BodyTemperatureSensor._op_measureBodyTemperature.begin(self, ((temperatureObj, ), _response, _ex, _sent, _ctx))
+        def begin_measureBodyTemperature(self, temperature, _response=None, _ex=None, _sent=None, _ctx=None):
+            return _M_Demo.BodyTemperatureSensor._op_measureBodyTemperature.begin(self, ((temperature, ), _response, _ex, _sent, _ctx))
 
         def end_measureBodyTemperature(self, _r):
             return _M_Demo.BodyTemperatureSensor._op_measureBodyTemperature.end(self, _r)
@@ -1456,7 +930,7 @@ if 'BodyTemperatureSensor' not in _M_Demo.__dict__:
     _M_Demo._t_BodyTemperatureSensor = IcePy.defineClass('::Demo::BodyTemperatureSensor', BodyTemperatureSensor, -1, (), True, False, None, (_M_Demo._t_Sensor,), ())
     BodyTemperatureSensor._ice_type = _M_Demo._t_BodyTemperatureSensor
 
-    BodyTemperatureSensor._op_measureBodyTemperature = IcePy.Operation('measureBodyTemperature', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), _M_Demo._t_temperature, False, 0),), (), ((), _M_Demo._t_BodyTemperatureStatePrx, False, 0), ())
+    BodyTemperatureSensor._op_measureBodyTemperature = IcePy.Operation('measureBodyTemperature', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_float, False, 0),), (), None, (_M_Demo._t_BrokenDiodeException,))
 
     _M_Demo.BodyTemperatureSensor = BodyTemperatureSensor
     del BodyTemperatureSensor
@@ -1525,67 +999,5 @@ if 'Reporter' not in _M_Demo.__dict__:
 
     _M_Demo.ReporterPrx = ReporterPrx
     del ReporterPrx
-
-if 'Monitor' not in _M_Demo.__dict__:
-    _M_Demo.Monitor = Ice.createTempClass()
-    class Monitor(Ice.Object):
-        def __init__(self):
-            if Ice.getType(self) == _M_Demo.Monitor:
-                raise RuntimeError('Demo.Monitor is an abstract class')
-
-        def ice_ids(self, current=None):
-            return ('::Demo::Monitor', '::Ice::Object')
-
-        def ice_id(self, current=None):
-            return '::Demo::Monitor'
-
-        def ice_staticId():
-            return '::Demo::Monitor'
-        ice_staticId = staticmethod(ice_staticId)
-
-        def report(self, m, current=None):
-            pass
-
-        def __str__(self):
-            return IcePy.stringify(self, _M_Demo._t_Monitor)
-
-        __repr__ = __str__
-
-    _M_Demo.MonitorPrx = Ice.createTempClass()
-    class MonitorPrx(Ice.ObjectPrx):
-
-        def report(self, m, _ctx=None):
-            return _M_Demo.Monitor._op_report.invoke(self, ((m, ), _ctx))
-
-        def begin_report(self, m, _response=None, _ex=None, _sent=None, _ctx=None):
-            return _M_Demo.Monitor._op_report.begin(self, ((m, ), _response, _ex, _sent, _ctx))
-
-        def end_report(self, _r):
-            return _M_Demo.Monitor._op_report.end(self, _r)
-
-        def checkedCast(proxy, facetOrCtx=None, _ctx=None):
-            return _M_Demo.MonitorPrx.ice_checkedCast(proxy, '::Demo::Monitor', facetOrCtx, _ctx)
-        checkedCast = staticmethod(checkedCast)
-
-        def uncheckedCast(proxy, facet=None):
-            return _M_Demo.MonitorPrx.ice_uncheckedCast(proxy, facet)
-        uncheckedCast = staticmethod(uncheckedCast)
-
-        def ice_staticId():
-            return '::Demo::Monitor'
-        ice_staticId = staticmethod(ice_staticId)
-
-    _M_Demo._t_MonitorPrx = IcePy.defineProxy('::Demo::Monitor', MonitorPrx)
-
-    _M_Demo._t_Monitor = IcePy.defineClass('::Demo::Monitor', Monitor, -1, (), True, False, None, (), ())
-    Monitor._ice_type = _M_Demo._t_Monitor
-
-    Monitor._op_report = IcePy.Operation('report', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), _M_Demo._t_Measurement, False, 0),), (), None, ())
-
-    _M_Demo.Monitor = Monitor
-    del Monitor
-
-    _M_Demo.MonitorPrx = MonitorPrx
-    del MonitorPrx
 
 # End of module Demo

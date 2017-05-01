@@ -27,20 +27,23 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
 {
     private static final String __turnDown_name = "turnDown";
 
-    public CameraState turnDown(float angle)
+    public void turnDown(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnDown(angle, null, false);
+        turnDown(angle, null, false);
     }
 
-    public CameraState turnDown(float angle, java.util.Map<String, String> __ctx)
+    public void turnDown(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException
     {
-        return turnDown(angle, __ctx, true);
+        turnDown(angle, __ctx, true);
     }
 
-    private CameraState turnDown(float angle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void turnDown(float angle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws RotationOutOfRangeException
     {
         __checkTwowayOnly(__turnDown_name);
-        return end_turnDown(begin_turnDown(angle, __ctx, __explicitCtx, true, null));
+        end_turnDown(begin_turnDown(angle, __ctx, __explicitCtx, true, null));
     }
 
     public Ice.AsyncResult begin_turnDown(float angle)
@@ -74,47 +77,52 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
     }
 
     public Ice.AsyncResult begin_turnDown(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnDown(angle, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_turnDown(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnDown(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnDown(angle, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnDown(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     public Ice.AsyncResult begin_turnDown(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnDown(angle, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_turnDown(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnDown(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnDown(angle, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnDown(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     private Ice.AsyncResult begin_turnDown(float angle, 
                                            java.util.Map<String, String> __ctx, 
                                            boolean __explicitCtx, 
                                            boolean __synchronous, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb)
     {
         return begin_turnDown(angle, __ctx, __explicitCtx, __synchronous, 
-                              new IceInternal.Functional_TwowayCallbackArg1<Demo.CameraState>(__responseCb, __exceptionCb, __sentCb)
+                              new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                   {
                                       public final void __completed(Ice.AsyncResult __result)
                                       {
@@ -146,7 +154,8 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         return __result;
     }
 
-    public CameraState end_turnDown(Ice.AsyncResult __iresult)
+    public void end_turnDown(Ice.AsyncResult __iresult)
+        throws RotationOutOfRangeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __turnDown_name);
         try
@@ -157,17 +166,16 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
                 {
                     __result.throwUserException();
                 }
+                catch(RotationOutOfRangeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            CameraStateHolder __ret = new CameraStateHolder();
-            __is.readObject(__ret);
-            __is.readPendingObjects();
-            __result.endReadParams();
-            return __ret.value;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -178,13 +186,17 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         }
     }
 
-    static public void __turnDown_completed(Ice.TwowayCallbackArg1<CameraState> __cb, Ice.AsyncResult __result)
+    static public void __turnDown_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.CameraPrx __proxy = (Demo.CameraPrx)__result.getProxy();
-        CameraState __ret = null;
         try
         {
-            __ret = __proxy.end_turnDown(__result);
+            __proxy.end_turnDown(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -196,23 +208,27 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     private static final String __turnLeft_name = "turnLeft";
 
     public void turnLeft(float angle)
+        throws RotationOutOfRangeException
     {
         turnLeft(angle, null, false);
     }
 
     public void turnLeft(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException
     {
         turnLeft(angle, __ctx, true);
     }
 
     private void turnLeft(float angle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws RotationOutOfRangeException
     {
+        __checkTwowayOnly(__turnLeft_name);
         end_turnLeft(begin_turnLeft(angle, __ctx, __explicitCtx, true, null));
     }
 
@@ -248,34 +264,38 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnLeft(angle, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_turnLeft(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnLeft(angle, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnLeft(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           java.util.Map<String, String> __ctx, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnLeft(angle, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_turnLeft(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           java.util.Map<String, String> __ctx, 
                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnLeft(angle, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnLeft(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     private Ice.AsyncResult begin_turnLeft(float angle, 
@@ -283,14 +303,18 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
                                            boolean __explicitCtx, 
                                            boolean __synchronous, 
                                            IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnLeft(angle, 
-                              __ctx, 
-                              __explicitCtx, 
-                              __synchronous, 
-                              new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
+        return begin_turnLeft(angle, __ctx, __explicitCtx, __synchronous, 
+                              new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
+                                  {
+                                      public final void __completed(Ice.AsyncResult __result)
+                                      {
+                                          ZoomingCameraPrxHelper.__turnLeft_completed(this, __result);
+                                      }
+                                  });
     }
 
     private Ice.AsyncResult begin_turnLeft(float angle, 
@@ -299,6 +323,7 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
                                            boolean __synchronous, 
                                            IceInternal.CallbackBase __cb)
     {
+        __checkAsyncTwowayOnly(__turnLeft_name);
         IceInternal.OutgoingAsync __result = getOutgoingAsync(__turnLeft_name, __cb);
         try
         {
@@ -316,26 +341,81 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
     }
 
     public void end_turnLeft(Ice.AsyncResult __iresult)
+        throws RotationOutOfRangeException
     {
-        __end(__iresult, __turnLeft_name);
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __turnLeft_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(RotationOutOfRangeException __ex)
+                {
+                    throw __ex;
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            __result.readEmptyParams();
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __turnLeft_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
+    {
+        Demo.CameraPrx __proxy = (Demo.CameraPrx)__result.getProxy();
+        try
+        {
+            __proxy.end_turnLeft(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response();
     }
 
     private static final String __turnRight_name = "turnRight";
 
-    public CameraState turnRight(float angle)
+    public void turnRight(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnRight(angle, null, false);
+        turnRight(angle, null, false);
     }
 
-    public CameraState turnRight(float angle, java.util.Map<String, String> __ctx)
+    public void turnRight(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException
     {
-        return turnRight(angle, __ctx, true);
+        turnRight(angle, __ctx, true);
     }
 
-    private CameraState turnRight(float angle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void turnRight(float angle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws RotationOutOfRangeException
     {
         __checkTwowayOnly(__turnRight_name);
-        return end_turnRight(begin_turnRight(angle, __ctx, __explicitCtx, true, null));
+        end_turnRight(begin_turnRight(angle, __ctx, __explicitCtx, true, null));
     }
 
     public Ice.AsyncResult begin_turnRight(float angle)
@@ -369,47 +449,52 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
     }
 
     public Ice.AsyncResult begin_turnRight(float angle, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnRight(angle, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_turnRight(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnRight(float angle, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnRight(angle, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnRight(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     public Ice.AsyncResult begin_turnRight(float angle, 
                                            java.util.Map<String, String> __ctx, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnRight(angle, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_turnRight(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnRight(float angle, 
                                            java.util.Map<String, String> __ctx, 
-                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                           IceInternal.Functional_VoidCallback __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnRight(angle, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnRight(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     private Ice.AsyncResult begin_turnRight(float angle, 
                                             java.util.Map<String, String> __ctx, 
                                             boolean __explicitCtx, 
                                             boolean __synchronous, 
-                                            IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                            IceInternal.Functional_VoidCallback __responseCb, 
+                                            IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                             IceInternal.Functional_BoolCallback __sentCb)
     {
         return begin_turnRight(angle, __ctx, __explicitCtx, __synchronous, 
-                               new IceInternal.Functional_TwowayCallbackArg1<Demo.CameraState>(__responseCb, __exceptionCb, __sentCb)
+                               new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                    {
                                        public final void __completed(Ice.AsyncResult __result)
                                        {
@@ -441,7 +526,8 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         return __result;
     }
 
-    public CameraState end_turnRight(Ice.AsyncResult __iresult)
+    public void end_turnRight(Ice.AsyncResult __iresult)
+        throws RotationOutOfRangeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __turnRight_name);
         try
@@ -452,17 +538,16 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
                 {
                     __result.throwUserException();
                 }
+                catch(RotationOutOfRangeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            CameraStateHolder __ret = new CameraStateHolder();
-            __is.readObject(__ret);
-            __is.readPendingObjects();
-            __result.endReadParams();
-            return __ret.value;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -473,13 +558,17 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         }
     }
 
-    static public void __turnRight_completed(Ice.TwowayCallbackArg1<CameraState> __cb, Ice.AsyncResult __result)
+    static public void __turnRight_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.CameraPrx __proxy = (Demo.CameraPrx)__result.getProxy();
-        CameraState __ret = null;
         try
         {
-            __ret = __proxy.end_turnRight(__result);
+            __proxy.end_turnRight(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -491,25 +580,28 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     private static final String __turnUp_name = "turnUp";
 
-    public CameraState turnUp(float angle)
+    public void turnUp(float angle)
+        throws RotationOutOfRangeException
     {
-        return turnUp(angle, null, false);
+        turnUp(angle, null, false);
     }
 
-    public CameraState turnUp(float angle, java.util.Map<String, String> __ctx)
+    public void turnUp(float angle, java.util.Map<String, String> __ctx)
+        throws RotationOutOfRangeException
     {
-        return turnUp(angle, __ctx, true);
+        turnUp(angle, __ctx, true);
     }
 
-    private CameraState turnUp(float angle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void turnUp(float angle, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws RotationOutOfRangeException
     {
         __checkTwowayOnly(__turnUp_name);
-        return end_turnUp(begin_turnUp(angle, __ctx, __explicitCtx, true, null));
+        end_turnUp(begin_turnUp(angle, __ctx, __explicitCtx, true, null));
     }
 
     public Ice.AsyncResult begin_turnUp(float angle)
@@ -543,47 +635,52 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
     }
 
     public Ice.AsyncResult begin_turnUp(float angle, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnUp(angle, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_turnUp(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnUp(float angle, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnUp(angle, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnUp(angle, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     public Ice.AsyncResult begin_turnUp(float angle, 
                                         java.util.Map<String, String> __ctx, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_turnUp(angle, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_turnUp(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_turnUp(float angle, 
                                         java.util.Map<String, String> __ctx, 
-                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                        IceInternal.Functional_VoidCallback __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_turnUp(angle, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_turnUp(angle, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     private Ice.AsyncResult begin_turnUp(float angle, 
                                          java.util.Map<String, String> __ctx, 
                                          boolean __explicitCtx, 
                                          boolean __synchronous, 
-                                         IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
+                                         IceInternal.Functional_VoidCallback __responseCb, 
+                                         IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                          IceInternal.Functional_BoolCallback __sentCb)
     {
         return begin_turnUp(angle, __ctx, __explicitCtx, __synchronous, 
-                            new IceInternal.Functional_TwowayCallbackArg1<Demo.CameraState>(__responseCb, __exceptionCb, __sentCb)
+                            new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                 {
                                     public final void __completed(Ice.AsyncResult __result)
                                     {
@@ -615,7 +712,8 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         return __result;
     }
 
-    public CameraState end_turnUp(Ice.AsyncResult __iresult)
+    public void end_turnUp(Ice.AsyncResult __iresult)
+        throws RotationOutOfRangeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __turnUp_name);
         try
@@ -626,17 +724,16 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
                 {
                     __result.throwUserException();
                 }
+                catch(RotationOutOfRangeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            CameraStateHolder __ret = new CameraStateHolder();
-            __is.readObject(__ret);
-            __is.readPendingObjects();
-            __result.endReadParams();
-            return __ret.value;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -647,13 +744,17 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         }
     }
 
-    static public void __turnUp_completed(Ice.TwowayCallbackArg1<CameraState> __cb, Ice.AsyncResult __result)
+    static public void __turnUp_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.CameraPrx __proxy = (Demo.CameraPrx)__result.getProxy();
-        CameraState __ret = null;
         try
         {
-            __ret = __proxy.end_turnUp(__result);
+            __proxy.end_turnUp(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -665,7 +766,7 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     private static final String __feedBattery_name = "feedBattery";
@@ -1277,20 +1378,23 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
 
     private static final String __zoom_name = "zoom";
 
-    public ZoomingCameraStatePrx zoom(int lvl)
+    public void zoom(int lvl)
+        throws ZoomOutOfRangeException
     {
-        return zoom(lvl, null, false);
+        zoom(lvl, null, false);
     }
 
-    public ZoomingCameraStatePrx zoom(int lvl, java.util.Map<String, String> __ctx)
+    public void zoom(int lvl, java.util.Map<String, String> __ctx)
+        throws ZoomOutOfRangeException
     {
-        return zoom(lvl, __ctx, true);
+        zoom(lvl, __ctx, true);
     }
 
-    private ZoomingCameraStatePrx zoom(int lvl, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void zoom(int lvl, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws ZoomOutOfRangeException
     {
         __checkTwowayOnly(__zoom_name);
-        return end_zoom(begin_zoom(lvl, __ctx, __explicitCtx, true, null));
+        end_zoom(begin_zoom(lvl, __ctx, __explicitCtx, true, null));
     }
 
     public Ice.AsyncResult begin_zoom(int lvl)
@@ -1324,47 +1428,52 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
     }
 
     public Ice.AsyncResult begin_zoom(int lvl, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_zoom(lvl, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_zoom(lvl, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_zoom(int lvl, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                       IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_zoom(lvl, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_zoom(lvl, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     public Ice.AsyncResult begin_zoom(int lvl, 
                                       java.util.Map<String, String> __ctx, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_zoom(lvl, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_zoom(lvl, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_zoom(int lvl, 
                                       java.util.Map<String, String> __ctx, 
-                                      IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                      IceInternal.Functional_VoidCallback __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                       IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_zoom(lvl, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_zoom(lvl, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     private Ice.AsyncResult begin_zoom(int lvl, 
                                        java.util.Map<String, String> __ctx, 
                                        boolean __explicitCtx, 
                                        boolean __synchronous, 
-                                       IceInternal.Functional_GenericCallback1<ZoomingCameraStatePrx> __responseCb, 
+                                       IceInternal.Functional_VoidCallback __responseCb, 
+                                       IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                        IceInternal.Functional_BoolCallback __sentCb)
     {
         return begin_zoom(lvl, __ctx, __explicitCtx, __synchronous, 
-                          new IceInternal.Functional_TwowayCallbackArg1<Demo.ZoomingCameraStatePrx>(__responseCb, __exceptionCb, __sentCb)
+                          new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                               {
                                   public final void __completed(Ice.AsyncResult __result)
                                   {
@@ -1396,7 +1505,8 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         return __result;
     }
 
-    public ZoomingCameraStatePrx end_zoom(Ice.AsyncResult __iresult)
+    public void end_zoom(Ice.AsyncResult __iresult)
+        throws ZoomOutOfRangeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __zoom_name);
         try
@@ -1407,16 +1517,16 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
                 {
                     __result.throwUserException();
                 }
+                catch(ZoomOutOfRangeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            ZoomingCameraStatePrx __ret;
-            __ret = ZoomingCameraStatePrxHelper.__read(__is);
-            __result.endReadParams();
-            return __ret;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -1427,13 +1537,17 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
         }
     }
 
-    static public void __zoom_completed(Ice.TwowayCallbackArg1<ZoomingCameraStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __zoom_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.ZoomingCameraPrx __proxy = (Demo.ZoomingCameraPrx)__result.getProxy();
-        ZoomingCameraStatePrx __ret = null;
         try
         {
-            __ret = __proxy.end_zoom(__result);
+            __proxy.end_zoom(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -1445,7 +1559,7 @@ public final class ZoomingCameraPrxHelper extends Ice.ObjectPrxHelperBase implem
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     /**

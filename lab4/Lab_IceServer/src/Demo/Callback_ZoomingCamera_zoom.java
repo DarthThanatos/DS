@@ -21,7 +21,7 @@
 package Demo;
 
 public abstract class Callback_ZoomingCamera_zoom
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<Demo.ZoomingCameraStatePrx>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackVoidUE
 {
     public final void __completed(Ice.AsyncResult __result)
     {

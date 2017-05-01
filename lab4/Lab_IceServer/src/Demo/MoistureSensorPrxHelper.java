@@ -634,94 +634,102 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
 
     private static final String __measureMoisture_name = "measureMoisture";
 
-    public MoistureSensorStatePrx measureMoisture(moisture moistureObj)
+    public void measureMoisture(float moisture)
+        throws BrokenDiodeException
     {
-        return measureMoisture(moistureObj, null, false);
+        measureMoisture(moisture, null, false);
     }
 
-    public MoistureSensorStatePrx measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx)
+    public void measureMoisture(float moisture, java.util.Map<String, String> __ctx)
+        throws BrokenDiodeException
     {
-        return measureMoisture(moistureObj, __ctx, true);
+        measureMoisture(moisture, __ctx, true);
     }
 
-    private MoistureSensorStatePrx measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void measureMoisture(float moisture, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws BrokenDiodeException
     {
         __checkTwowayOnly(__measureMoisture_name);
-        return end_measureMoisture(begin_measureMoisture(moistureObj, __ctx, __explicitCtx, true, null));
+        end_measureMoisture(begin_measureMoisture(moisture, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj)
+    public Ice.AsyncResult begin_measureMoisture(float moisture)
     {
-        return begin_measureMoisture(moistureObj, null, false, false, null);
+        return begin_measureMoisture(moisture, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_measureMoisture(float moisture, java.util.Map<String, String> __ctx)
     {
-        return begin_measureMoisture(moistureObj, __ctx, true, false, null);
+        return begin_measureMoisture(moisture, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureMoisture(float moisture, Ice.Callback __cb)
     {
-        return begin_measureMoisture(moistureObj, null, false, false, __cb);
+        return begin_measureMoisture(moisture, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureMoisture(float moisture, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_measureMoisture(moistureObj, __ctx, true, false, __cb);
+        return begin_measureMoisture(moisture, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, Callback_MoistureSensor_measureMoisture __cb)
+    public Ice.AsyncResult begin_measureMoisture(float moisture, Callback_MoistureSensor_measureMoisture __cb)
     {
-        return begin_measureMoisture(moistureObj, null, false, false, __cb);
+        return begin_measureMoisture(moisture, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx, Callback_MoistureSensor_measureMoisture __cb)
+    public Ice.AsyncResult begin_measureMoisture(float moisture, java.util.Map<String, String> __ctx, Callback_MoistureSensor_measureMoisture __cb)
     {
-        return begin_measureMoisture(moistureObj, __ctx, true, false, __cb);
+        return begin_measureMoisture(moisture, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureMoisture(moistureObj, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_measureMoisture(moisture, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMoisture(moistureObj, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureMoisture(moisture, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
                                                  java.util.Map<String, String> __ctx, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureMoisture(moistureObj, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_measureMoisture(moisture, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
                                                  java.util.Map<String, String> __ctx, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMoisture(moistureObj, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureMoisture(moisture, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
+    private Ice.AsyncResult begin_measureMoisture(float moisture, 
                                                   java.util.Map<String, String> __ctx, 
                                                   boolean __explicitCtx, 
                                                   boolean __synchronous, 
-                                                  IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+                                                  IceInternal.Functional_VoidCallback __responseCb, 
+                                                  IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                   IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                   IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMoisture(moistureObj, __ctx, __explicitCtx, __synchronous, 
-                                     new IceInternal.Functional_TwowayCallbackArg1<Demo.MoistureSensorStatePrx>(__responseCb, __exceptionCb, __sentCb)
+        return begin_measureMoisture(moisture, __ctx, __explicitCtx, __synchronous, 
+                                     new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                          {
                                              public final void __completed(Ice.AsyncResult __result)
                                              {
@@ -730,7 +738,7 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
                                          });
     }
 
-    private Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
+    private Ice.AsyncResult begin_measureMoisture(float moisture, 
                                                   java.util.Map<String, String> __ctx, 
                                                   boolean __explicitCtx, 
                                                   boolean __synchronous, 
@@ -742,7 +750,7 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
         {
             __result.prepare(__measureMoisture_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
-            moisture.__write(__os, moistureObj);
+            __os.writeFloat(moisture);
             __result.endWriteParams();
             __result.invoke();
         }
@@ -753,7 +761,8 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
         return __result;
     }
 
-    public MoistureSensorStatePrx end_measureMoisture(Ice.AsyncResult __iresult)
+    public void end_measureMoisture(Ice.AsyncResult __iresult)
+        throws BrokenDiodeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __measureMoisture_name);
         try
@@ -764,16 +773,16 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
                 {
                     __result.throwUserException();
                 }
+                catch(BrokenDiodeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            MoistureSensorStatePrx __ret;
-            __ret = MoistureSensorStatePrxHelper.__read(__is);
-            __result.endReadParams();
-            return __ret;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -784,13 +793,17 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
         }
     }
 
-    static public void __measureMoisture_completed(Ice.TwowayCallbackArg1<MoistureSensorStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __measureMoisture_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.MoistureSensorPrx __proxy = (Demo.MoistureSensorPrx)__result.getProxy();
-        MoistureSensorStatePrx __ret = null;
         try
         {
-            __ret = __proxy.end_measureMoisture(__result);
+            __proxy.end_measureMoisture(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -802,99 +815,107 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     private static final String __measureMotion_name = "measureMotion";
 
-    public SensorStatePrx measureMotion(speed speedObj)
+    public void measureMotion(float speed)
+        throws BrokenDiodeException
     {
-        return measureMotion(speedObj, null, false);
+        measureMotion(speed, null, false);
     }
 
-    public SensorStatePrx measureMotion(speed speedObj, java.util.Map<String, String> __ctx)
+    public void measureMotion(float speed, java.util.Map<String, String> __ctx)
+        throws BrokenDiodeException
     {
-        return measureMotion(speedObj, __ctx, true);
+        measureMotion(speed, __ctx, true);
     }
 
-    private SensorStatePrx measureMotion(speed speedObj, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void measureMotion(float speed, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws BrokenDiodeException
     {
         __checkTwowayOnly(__measureMotion_name);
-        return end_measureMotion(begin_measureMotion(speedObj, __ctx, __explicitCtx, true, null));
+        end_measureMotion(begin_measureMotion(speed, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj)
+    public Ice.AsyncResult begin_measureMotion(float speed)
     {
-        return begin_measureMotion(speedObj, null, false, false, null);
+        return begin_measureMotion(speed, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, null);
+        return begin_measureMotion(speed, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, Ice.Callback __cb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __cb);
+        return begin_measureMotion(speed, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __cb);
+        return begin_measureMotion(speed, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, Callback_Sensor_measureMotion __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, Callback_Sensor_measureMotion __cb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __cb);
+        return begin_measureMotion(speed, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, java.util.Map<String, String> __ctx, Callback_Sensor_measureMotion __cb)
+    public Ice.AsyncResult begin_measureMotion(float speed, java.util.Map<String, String> __ctx, Callback_Sensor_measureMotion __cb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __cb);
+        return begin_measureMotion(speed, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_measureMotion(speed, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMotion(speedObj, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureMotion(speed, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
                                                java.util.Map<String, String> __ctx, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_measureMotion(speed, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    public Ice.AsyncResult begin_measureMotion(float speed, 
                                                java.util.Map<String, String> __ctx, 
-                                               IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMotion(speedObj, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_measureMotion(speed, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    private Ice.AsyncResult begin_measureMotion(float speed, 
                                                 java.util.Map<String, String> __ctx, 
                                                 boolean __explicitCtx, 
                                                 boolean __synchronous, 
-                                                IceInternal.Functional_GenericCallback1<SensorStatePrx> __responseCb, 
+                                                IceInternal.Functional_VoidCallback __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                 IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_measureMotion(speedObj, __ctx, __explicitCtx, __synchronous, 
-                                   new IceInternal.Functional_TwowayCallbackArg1<Demo.SensorStatePrx>(__responseCb, __exceptionCb, __sentCb)
+        return begin_measureMotion(speed, __ctx, __explicitCtx, __synchronous, 
+                                   new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                        {
                                            public final void __completed(Ice.AsyncResult __result)
                                            {
@@ -903,7 +924,7 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
                                        });
     }
 
-    private Ice.AsyncResult begin_measureMotion(speed speedObj, 
+    private Ice.AsyncResult begin_measureMotion(float speed, 
                                                 java.util.Map<String, String> __ctx, 
                                                 boolean __explicitCtx, 
                                                 boolean __synchronous, 
@@ -915,7 +936,7 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
         {
             __result.prepare(__measureMotion_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
-            speed.__write(__os, speedObj);
+            __os.writeFloat(speed);
             __result.endWriteParams();
             __result.invoke();
         }
@@ -926,7 +947,8 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
         return __result;
     }
 
-    public SensorStatePrx end_measureMotion(Ice.AsyncResult __iresult)
+    public void end_measureMotion(Ice.AsyncResult __iresult)
+        throws BrokenDiodeException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __measureMotion_name);
         try
@@ -937,16 +959,16 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
                 {
                     __result.throwUserException();
                 }
+                catch(BrokenDiodeException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
-            IceInternal.BasicStream __is = __result.startReadParams();
-            SensorStatePrx __ret;
-            __ret = SensorStatePrxHelper.__read(__is);
-            __result.endReadParams();
-            return __ret;
+            __result.readEmptyParams();
         }
         finally
         {
@@ -957,13 +979,17 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
         }
     }
 
-    static public void __measureMotion_completed(Ice.TwowayCallbackArg1<SensorStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __measureMotion_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
     {
         Demo.SensorPrx __proxy = (Demo.SensorPrx)__result.getProxy();
-        SensorStatePrx __ret = null;
         try
         {
-            __ret = __proxy.end_measureMotion(__result);
+            __proxy.end_measureMotion(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -975,7 +1001,7 @@ public final class MoistureSensorPrxHelper extends Ice.ObjectPrxHelperBase imple
             __cb.exception(__ex);
             return;
         }
-        __cb.response(__ret);
+        __cb.response();
     }
 
     /**

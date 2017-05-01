@@ -22,5 +22,6 @@ package Demo;
 
 public interface _InterpretingPrinterOperations extends _PrinterOperations
 {
-    InterpretingPrinterStatePrx interpretAndPrint(Ice.Current __current);
+    String interpretAndPrint(String s, Ice.Current __current)
+        throws OutOfInkException;
 }

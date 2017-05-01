@@ -27,17 +27,20 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
 {
     private static final String __prettyPrint_name = "prettyPrint";
 
-    public AsciiPrinterStatePrx prettyPrint(String s)
+    public String prettyPrint(String s)
+        throws OutOfInkException
     {
         return prettyPrint(s, null, false);
     }
 
-    public AsciiPrinterStatePrx prettyPrint(String s, java.util.Map<String, String> __ctx)
+    public String prettyPrint(String s, java.util.Map<String, String> __ctx)
+        throws OutOfInkException
     {
         return prettyPrint(s, __ctx, true);
     }
 
-    private AsciiPrinterStatePrx prettyPrint(String s, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private String prettyPrint(String s, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws OutOfInkException
     {
         __checkTwowayOnly(__prettyPrint_name);
         return end_prettyPrint(begin_prettyPrint(s, __ctx, __explicitCtx, true, null));
@@ -74,47 +77,52 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
     }
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_prettyPrint(s, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_prettyPrint(s, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_prettyPrint(s, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_prettyPrint(s, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_prettyPrint(s, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_prettyPrint(s, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_prettyPrint(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_prettyPrint(s, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_prettyPrint(s, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     private Ice.AsyncResult begin_prettyPrint(String s, 
                                               java.util.Map<String, String> __ctx, 
                                               boolean __explicitCtx, 
                                               boolean __synchronous, 
-                                              IceInternal.Functional_GenericCallback1<AsciiPrinterStatePrx> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                               IceInternal.Functional_BoolCallback __sentCb)
     {
         return begin_prettyPrint(s, __ctx, __explicitCtx, __synchronous, 
-                                 new IceInternal.Functional_TwowayCallbackArg1<Demo.AsciiPrinterStatePrx>(__responseCb, __exceptionCb, __sentCb)
+                                 new IceInternal.Functional_TwowayCallbackArg1UE<String>(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                      {
                                          public final void __completed(Ice.AsyncResult __result)
                                          {
@@ -146,7 +154,8 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
         return __result;
     }
 
-    public AsciiPrinterStatePrx end_prettyPrint(Ice.AsyncResult __iresult)
+    public String end_prettyPrint(Ice.AsyncResult __iresult)
+        throws OutOfInkException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __prettyPrint_name);
         try
@@ -157,14 +166,18 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
                 {
                     __result.throwUserException();
                 }
+                catch(OutOfInkException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
             IceInternal.BasicStream __is = __result.startReadParams();
-            AsciiPrinterStatePrx __ret;
-            __ret = AsciiPrinterStatePrxHelper.__read(__is);
+            String __ret;
+            __ret = __is.readString();
             __result.endReadParams();
             return __ret;
         }
@@ -177,13 +190,18 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
         }
     }
 
-    static public void __prettyPrint_completed(Ice.TwowayCallbackArg1<AsciiPrinterStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __prettyPrint_completed(Ice.TwowayCallbackArg1UE<String> __cb, Ice.AsyncResult __result)
     {
         Demo.AsciiPrinterPrx __proxy = (Demo.AsciiPrinterPrx)__result.getProxy();
-        AsciiPrinterStatePrx __ret = null;
+        String __ret = null;
         try
         {
             __ret = __proxy.end_prettyPrint(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {
@@ -919,17 +937,20 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
 
     private static final String __printString_name = "printString";
 
-    public PrinterStatePrx printString(String s)
+    public String printString(String s)
+        throws OutOfInkException
     {
         return printString(s, null, false);
     }
 
-    public PrinterStatePrx printString(String s, java.util.Map<String, String> __ctx)
+    public String printString(String s, java.util.Map<String, String> __ctx)
+        throws OutOfInkException
     {
         return printString(s, __ctx, true);
     }
 
-    private PrinterStatePrx printString(String s, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private String printString(String s, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws OutOfInkException
     {
         __checkTwowayOnly(__printString_name);
         return end_printString(begin_printString(s, __ctx, __explicitCtx, true, null));
@@ -966,47 +987,52 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
     }
 
     public Ice.AsyncResult begin_printString(String s, 
-                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_printString(s, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_printString(s, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_printString(String s, 
-                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_printString(s, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_printString(s, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     public Ice.AsyncResult begin_printString(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_printString(s, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_printString(s, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_printString(String s, 
                                              java.util.Map<String, String> __ctx, 
-                                             IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                              IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_printString(s, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_printString(s, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
     }
 
     private Ice.AsyncResult begin_printString(String s, 
                                               java.util.Map<String, String> __ctx, 
                                               boolean __explicitCtx, 
                                               boolean __synchronous, 
-                                              IceInternal.Functional_GenericCallback1<PrinterStatePrx> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                               IceInternal.Functional_BoolCallback __sentCb)
     {
         return begin_printString(s, __ctx, __explicitCtx, __synchronous, 
-                                 new IceInternal.Functional_TwowayCallbackArg1<Demo.PrinterStatePrx>(__responseCb, __exceptionCb, __sentCb)
+                                 new IceInternal.Functional_TwowayCallbackArg1UE<String>(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
                                      {
                                          public final void __completed(Ice.AsyncResult __result)
                                          {
@@ -1038,7 +1064,8 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
         return __result;
     }
 
-    public PrinterStatePrx end_printString(Ice.AsyncResult __iresult)
+    public String end_printString(Ice.AsyncResult __iresult)
+        throws OutOfInkException
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __printString_name);
         try
@@ -1049,14 +1076,18 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
                 {
                     __result.throwUserException();
                 }
+                catch(OutOfInkException __ex)
+                {
+                    throw __ex;
+                }
                 catch(Ice.UserException __ex)
                 {
                     throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
                 }
             }
             IceInternal.BasicStream __is = __result.startReadParams();
-            PrinterStatePrx __ret;
-            __ret = PrinterStatePrxHelper.__read(__is);
+            String __ret;
+            __ret = __is.readString();
             __result.endReadParams();
             return __ret;
         }
@@ -1069,13 +1100,18 @@ public final class AsciiPrinterPrxHelper extends Ice.ObjectPrxHelperBase impleme
         }
     }
 
-    static public void __printString_completed(Ice.TwowayCallbackArg1<PrinterStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __printString_completed(Ice.TwowayCallbackArg1UE<String> __cb, Ice.AsyncResult __result)
     {
         Demo.PrinterPrx __proxy = (Demo.PrinterPrx)__result.getProxy();
-        PrinterStatePrx __ret = null;
+        String __ret = null;
         try
         {
             __ret = __proxy.end_printString(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {

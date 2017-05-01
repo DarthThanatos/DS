@@ -22,5 +22,6 @@ package Demo;
 
 public interface _AsciiPrinterOperationsNC extends _PrinterOperationsNC
 {
-    AsciiPrinterStatePrx prettyPrint(String s);
+    String prettyPrint(String s)
+        throws OutOfInkException;
 }

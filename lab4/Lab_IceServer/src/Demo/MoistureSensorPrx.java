@@ -22,41 +22,48 @@ package Demo;
 
 public interface MoistureSensorPrx extends SensorPrx
 {
-    public MoistureSensorStatePrx measureMoisture(moisture moistureObj);
+    public void measureMoisture(float moisture)
+        throws BrokenDiodeException;
 
-    public MoistureSensorStatePrx measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx);
+    public void measureMoisture(float moisture, java.util.Map<String, String> __ctx)
+        throws BrokenDiodeException;
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj);
+    public Ice.AsyncResult begin_measureMoisture(float moisture);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx);
+    public Ice.AsyncResult begin_measureMoisture(float moisture, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, Ice.Callback __cb);
+    public Ice.AsyncResult begin_measureMoisture(float moisture, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+    public Ice.AsyncResult begin_measureMoisture(float moisture, java.util.Map<String, String> __ctx, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, Callback_MoistureSensor_measureMoisture __cb);
+    public Ice.AsyncResult begin_measureMoisture(float moisture, Callback_MoistureSensor_measureMoisture __cb);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, java.util.Map<String, String> __ctx, Callback_MoistureSensor_measureMoisture __cb);
+    public Ice.AsyncResult begin_measureMoisture(float moisture, java.util.Map<String, String> __ctx, Callback_MoistureSensor_measureMoisture __cb);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
                                                  java.util.Map<String, String> __ctx, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_measureMoisture(moisture moistureObj, 
+    public Ice.AsyncResult begin_measureMoisture(float moisture, 
                                                  java.util.Map<String, String> __ctx, 
-                                                 IceInternal.Functional_GenericCallback1<MoistureSensorStatePrx> __responseCb, 
+                                                 IceInternal.Functional_VoidCallback __responseCb, 
+                                                 IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb);
 
-    public MoistureSensorStatePrx end_measureMoisture(Ice.AsyncResult __result);
+    public void end_measureMoisture(Ice.AsyncResult __result)
+        throws BrokenDiodeException;
 }

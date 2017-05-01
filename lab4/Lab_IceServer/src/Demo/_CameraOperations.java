@@ -22,11 +22,15 @@ package Demo;
 
 public interface _CameraOperations extends _DeviceOperations
 {
-    void turnLeft(float angle, Ice.Current __current);
+    void turnLeft(float angle, Ice.Current __current)
+        throws RotationOutOfRangeException;
 
-    CameraState turnRight(float angle, Ice.Current __current);
+    void turnRight(float angle, Ice.Current __current)
+        throws RotationOutOfRangeException;
 
-    CameraState turnUp(float angle, Ice.Current __current);
+    void turnUp(float angle, Ice.Current __current)
+        throws RotationOutOfRangeException;
 
-    CameraState turnDown(float angle, Ice.Current __current);
+    void turnDown(float angle, Ice.Current __current)
+        throws RotationOutOfRangeException;
 }
