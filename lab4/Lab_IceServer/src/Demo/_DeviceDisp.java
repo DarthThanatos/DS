@@ -80,9 +80,14 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public static Ice.DispatchStatus ___getName(Device __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -100,9 +105,9 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         __inS.readEmptyParams();
-        DeviceStatePrx __ret = __obj.getState(__current);
+        String __ret = __obj.getState(__current);
         IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        DeviceStatePrxHelper.__write(__os, __ret);
+        __os.writeString(__ret);
         __inS.__endWriteParams(true);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -116,6 +121,17 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
         return Ice.DispatchStatus.DispatchOK;
     }
 
+    public static Ice.DispatchStatus ___listActions(Device __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        __inS.readEmptyParams();
+        String[] __ret = __obj.listActions(__current);
+        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+        stringSeqHelper.write(__os, __ret);
+        __inS.__endWriteParams(true);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
     private final static String[] __all =
     {
         "feedBattery",
@@ -124,7 +140,8 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
         "ice_id",
         "ice_ids",
         "ice_isA",
-        "ice_ping"
+        "ice_ping",
+        "listActions"
     };
 
     public Ice.DispatchStatus __dispatch(IceInternal.Incoming in, Ice.Current __current)
@@ -164,6 +181,10 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
             case 6:
             {
                 return ___ice_ping(this, in, __current);
+            }
+            case 7:
+            {
+                return ___listActions(this, in, __current);
             }
         }
 

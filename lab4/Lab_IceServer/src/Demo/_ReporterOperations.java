@@ -22,5 +22,5 @@ package Demo;
 
 public interface _ReporterOperations
 {
-    void report(DeviceStatePrx state, Ice.Current __current);
+    void report(String msg, Ice.Current __current);
 }

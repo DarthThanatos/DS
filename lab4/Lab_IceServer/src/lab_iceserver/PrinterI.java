@@ -5,16 +5,45 @@
  */
 package lab_iceserver;
 
+import Demo.DeviceStatePrx;
+import Demo.PrinterStatePrx;
+import Ice.Current;
+
 /**
  *
  * @author Robert
  */
 
 public class PrinterI extends Demo._PrinterDisp {
-    public String
-    printString(String s, Ice.Current current)
-    {
-        System.out.println(s);
-        return s + " yo";
+
+
+    @Override
+    public void fillInk(Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getName(Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getState(Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void feedBattery(Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PrinterStatePrx printString(String s, Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String[] listActions(Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

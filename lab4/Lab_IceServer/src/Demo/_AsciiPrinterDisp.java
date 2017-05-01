@@ -87,9 +87,14 @@ public abstract class _AsciiPrinterDisp extends Ice.ObjectImpl implements AsciiP
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public final void fillInk()
@@ -126,6 +131,7 @@ public abstract class _AsciiPrinterDisp extends Ice.ObjectImpl implements AsciiP
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "listActions",
         "prettyPrint",
         "printString"
     };
@@ -174,9 +180,13 @@ public abstract class _AsciiPrinterDisp extends Ice.ObjectImpl implements AsciiP
             }
             case 8:
             {
-                return ___prettyPrint(this, in, __current);
+                return _DeviceDisp.___listActions(this, in, __current);
             }
             case 9:
+            {
+                return ___prettyPrint(this, in, __current);
+            }
+            case 10:
             {
                 return _PrinterDisp.___printString(this, in, __current);
             }

@@ -6,16 +6,33 @@ module Demo {
         float batteryLevel;
         string lastUserName;
         long operationTime;
+        string formatToString();
     };
 
     interface Device{
         string getName();
-        DeviceState* getState();
+        string getState();
         void feedBattery();
+        stringSeq listActions();
+    };
+
+    exception AlreadyControlledException{
+        string byWho;
+    };
+
+    exception NotKnownDeviceException{
+        string explanation;
+    };
+
+    exception DeviceNotControlledException{
+        string explanation;
     };
 
     interface LaboratoryRoom {
         stringSeq getDevicesNamesList();
+        stringSeq getDeviceOperationsList(string deviceId) throws NotKnownDeviceException;
+        Device* takeControlOverDevice(string deviceId, string userId) throws AlreadyControlledException, NotKnownDeviceException;
+        void releaseDevice(string deviceId, string userId) throws NotKnownDeviceException, DeviceNotControlledException;
     };
     
     class CameraState extends DeviceState{
@@ -28,18 +45,16 @@ module Demo {
     };
     
     interface Camera extends Device{
-        CameraState* turnLeft(float angle);
-        CameraState* turnRight(float angle);
-        CameraState* turnUp(float angle);
-        CameraState* turnDown(float angle);
+        void turnLeft(float angle);
+        CameraState turnRight(float angle);
+        CameraState turnUp(float angle);
+        CameraState turnDown(float angle);
     };
     
 
     interface ZoomingCamera extends Camera{
         ZoomingCameraState* zoom(int lvl);
     };
-
-    
 
     class PrinterState extends DeviceState{
         int inkLevel;
@@ -111,7 +126,8 @@ module Demo {
     };
 
     interface Reporter{
-        void report(DeviceState* state);
+        //void report(DeviceState* state);
+        void report(string msg);
     };
 
     interface Monitor {

@@ -304,17 +304,17 @@ public final class InterpretingPrinterPrxHelper extends Ice.ObjectPrxHelperBase 
 
     private static final String __getState_name = "getState";
 
-    public DeviceStatePrx getState()
+    public String getState()
     {
         return getState(null, false);
     }
 
-    public DeviceStatePrx getState(java.util.Map<String, String> __ctx)
+    public String getState(java.util.Map<String, String> __ctx)
     {
         return getState(__ctx, true);
     }
 
-    private DeviceStatePrx getState(java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private String getState(java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
         __checkTwowayOnly(__getState_name);
         return end_getState(begin_getState(__ctx, __explicitCtx, true, null));
@@ -350,13 +350,13 @@ public final class InterpretingPrinterPrxHelper extends Ice.ObjectPrxHelperBase 
         return begin_getState(__ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
         return begin_getState(null, false, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
@@ -364,14 +364,14 @@ public final class InterpretingPrinterPrxHelper extends Ice.ObjectPrxHelperBase 
     }
 
     public Ice.AsyncResult begin_getState(java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
         return begin_getState(__ctx, true, false, __responseCb, __exceptionCb, null);
     }
 
     public Ice.AsyncResult begin_getState(java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb)
     {
@@ -381,12 +381,12 @@ public final class InterpretingPrinterPrxHelper extends Ice.ObjectPrxHelperBase 
     private Ice.AsyncResult begin_getState(java.util.Map<String, String> __ctx, 
                                            boolean __explicitCtx, 
                                            boolean __synchronous, 
-                                           IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb)
     {
         return begin_getState(__ctx, __explicitCtx, __synchronous, 
-                              new IceInternal.Functional_TwowayCallbackArg1<Demo.DeviceStatePrx>(__responseCb, __exceptionCb, __sentCb)
+                              new IceInternal.Functional_TwowayCallbackArg1<String>(__responseCb, __exceptionCb, __sentCb)
                                   {
                                       public final void __completed(Ice.AsyncResult __result)
                                       {
@@ -415,7 +415,7 @@ public final class InterpretingPrinterPrxHelper extends Ice.ObjectPrxHelperBase 
         return __result;
     }
 
-    public DeviceStatePrx end_getState(Ice.AsyncResult __iresult)
+    public String end_getState(Ice.AsyncResult __iresult)
     {
         IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __getState_name);
         try
@@ -432,8 +432,8 @@ public final class InterpretingPrinterPrxHelper extends Ice.ObjectPrxHelperBase 
                 }
             }
             IceInternal.BasicStream __is = __result.startReadParams();
-            DeviceStatePrx __ret;
-            __ret = DeviceStatePrxHelper.__read(__is);
+            String __ret;
+            __ret = __is.readString();
             __result.endReadParams();
             return __ret;
         }
@@ -446,13 +446,178 @@ public final class InterpretingPrinterPrxHelper extends Ice.ObjectPrxHelperBase 
         }
     }
 
-    static public void __getState_completed(Ice.TwowayCallbackArg1<DeviceStatePrx> __cb, Ice.AsyncResult __result)
+    static public void __getState_completed(Ice.TwowayCallbackArg1<String> __cb, Ice.AsyncResult __result)
     {
         Demo.DevicePrx __proxy = (Demo.DevicePrx)__result.getProxy();
-        DeviceStatePrx __ret = null;
+        String __ret = null;
         try
         {
             __ret = __proxy.end_getState(__result);
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response(__ret);
+    }
+
+    private static final String __listActions_name = "listActions";
+
+    public String[] listActions()
+    {
+        return listActions(null, false);
+    }
+
+    public String[] listActions(java.util.Map<String, String> __ctx)
+    {
+        return listActions(__ctx, true);
+    }
+
+    private String[] listActions(java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        __checkTwowayOnly(__listActions_name);
+        return end_listActions(begin_listActions(__ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_listActions()
+    {
+        return begin_listActions(null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx)
+    {
+        return begin_listActions(__ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_listActions(Ice.Callback __cb)
+    {
+        return begin_listActions(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_listActions(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_listActions(Callback_Device_listActions __cb)
+    {
+        return begin_listActions(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, Callback_Device_listActions __cb)
+    {
+        return begin_listActions(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_listActions(IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_listActions(null, false, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_listActions(IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                             IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_listActions(null, false, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, 
+                                             IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_listActions(__ctx, true, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, 
+                                             IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                             IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_listActions(__ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, 
+                                              boolean __explicitCtx, 
+                                              boolean __synchronous, 
+                                              IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                              IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_listActions(__ctx, __explicitCtx, __synchronous, 
+                                 new IceInternal.Functional_TwowayCallbackArg1<String[]>(__responseCb, __exceptionCb, __sentCb)
+                                     {
+                                         public final void __completed(Ice.AsyncResult __result)
+                                         {
+                                             InterpretingPrinterPrxHelper.__listActions_completed(this, __result);
+                                         }
+                                     });
+    }
+
+    private Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, 
+                                              boolean __explicitCtx, 
+                                              boolean __synchronous, 
+                                              IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__listActions_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__listActions_name, __cb);
+        try
+        {
+            __result.prepare(__listActions_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            __result.writeEmptyParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public String[] end_listActions(Ice.AsyncResult __iresult)
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __listActions_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            IceInternal.BasicStream __is = __result.startReadParams();
+            String[] __ret;
+            __ret = stringSeqHelper.read(__is);
+            __result.endReadParams();
+            return __ret;
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __listActions_completed(Ice.TwowayCallbackArg1<String[]> __cb, Ice.AsyncResult __result)
+    {
+        Demo.DevicePrx __proxy = (Demo.DevicePrx)__result.getProxy();
+        String[] __ret = null;
+        try
+        {
+            __ret = __proxy.end_listActions(__result);
         }
         catch(Ice.LocalException __ex)
         {

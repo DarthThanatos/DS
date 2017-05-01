@@ -20,50 +20,48 @@ public class CameraI extends Demo._CameraDisp{
     
     public CameraI(Ice.Communicator ic){
         this.ic = ic;
-        state = new CameraState();
-        state.batteryLevel = 100;
-        state.horizontalAngle = 45;
-        state.verticalAngle = 0;
-        state.operationTime = 10;
-        state.lastUserName = "Rob";
+        state = new CameraStateI();
         
     }
     
-    @Override
-    public CameraStatePrx turnLeft(float angle, Current __current) {
-        CameraStatePrx statePrx = CameraStatePrxHelper.checkedCast(ic.propertyToProxy("Camera_One_State.Proxy"));
-        return statePrx;
-    }
-
-    @Override
-    public CameraStatePrx turnRight(float angle, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CameraStatePrx turnUp(float angle, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CameraStatePrx turnDown(float angle, Current __current) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public String getName(Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public DeviceStatePrx getState(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getState(Current __current) {
+        return "horizontal angle: " + state.horizontalAngle + " vertical angle: " + state.verticalAngle;        
     }
 
     @Override
     public void feedBattery(Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void turnLeft(float angle, Current __current) {
+        state.horizontalAngle -= angle;
+    }
+
+    @Override
+    public CameraState turnRight(float angle, Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CameraState turnUp(float angle, Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CameraState turnDown(float angle, Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String[] listActions(Current __current) {
+        return new String[] {"turnUp (float angle)", "turnDown(float angle)", "turRight (float angle)", "turnLeft (float angle)"};
     }
     
 }

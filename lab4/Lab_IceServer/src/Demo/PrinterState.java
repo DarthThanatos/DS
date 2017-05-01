@@ -20,7 +20,9 @@
 
 package Demo;
 
-public class PrinterState extends DeviceState
+public abstract class PrinterState extends DeviceState
+                                   implements _PrinterStateOperations,
+                                              _PrinterStateOperationsNC
 {
     public PrinterState()
     {
@@ -33,26 +35,6 @@ public class PrinterState extends DeviceState
         super(batteryLevel, lastUserName, operationTime);
         this.inkLevel = inkLevel;
         this.result = result;
-    }
-
-    private static class __F implements Ice.ObjectFactory
-    {
-        public Ice.Object create(String type)
-        {
-            assert(type.equals(ice_staticId()));
-            return new PrinterState();
-        }
-
-        public void destroy()
-        {
-        }
-    }
-    private static Ice.ObjectFactory _factory = new __F();
-
-    public static Ice.ObjectFactory
-    ice_factory()
-    {
-        return _factory;
     }
 
     public static final String[] __ids =
@@ -95,6 +77,51 @@ public class PrinterState extends DeviceState
     public static String ice_staticId()
     {
         return __ids[1];
+    }
+
+    private final static String[] __all =
+    {
+        "formatToString",
+        "ice_id",
+        "ice_ids",
+        "ice_isA",
+        "ice_ping"
+    };
+
+    public Ice.DispatchStatus __dispatch(IceInternal.Incoming in, Ice.Current __current)
+    {
+        int pos = java.util.Arrays.binarySearch(__all, __current.operation);
+        if(pos < 0)
+        {
+            throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+        }
+
+        switch(pos)
+        {
+            case 0:
+            {
+                return DeviceState.___formatToString(this, in, __current);
+            }
+            case 1:
+            {
+                return ___ice_id(this, in, __current);
+            }
+            case 2:
+            {
+                return ___ice_ids(this, in, __current);
+            }
+            case 3:
+            {
+                return ___ice_isA(this, in, __current);
+            }
+            case 4:
+            {
+                return ___ice_ping(this, in, __current);
+            }
+        }
+
+        assert(false);
+        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
     }
 
     protected void __writeImpl(IceInternal.BasicStream __os)

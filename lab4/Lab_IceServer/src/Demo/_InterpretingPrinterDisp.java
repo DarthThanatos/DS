@@ -82,9 +82,14 @@ public abstract class _InterpretingPrinterDisp extends Ice.ObjectImpl implements
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public final InterpretingPrinterStatePrx interpretAndPrint()
@@ -124,6 +129,7 @@ public abstract class _InterpretingPrinterDisp extends Ice.ObjectImpl implements
         "ice_isA",
         "ice_ping",
         "interpretAndPrint",
+        "listActions",
         "printString"
     };
 
@@ -174,6 +180,10 @@ public abstract class _InterpretingPrinterDisp extends Ice.ObjectImpl implements
                 return ___interpretAndPrint(this, in, __current);
             }
             case 9:
+            {
+                return _DeviceDisp.___listActions(this, in, __current);
+            }
+            case 10:
             {
                 return _PrinterDisp.___printString(this, in, __current);
             }

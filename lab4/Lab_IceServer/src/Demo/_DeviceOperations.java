@@ -24,7 +24,9 @@ public interface _DeviceOperations
 {
     String getName(Ice.Current __current);
 
-    DeviceStatePrx getState(Ice.Current __current);
+    String getState(Ice.Current __current);
 
     void feedBattery(Ice.Current __current);
+
+    String[] listActions(Ice.Current __current);
 }

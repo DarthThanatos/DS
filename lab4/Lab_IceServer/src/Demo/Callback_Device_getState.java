@@ -21,7 +21,7 @@
 package Demo;
 
 public abstract class Callback_Device_getState
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<Demo.DeviceStatePrx>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<String>
 {
     public final void __completed(Ice.AsyncResult __result)
     {

@@ -2,17 +2,21 @@ import sys, traceback, Ice, IceStorm
 import Demo
 import thread
 import msvcrt
+import re
 
 client_name = "Nameless-One"
 
 print "Ice args:", sys.argv
 ic = Ice.initialize(sys.argv)
 topic_manager_base = ic.stringToProxy("DemoIceStorm/TopicManager:default -h localhost -p 9999")
-camera_one_base =  ic.propertyToProxy("Camera_One.Proxy")
+laboratory_room_base = ic.propertyToProxy("LaboratoryRoom.Proxy")
 topic_manager = IceStorm.TopicManagerPrx.checkedCast(topic_manager_base)
-adapter = ic.createObjectAdapter("MonitorAdapter")
+laboratory_room = Demo.LaboratoryRoomPrx.checkedCast(laboratory_room_base)
+
+adapter = ic.createObjectAdapter("MonitorAdapter") # for subscribers
 
 observed_devices = {}
+controlled_devices = {}
 
 if not topic_manager:
     raise RuntimeError("Invalid topic manager")
@@ -26,49 +30,129 @@ class MonitorI(Demo.Monitor):
             "   Temp: " + str(m.temperature) + "\n" +\
             client_name + ">"
 
-def perform_action():
-    topic = None
-    channel = raw_input("Type the device whose state is about to be changed\n"+ client_name + ">")
-    while topic == None:
+class ReporterI(Demo.Reporter):
+    def report(self,msg,curr):
+        print msg+ "\n" +  client_name + ">"
+
+def createDevicesTopics(devicesNamesList):
+    for deviceName in devicesNamesList:
         try:
-            topic = topic_manager.retrieve(channel)
-        except IceStorm.NoSuchTopic:
-            try:
-                topic = topic_manager.create(channel)
-            except IceStorm.TopicExists:
-                pass
+            topic = topic_manager.create(deviceName)
+        except IceStorm.TopicExists:
+            pass
+
+def list_devices(devicesNamesList, wait_for_input = True):
+    print "Devices in laboratory:"
+    for deviceName in devicesNamesList:
+        print "\t->",deviceName
+    if wait_for_input: msvcrt.getch()
+    
+
+def list_controlled_devices(wait_for_user_input = True):
+    if controlled_devices.__len__() == 0:
+        print "You do not control any devices"
+    else:
+        print "Devices that you control:"
+        for deviceName in controlled_devices.keys():
+            print "\t-> " + deviceName        
+    if wait_for_user_input: msvcrt.getch()
+
+
+def list_observed_devices(wait_for_user_input = True):
+    if observed_devices.__len__() == 0:
+        print "No observed devices"
+    else:
+        print "Devices observed by you:"
+        for device in observed_devices:
+            print "\t->", device
+    if wait_for_user_input: msvcrt.getch()
+
+
+def getListOfDeviceOperations(deviceName):
+    try:
+        opList = laboratory_room.getDeviceOperationsList(deviceName)
+        print "Operations for device:", deviceName
+        for operation_index, operationName in enumerate(opList):
+            print "\t-> " + str(operation_index) + " " + operationName
+        return opList
+    except:
+        print "Device not known"
+        return []
+
+def listDeviceOperations():
+    deviceName = raw_input("Type the device whose operations you want to list:\n"+ client_name + ">")
+    getListOfDeviceOperations(deviceName)
+    msvcrt.getch()
+
+def perform_action():
+    list_controlled_devices(wait_for_user_input=False)
+    topic = None
+    device = raw_input("Type the device whose state is about to be changed\n"+ client_name + ">")
+    if not device in controlled_devices:
+        print "You do not control that device, please try to lock it first"
+        msvcrt.getch()
+        return
+    try:
+        topic = topic_manager.retrieve(device)
+    except IceStorm.NoSuchTopic:
+        print "No such device"
+        msvcrt.getch()
+        return
+    opList = getListOfDeviceOperations(device)
+    opIndex = raw_input("Type an index of an operation to be performed:\n" + client_name + ">")
+    try:
+        definition = opList[int(opIndex)]
+    except:
+        print "Not a valid operation index, returning to Menu"
+        msvcrt.getch()
+        return
+    
+    #parsing arguments of a remote operation
+    operationName = re.match(r'(\w+) \(',definition).group(1)
+    args = re.findall(r'((int|string|float)\s(\w+),?\s*)',definition)
+    arg_list = []
+    try:
+	for (type_and_name,arg_type,arg_name) in args:
+		arg_val = input("Type value for " + arg_name + " of type " + arg_type+" (please, input strings in quotes, e.g. \"ala\"): ")
+		arg_list.append(arg_val)
+	print arg_list
+    except :
+	print "Not a valid value"
+        msvcrt.getch()
+        return
+    #downcasting to proxy to the most derived type; proxy returned by LaboratoryRoom has type DevicePrx; calling its get_id() method will 
+    #provide us with the most derived type of the Proxy in a stringified form, e.g. ::Demo::Camera; hence we first must skip the initial double colon symbol,
+    #change the remaining to the dot symbol (.) and then prepend Prx.checkedCast suffix; this expression, when presented to eval() funtion, will produce the most derived 
+    #type of our Proxy
+    
+    prx_derived_type_desc = controlled_devices[device].ice_id()
+    derived_type = eval(prx_derived_type_desc[2:].replace("::",".") + "Prx.checkedCast(controlled_devices[device])")
+    getattr(derived_type, operationName)(*arg_list)
+    msg = client_name + " has changed the state of device " + device + ": " + controlled_devices[device].getState()
+    print "msg:",msg,"will be sent to all subscribers"
     pub = topic.getPublisher().ice_oneway()
-    monitor = Demo.MonitorPrx.uncheckedCast(pub)
-    m = Demo.Measurement(tower="tower")
-    monitor.report(m)
+    reporter = Demo.ReporterPrx.uncheckedCast(pub)
+    reporter.report(msg) #notify subscribers about changed state of the device
     print "Sent report"
     msvcrt.getch()
             
 def subscribe(channel):
-    monitor = MonitorI()
-    prx = adapter.addWithUUID(monitor).ice_oneway()
+    reporter = ReporterI()
+    prx = adapter.addWithUUID(reporter).ice_oneway()
     adapter.activate()
     try: 
         topic = topic_manager.retrieve(channel)
         quos = None
         topic.subscribeAndGetPublisher(quos,prx)
-        #ic.shutdownOnInterrupt()
         observed_devices[channel] = (prx,topic)
         print "Started to observe device",channel
-        #ic.waitForShutdown()
     except IceStorm.NoSuchTopic:
         print "invalid topic"
         msvcrt.getch()
     
-def list_observed_devices():
-    if observed_devices.__len__() == 0:
-        print "No observed devices"
-    else:
-        for device in observed_devices:
-            print device
-    msvcrt.getch()
-
-def start_observing():
+def start_observing(devicesNamesList):
+    list_devices(devicesNamesList, wait_for_input=False)
+    list_observed_devices(False)
     channel = raw_input("Type the device you want to observe:\n"+ client_name + ">")
     if not channel in observed_devices:
         thread.start_new_thread(subscribe, (channel,))
@@ -78,6 +162,7 @@ def start_observing():
         msvcrt.getch()
 
 def stop_observing():
+    list_observed_devices(False)
     channel = raw_input("Type the device you want to leave alone:\n"+ client_name + ">")
     try:
         proxy,topic = observed_devices[channel]
@@ -89,58 +174,74 @@ def stop_observing():
         print "You do not observe such a device, notihing to stop"
         msvcrt.getch()
     
-
-def list_devices():
-    print "to-do"
+def lock_device(devicesNamesList):
+    list_devices(devicesNamesList, False)
+    list_controlled_devices(False)
+    device = raw_input("Select device to control:\n" + client_name + ">")
+    if device in controlled_devices:
+        print "You already control that device"
+        msvcrt.getch()
+        return
+    try:
+        dev_prx = laboratory_room.takeControlOverDevice(device, client_name)
+        controlled_devices[device] = dev_prx
+    except:
+        traceback.print_exc()
+        return
+    print "You successfully locked ", device
     msvcrt.getch()
-
-def lock_device():
-    print "to-do"
-    msvcrt.getch()
+        
     
 def release_device():
-    print "to-do"
+    list_controlled_devices(False)
+    device = raw_input("Select device to release:\n" + client_name + ">")
+    if device not in controlled_devices:
+        print "You do not control that device"
+        msvcrt.getch()
+        return
+    try:
+        dev_prx = laboratory_room.releaseDevice(device,client_name)
+    except:
+        traceback.print_exc()
+        return
+    controlled_devices.__delitem__(device)
+    print "You successfully released", device
     msvcrt.getch()
 
-def registerDeviceTopics(devicesNamesList):
-    pass
+    
+def actionsAtExit():
+    for device in controlled_devices:
+        laboratory_room.releaseDevice(device, client_name)
 
 status = 0
 try:
-    #base = ic.stringToProxy("SimplePrinter:tcp -h localhost -p 10000:udp -h localhost -p 10000")
-    base = ic.propertyToProxy("SimplePrinter.Proxy")
-    labRoomBase = ic.propertyToProxy("LaboratoryRoom.Proxy")
-    printer = Demo.PrinterPrx.checkedCast(base)
-    labRoom = Demo.LaboratoryRoomPrx.checkedCast(labRoomBase)
-    devicesNamesList =  labRoom.getDevicesNamesList()
-    if not printer:
-        raise RuntimeError("Invalid proxy")
     
-    res = printer.printString("Hello World!")
-    print "Printed hello world on the server's console"
-    print "Received:",res
+    devicesNamesList =  laboratory_room.getDevicesNamesList()    
+    createDevicesTopics(devicesNamesList)
     
     client_name = raw_input("Say your name:\n" + ">")
     print "Entering interactive loop"
     while True:
         user_option = raw_input(
             "Type what you want to do:\n"+\
-            "0-try to take control over a device" +\
+            "0-try to take control over a device\n" +\
             "1-perform action on a device (caution: changes will be visible to third-party observers)\n"+\
             "2-observe\n"+\
             "3-list devices in lab\n"+\
             "4-list observed devices\n"+\
             "5-stop observing a device\n"+\
-            "6-realease device's lock" +\
-            "7-Exit\n"+\
+            "6-realease device's lock\n" +\
+            "7-list particular device's operations list\n" +\
+            "8-list controlled devices list\n" +\
+            "9-Exit\n"+\
             client_name + ">"
         )
         if user_option == "0":
-            lock_device()
+            lock_device(devicesNamesList)
         elif user_option == "1":
             perform_action()
         elif user_option == "2":
-            start_observing()
+            start_observing(devicesNamesList)
         elif user_option == "3":
             list_devices(devicesNamesList)
         elif user_option == "4":
@@ -150,6 +251,11 @@ try:
         elif user_option == "6":
             release_device()
         elif user_option == "7":
+            listDeviceOperations()
+        elif user_option == "8":
+            list_controlled_devices()
+        elif user_option == "9":
+            actionsAtExit()
             break
         else:
             print "invalid option, pick one more time"

@@ -70,19 +70,19 @@ public abstract class _ReporterDisp extends Ice.ObjectImpl implements Reporter
         return __ids[0];
     }
 
-    public final void report(DeviceStatePrx state)
+    public final void report(String msg)
     {
-        report(state, null);
+        report(msg, null);
     }
 
     public static Ice.DispatchStatus ___report(Reporter __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
-        DeviceStatePrx state;
-        state = DeviceStatePrxHelper.__read(__is);
+        String msg;
+        msg = __is.readString();
         __inS.endReadParams();
-        __obj.report(state, __current);
+        __obj.report(msg, __current);
         __inS.__writeEmptyParams();
         return Ice.DispatchStatus.DispatchOK;
     }

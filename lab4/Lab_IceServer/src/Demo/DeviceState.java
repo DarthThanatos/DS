@@ -20,7 +20,9 @@
 
 package Demo;
 
-public class DeviceState extends Ice.ObjectImpl
+public abstract class DeviceState extends Ice.ObjectImpl
+                                  implements _DeviceStateOperations,
+                                             _DeviceStateOperationsNC
 {
     public DeviceState()
     {
@@ -32,26 +34,6 @@ public class DeviceState extends Ice.ObjectImpl
         this.batteryLevel = batteryLevel;
         this.lastUserName = lastUserName;
         this.operationTime = operationTime;
-    }
-
-    private static class __F implements Ice.ObjectFactory
-    {
-        public Ice.Object create(String type)
-        {
-            assert(type.equals(ice_staticId()));
-            return new DeviceState();
-        }
-
-        public void destroy()
-        {
-        }
-    }
-    private static Ice.ObjectFactory _factory = new __F();
-
-    public static Ice.ObjectFactory
-    ice_factory()
-    {
-        return _factory;
     }
 
     public static final String[] __ids =
@@ -93,6 +75,67 @@ public class DeviceState extends Ice.ObjectImpl
     public static String ice_staticId()
     {
         return __ids[0];
+    }
+
+    public final String formatToString()
+    {
+        return formatToString(null);
+    }
+
+    public static Ice.DispatchStatus ___formatToString(DeviceState __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        __inS.readEmptyParams();
+        String __ret = __obj.formatToString(__current);
+        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+        __os.writeString(__ret);
+        __inS.__endWriteParams(true);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
+    private final static String[] __all =
+    {
+        "formatToString",
+        "ice_id",
+        "ice_ids",
+        "ice_isA",
+        "ice_ping"
+    };
+
+    public Ice.DispatchStatus __dispatch(IceInternal.Incoming in, Ice.Current __current)
+    {
+        int pos = java.util.Arrays.binarySearch(__all, __current.operation);
+        if(pos < 0)
+        {
+            throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
+        }
+
+        switch(pos)
+        {
+            case 0:
+            {
+                return ___formatToString(this, in, __current);
+            }
+            case 1:
+            {
+                return ___ice_id(this, in, __current);
+            }
+            case 2:
+            {
+                return ___ice_ids(this, in, __current);
+            }
+            case 3:
+            {
+                return ___ice_isA(this, in, __current);
+            }
+            case 4:
+            {
+                return ___ice_ping(this, in, __current);
+            }
+        }
+
+        assert(false);
+        throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
     }
 
     protected void __writeImpl(IceInternal.BasicStream __os)

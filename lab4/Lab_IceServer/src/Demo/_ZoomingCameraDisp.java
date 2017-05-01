@@ -72,22 +72,22 @@ public abstract class _ZoomingCameraDisp extends Ice.ObjectImpl implements Zoomi
         return __ids[2];
     }
 
-    public final CameraStatePrx turnDown(float angle)
+    public final CameraState turnDown(float angle)
     {
         return turnDown(angle, null);
     }
 
-    public final CameraStatePrx turnLeft(float angle)
+    public final void turnLeft(float angle)
     {
-        return turnLeft(angle, null);
+        turnLeft(angle, null);
     }
 
-    public final CameraStatePrx turnRight(float angle)
+    public final CameraState turnRight(float angle)
     {
         return turnRight(angle, null);
     }
 
-    public final CameraStatePrx turnUp(float angle)
+    public final CameraState turnUp(float angle)
     {
         return turnUp(angle, null);
     }
@@ -102,9 +102,14 @@ public abstract class _ZoomingCameraDisp extends Ice.ObjectImpl implements Zoomi
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public final ZoomingCameraStatePrx zoom(int lvl)
@@ -135,6 +140,7 @@ public abstract class _ZoomingCameraDisp extends Ice.ObjectImpl implements Zoomi
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "listActions",
         "turnDown",
         "turnLeft",
         "turnRight",
@@ -182,21 +188,25 @@ public abstract class _ZoomingCameraDisp extends Ice.ObjectImpl implements Zoomi
             }
             case 7:
             {
-                return _CameraDisp.___turnDown(this, in, __current);
+                return _DeviceDisp.___listActions(this, in, __current);
             }
             case 8:
             {
-                return _CameraDisp.___turnLeft(this, in, __current);
+                return _CameraDisp.___turnDown(this, in, __current);
             }
             case 9:
             {
-                return _CameraDisp.___turnRight(this, in, __current);
+                return _CameraDisp.___turnLeft(this, in, __current);
             }
             case 10:
             {
-                return _CameraDisp.___turnUp(this, in, __current);
+                return _CameraDisp.___turnRight(this, in, __current);
             }
             case 11:
+            {
+                return _CameraDisp.___turnUp(this, in, __current);
+            }
+            case 12:
             {
                 return ___zoom(this, in, __current);
             }

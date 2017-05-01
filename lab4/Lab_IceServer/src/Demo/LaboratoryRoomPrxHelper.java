@@ -25,6 +25,197 @@ package Demo;
  **/
 public final class LaboratoryRoomPrxHelper extends Ice.ObjectPrxHelperBase implements LaboratoryRoomPrx
 {
+    private static final String __getDeviceOperationsList_name = "getDeviceOperationsList";
+
+    public String[] getDeviceOperationsList(String deviceId)
+        throws NotKnownDeviceException
+    {
+        return getDeviceOperationsList(deviceId, null, false);
+    }
+
+    public String[] getDeviceOperationsList(String deviceId, java.util.Map<String, String> __ctx)
+        throws NotKnownDeviceException
+    {
+        return getDeviceOperationsList(deviceId, __ctx, true);
+    }
+
+    private String[] getDeviceOperationsList(String deviceId, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws NotKnownDeviceException
+    {
+        __checkTwowayOnly(__getDeviceOperationsList_name);
+        return end_getDeviceOperationsList(begin_getDeviceOperationsList(deviceId, __ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId)
+    {
+        return begin_getDeviceOperationsList(deviceId, null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, java.util.Map<String, String> __ctx)
+    {
+        return begin_getDeviceOperationsList(deviceId, __ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, Ice.Callback __cb)
+    {
+        return begin_getDeviceOperationsList(deviceId, null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_getDeviceOperationsList(deviceId, __ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, Callback_LaboratoryRoom_getDeviceOperationsList __cb)
+    {
+        return begin_getDeviceOperationsList(deviceId, null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, java.util.Map<String, String> __ctx, Callback_LaboratoryRoom_getDeviceOperationsList __cb)
+    {
+        return begin_getDeviceOperationsList(deviceId, __ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, 
+                                                         IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_getDeviceOperationsList(deviceId, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, 
+                                                         IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                         IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_getDeviceOperationsList(deviceId, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, 
+                                                         java.util.Map<String, String> __ctx, 
+                                                         IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_getDeviceOperationsList(deviceId, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, 
+                                                         java.util.Map<String, String> __ctx, 
+                                                         IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                         IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_getDeviceOperationsList(deviceId, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, 
+                                                          java.util.Map<String, String> __ctx, 
+                                                          boolean __explicitCtx, 
+                                                          boolean __synchronous, 
+                                                          IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                          IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_getDeviceOperationsList(deviceId, __ctx, __explicitCtx, __synchronous, 
+                                             new IceInternal.Functional_TwowayCallbackArg1UE<String[]>(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
+                                                 {
+                                                     public final void __completed(Ice.AsyncResult __result)
+                                                     {
+                                                         LaboratoryRoomPrxHelper.__getDeviceOperationsList_completed(this, __result);
+                                                     }
+                                                 });
+    }
+
+    private Ice.AsyncResult begin_getDeviceOperationsList(String deviceId, 
+                                                          java.util.Map<String, String> __ctx, 
+                                                          boolean __explicitCtx, 
+                                                          boolean __synchronous, 
+                                                          IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__getDeviceOperationsList_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__getDeviceOperationsList_name, __cb);
+        try
+        {
+            __result.prepare(__getDeviceOperationsList_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(deviceId);
+            __result.endWriteParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public String[] end_getDeviceOperationsList(Ice.AsyncResult __iresult)
+        throws NotKnownDeviceException
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __getDeviceOperationsList_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(NotKnownDeviceException __ex)
+                {
+                    throw __ex;
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            IceInternal.BasicStream __is = __result.startReadParams();
+            String[] __ret;
+            __ret = stringSeqHelper.read(__is);
+            __result.endReadParams();
+            return __ret;
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __getDeviceOperationsList_completed(Ice.TwowayCallbackArg1UE<String[]> __cb, Ice.AsyncResult __result)
+    {
+        Demo.LaboratoryRoomPrx __proxy = (Demo.LaboratoryRoomPrx)__result.getProxy();
+        String[] __ret = null;
+        try
+        {
+            __ret = __proxy.end_getDeviceOperationsList(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response(__ret);
+    }
+
     private static final String __getDevicesNamesList_name = "getDevicesNamesList";
 
     public String[] getDevicesNamesList()
@@ -176,6 +367,413 @@ public final class LaboratoryRoomPrxHelper extends Ice.ObjectPrxHelperBase imple
         try
         {
             __ret = __proxy.end_getDevicesNamesList(__result);
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response(__ret);
+    }
+
+    private static final String __releaseDevice_name = "releaseDevice";
+
+    public void releaseDevice(String deviceId, String userId)
+        throws DeviceNotControlledException,
+               NotKnownDeviceException
+    {
+        releaseDevice(deviceId, userId, null, false);
+    }
+
+    public void releaseDevice(String deviceId, String userId, java.util.Map<String, String> __ctx)
+        throws DeviceNotControlledException,
+               NotKnownDeviceException
+    {
+        releaseDevice(deviceId, userId, __ctx, true);
+    }
+
+    private void releaseDevice(String deviceId, String userId, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws DeviceNotControlledException,
+               NotKnownDeviceException
+    {
+        __checkTwowayOnly(__releaseDevice_name);
+        end_releaseDevice(begin_releaseDevice(deviceId, userId, __ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, String userId)
+    {
+        return begin_releaseDevice(deviceId, userId, null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, String userId, java.util.Map<String, String> __ctx)
+    {
+        return begin_releaseDevice(deviceId, userId, __ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, String userId, Ice.Callback __cb)
+    {
+        return begin_releaseDevice(deviceId, userId, null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, String userId, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_releaseDevice(deviceId, userId, __ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, String userId, Callback_LaboratoryRoom_releaseDevice __cb)
+    {
+        return begin_releaseDevice(deviceId, userId, null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, String userId, java.util.Map<String, String> __ctx, Callback_LaboratoryRoom_releaseDevice __cb)
+    {
+        return begin_releaseDevice(deviceId, userId, __ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, 
+                                               String userId, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_releaseDevice(deviceId, userId, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, 
+                                               String userId, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                               IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_releaseDevice(deviceId, userId, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, 
+                                               String userId, 
+                                               java.util.Map<String, String> __ctx, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_releaseDevice(deviceId, userId, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_releaseDevice(String deviceId, 
+                                               String userId, 
+                                               java.util.Map<String, String> __ctx, 
+                                               IceInternal.Functional_VoidCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                               IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_releaseDevice(deviceId, userId, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_releaseDevice(String deviceId, 
+                                                String userId, 
+                                                java.util.Map<String, String> __ctx, 
+                                                boolean __explicitCtx, 
+                                                boolean __synchronous, 
+                                                IceInternal.Functional_VoidCallback __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_releaseDevice(deviceId, userId, __ctx, __explicitCtx, __synchronous, 
+                                   new IceInternal.Functional_TwowayCallbackVoidUE(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
+                                       {
+                                           public final void __completed(Ice.AsyncResult __result)
+                                           {
+                                               LaboratoryRoomPrxHelper.__releaseDevice_completed(this, __result);
+                                           }
+                                       });
+    }
+
+    private Ice.AsyncResult begin_releaseDevice(String deviceId, 
+                                                String userId, 
+                                                java.util.Map<String, String> __ctx, 
+                                                boolean __explicitCtx, 
+                                                boolean __synchronous, 
+                                                IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__releaseDevice_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__releaseDevice_name, __cb);
+        try
+        {
+            __result.prepare(__releaseDevice_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(deviceId);
+            __os.writeString(userId);
+            __result.endWriteParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public void end_releaseDevice(Ice.AsyncResult __iresult)
+        throws DeviceNotControlledException,
+               NotKnownDeviceException
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __releaseDevice_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(DeviceNotControlledException __ex)
+                {
+                    throw __ex;
+                }
+                catch(NotKnownDeviceException __ex)
+                {
+                    throw __ex;
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            __result.readEmptyParams();
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __releaseDevice_completed(Ice.TwowayCallbackVoidUE __cb, Ice.AsyncResult __result)
+    {
+        Demo.LaboratoryRoomPrx __proxy = (Demo.LaboratoryRoomPrx)__result.getProxy();
+        try
+        {
+            __proxy.end_releaseDevice(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response();
+    }
+
+    private static final String __takeControlOverDevice_name = "takeControlOverDevice";
+
+    public DevicePrx takeControlOverDevice(String deviceId, String userId)
+        throws AlreadyControlledException,
+               NotKnownDeviceException
+    {
+        return takeControlOverDevice(deviceId, userId, null, false);
+    }
+
+    public DevicePrx takeControlOverDevice(String deviceId, String userId, java.util.Map<String, String> __ctx)
+        throws AlreadyControlledException,
+               NotKnownDeviceException
+    {
+        return takeControlOverDevice(deviceId, userId, __ctx, true);
+    }
+
+    private DevicePrx takeControlOverDevice(String deviceId, String userId, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+        throws AlreadyControlledException,
+               NotKnownDeviceException
+    {
+        __checkTwowayOnly(__takeControlOverDevice_name);
+        return end_takeControlOverDevice(begin_takeControlOverDevice(deviceId, userId, __ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, String userId)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, String userId, java.util.Map<String, String> __ctx)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, __ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, String userId, Ice.Callback __cb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, String userId, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, __ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, String userId, Callback_LaboratoryRoom_takeControlOverDevice __cb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, String userId, java.util.Map<String, String> __ctx, Callback_LaboratoryRoom_takeControlOverDevice __cb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, __ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, 
+                                                       String userId, 
+                                                       IceInternal.Functional_GenericCallback1<DevicePrx> __responseCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, 
+                                                       String userId, 
+                                                       IceInternal.Functional_GenericCallback1<DevicePrx> __responseCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                       IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, null, false, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, 
+                                                       String userId, 
+                                                       java.util.Map<String, String> __ctx, 
+                                                       IceInternal.Functional_GenericCallback1<DevicePrx> __responseCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_takeControlOverDevice(String deviceId, 
+                                                       String userId, 
+                                                       java.util.Map<String, String> __ctx, 
+                                                       IceInternal.Functional_GenericCallback1<DevicePrx> __responseCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                       IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, __ctx, true, false, __responseCb, __userExceptionCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_takeControlOverDevice(String deviceId, 
+                                                        String userId, 
+                                                        java.util.Map<String, String> __ctx, 
+                                                        boolean __explicitCtx, 
+                                                        boolean __synchronous, 
+                                                        IceInternal.Functional_GenericCallback1<DevicePrx> __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                        IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_takeControlOverDevice(deviceId, userId, __ctx, __explicitCtx, __synchronous, 
+                                           new IceInternal.Functional_TwowayCallbackArg1UE<Demo.DevicePrx>(__responseCb, __userExceptionCb, __exceptionCb, __sentCb)
+                                               {
+                                                   public final void __completed(Ice.AsyncResult __result)
+                                                   {
+                                                       LaboratoryRoomPrxHelper.__takeControlOverDevice_completed(this, __result);
+                                                   }
+                                               });
+    }
+
+    private Ice.AsyncResult begin_takeControlOverDevice(String deviceId, 
+                                                        String userId, 
+                                                        java.util.Map<String, String> __ctx, 
+                                                        boolean __explicitCtx, 
+                                                        boolean __synchronous, 
+                                                        IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__takeControlOverDevice_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__takeControlOverDevice_name, __cb);
+        try
+        {
+            __result.prepare(__takeControlOverDevice_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(deviceId);
+            __os.writeString(userId);
+            __result.endWriteParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public DevicePrx end_takeControlOverDevice(Ice.AsyncResult __iresult)
+        throws AlreadyControlledException,
+               NotKnownDeviceException
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __takeControlOverDevice_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(AlreadyControlledException __ex)
+                {
+                    throw __ex;
+                }
+                catch(NotKnownDeviceException __ex)
+                {
+                    throw __ex;
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            IceInternal.BasicStream __is = __result.startReadParams();
+            DevicePrx __ret;
+            __ret = DevicePrxHelper.__read(__is);
+            __result.endReadParams();
+            return __ret;
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __takeControlOverDevice_completed(Ice.TwowayCallbackArg1UE<DevicePrx> __cb, Ice.AsyncResult __result)
+    {
+        Demo.LaboratoryRoomPrx __proxy = (Demo.LaboratoryRoomPrx)__result.getProxy();
+        DevicePrx __ret = null;
+        try
+        {
+            __ret = __proxy.end_takeControlOverDevice(__result);
+        }
+        catch(Ice.UserException __ex)
+        {
+            __cb.exception(__ex);
+            return;
         }
         catch(Ice.LocalException __ex)
         {

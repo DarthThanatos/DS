@@ -24,7 +24,9 @@ public interface _DeviceOperationsNC
 {
     String getName();
 
-    DeviceStatePrx getState();
+    String getState();
 
     void feedBattery();
+
+    String[] listActions();
 }

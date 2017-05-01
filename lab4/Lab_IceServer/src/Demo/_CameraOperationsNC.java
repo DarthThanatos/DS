@@ -22,11 +22,11 @@ package Demo;
 
 public interface _CameraOperationsNC extends _DeviceOperationsNC
 {
-    CameraStatePrx turnLeft(float angle);
+    void turnLeft(float angle);
 
-    CameraStatePrx turnRight(float angle);
+    CameraState turnRight(float angle);
 
-    CameraStatePrx turnUp(float angle);
+    CameraState turnUp(float angle);
 
-    CameraStatePrx turnDown(float angle);
+    CameraState turnDown(float angle);
 }

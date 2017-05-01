@@ -70,9 +70,29 @@ public abstract class _LaboratoryRoomDisp extends Ice.ObjectImpl implements Labo
         return __ids[0];
     }
 
+    public final String[] getDeviceOperationsList(String deviceId)
+        throws NotKnownDeviceException
+    {
+        return getDeviceOperationsList(deviceId, null);
+    }
+
     public final String[] getDevicesNamesList()
     {
         return getDevicesNamesList(null);
+    }
+
+    public final void releaseDevice(String deviceId, String userId)
+        throws DeviceNotControlledException,
+               NotKnownDeviceException
+    {
+        releaseDevice(deviceId, userId, null);
+    }
+
+    public final DevicePrx takeControlOverDevice(String deviceId, String userId)
+        throws AlreadyControlledException,
+               NotKnownDeviceException
+    {
+        return takeControlOverDevice(deviceId, userId, null);
     }
 
     public static Ice.DispatchStatus ___getDevicesNamesList(LaboratoryRoom __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -86,13 +106,94 @@ public abstract class _LaboratoryRoomDisp extends Ice.ObjectImpl implements Labo
         return Ice.DispatchStatus.DispatchOK;
     }
 
+    public static Ice.DispatchStatus ___getDeviceOperationsList(LaboratoryRoom __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        IceInternal.BasicStream __is = __inS.startReadParams();
+        String deviceId;
+        deviceId = __is.readString();
+        __inS.endReadParams();
+        try
+        {
+            String[] __ret = __obj.getDeviceOperationsList(deviceId, __current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            stringSeqHelper.write(__os, __ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(NotKnownDeviceException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
+    }
+
+    public static Ice.DispatchStatus ___takeControlOverDevice(LaboratoryRoom __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        IceInternal.BasicStream __is = __inS.startReadParams();
+        String deviceId;
+        String userId;
+        deviceId = __is.readString();
+        userId = __is.readString();
+        __inS.endReadParams();
+        try
+        {
+            DevicePrx __ret = __obj.takeControlOverDevice(deviceId, userId, __current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            DevicePrxHelper.__write(__os, __ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(AlreadyControlledException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
+        catch(NotKnownDeviceException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
+    }
+
+    public static Ice.DispatchStatus ___releaseDevice(LaboratoryRoom __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        IceInternal.BasicStream __is = __inS.startReadParams();
+        String deviceId;
+        String userId;
+        deviceId = __is.readString();
+        userId = __is.readString();
+        __inS.endReadParams();
+        try
+        {
+            __obj.releaseDevice(deviceId, userId, __current);
+            __inS.__writeEmptyParams();
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(DeviceNotControlledException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
+        catch(NotKnownDeviceException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
+    }
+
     private final static String[] __all =
     {
+        "getDeviceOperationsList",
         "getDevicesNamesList",
         "ice_id",
         "ice_ids",
         "ice_isA",
-        "ice_ping"
+        "ice_ping",
+        "releaseDevice",
+        "takeControlOverDevice"
     };
 
     public Ice.DispatchStatus __dispatch(IceInternal.Incoming in, Ice.Current __current)
@@ -107,23 +208,35 @@ public abstract class _LaboratoryRoomDisp extends Ice.ObjectImpl implements Labo
         {
             case 0:
             {
-                return ___getDevicesNamesList(this, in, __current);
+                return ___getDeviceOperationsList(this, in, __current);
             }
             case 1:
             {
-                return ___ice_id(this, in, __current);
+                return ___getDevicesNamesList(this, in, __current);
             }
             case 2:
             {
-                return ___ice_ids(this, in, __current);
+                return ___ice_id(this, in, __current);
             }
             case 3:
             {
-                return ___ice_isA(this, in, __current);
+                return ___ice_ids(this, in, __current);
             }
             case 4:
             {
+                return ___ice_isA(this, in, __current);
+            }
+            case 5:
+            {
                 return ___ice_ping(this, in, __current);
+            }
+            case 6:
+            {
+                return ___releaseDevice(this, in, __current);
+            }
+            case 7:
+            {
+                return ___takeControlOverDevice(this, in, __current);
             }
         }
 

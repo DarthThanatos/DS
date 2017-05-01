@@ -22,4 +22,37 @@ package Demo;
 
 public interface DeviceStatePrx extends Ice.ObjectPrx
 {
+    public String formatToString();
+
+    public String formatToString(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_formatToString();
+
+    public Ice.AsyncResult begin_formatToString(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_formatToString(Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_formatToString(java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_formatToString(Callback_DeviceState_formatToString __cb);
+
+    public Ice.AsyncResult begin_formatToString(java.util.Map<String, String> __ctx, Callback_DeviceState_formatToString __cb);
+
+    public Ice.AsyncResult begin_formatToString(IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_formatToString(IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                IceInternal.Functional_BoolCallback __sentCb);
+
+    public Ice.AsyncResult begin_formatToString(java.util.Map<String, String> __ctx, 
+                                                IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_formatToString(java.util.Map<String, String> __ctx, 
+                                                IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                                IceInternal.Functional_BoolCallback __sentCb);
+
+    public String end_formatToString(Ice.AsyncResult __result);
 }

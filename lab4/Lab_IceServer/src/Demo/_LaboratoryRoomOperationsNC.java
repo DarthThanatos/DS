@@ -23,4 +23,15 @@ package Demo;
 public interface _LaboratoryRoomOperationsNC
 {
     String[] getDevicesNamesList();
+
+    String[] getDeviceOperationsList(String deviceId)
+        throws NotKnownDeviceException;
+
+    DevicePrx takeControlOverDevice(String deviceId, String userId)
+        throws AlreadyControlledException,
+               NotKnownDeviceException;
+
+    void releaseDevice(String deviceId, String userId)
+        throws DeviceNotControlledException,
+               NotKnownDeviceException;
 }

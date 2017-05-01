@@ -27,84 +27,84 @@ public final class ReporterPrxHelper extends Ice.ObjectPrxHelperBase implements 
 {
     private static final String __report_name = "report";
 
-    public void report(DeviceStatePrx state)
+    public void report(String msg)
     {
-        report(state, null, false);
+        report(msg, null, false);
     }
 
-    public void report(DeviceStatePrx state, java.util.Map<String, String> __ctx)
+    public void report(String msg, java.util.Map<String, String> __ctx)
     {
-        report(state, __ctx, true);
+        report(msg, __ctx, true);
     }
 
-    private void report(DeviceStatePrx state, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private void report(String msg, java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
-        end_report(begin_report(state, __ctx, __explicitCtx, true, null));
+        end_report(begin_report(msg, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state)
+    public Ice.AsyncResult begin_report(String msg)
     {
-        return begin_report(state, null, false, false, null);
+        return begin_report(msg, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_report(String msg, java.util.Map<String, String> __ctx)
     {
-        return begin_report(state, __ctx, true, false, null);
+        return begin_report(msg, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, Ice.Callback __cb)
+    public Ice.AsyncResult begin_report(String msg, Ice.Callback __cb)
     {
-        return begin_report(state, null, false, false, __cb);
+        return begin_report(msg, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_report(String msg, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_report(state, __ctx, true, false, __cb);
+        return begin_report(msg, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, Callback_Reporter_report __cb)
+    public Ice.AsyncResult begin_report(String msg, Callback_Reporter_report __cb)
     {
-        return begin_report(state, null, false, false, __cb);
+        return begin_report(msg, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, java.util.Map<String, String> __ctx, Callback_Reporter_report __cb)
+    public Ice.AsyncResult begin_report(String msg, java.util.Map<String, String> __ctx, Callback_Reporter_report __cb)
     {
-        return begin_report(state, __ctx, true, false, __cb);
+        return begin_report(msg, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, 
+    public Ice.AsyncResult begin_report(String msg, 
                                         IceInternal.Functional_VoidCallback __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_report(state, null, false, false, __responseCb, __exceptionCb, null);
+        return begin_report(msg, null, false, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, 
+    public Ice.AsyncResult begin_report(String msg, 
                                         IceInternal.Functional_VoidCallback __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_report(state, null, false, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_report(msg, null, false, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, 
+    public Ice.AsyncResult begin_report(String msg, 
                                         java.util.Map<String, String> __ctx, 
                                         IceInternal.Functional_VoidCallback __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
     {
-        return begin_report(state, __ctx, true, false, __responseCb, __exceptionCb, null);
+        return begin_report(msg, __ctx, true, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_report(DeviceStatePrx state, 
+    public Ice.AsyncResult begin_report(String msg, 
                                         java.util.Map<String, String> __ctx, 
                                         IceInternal.Functional_VoidCallback __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_report(state, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+        return begin_report(msg, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_report(DeviceStatePrx state, 
+    private Ice.AsyncResult begin_report(String msg, 
                                          java.util.Map<String, String> __ctx, 
                                          boolean __explicitCtx, 
                                          boolean __synchronous, 
@@ -112,14 +112,14 @@ public final class ReporterPrxHelper extends Ice.ObjectPrxHelperBase implements 
                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                          IceInternal.Functional_BoolCallback __sentCb)
     {
-        return begin_report(state, 
+        return begin_report(msg, 
                             __ctx, 
                             __explicitCtx, 
                             __synchronous, 
                             new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
     }
 
-    private Ice.AsyncResult begin_report(DeviceStatePrx state, 
+    private Ice.AsyncResult begin_report(String msg, 
                                          java.util.Map<String, String> __ctx, 
                                          boolean __explicitCtx, 
                                          boolean __synchronous, 
@@ -130,7 +130,7 @@ public final class ReporterPrxHelper extends Ice.ObjectPrxHelperBase implements 
         {
             __result.prepare(__report_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
-            DeviceStatePrxHelper.__write(__os, state);
+            __os.writeString(msg);
             __result.endWriteParams();
             __result.invoke();
         }

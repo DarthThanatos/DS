@@ -87,9 +87,14 @@ public abstract class _BodyTemperatureSensorDisp extends Ice.ObjectImpl implemen
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public final SensorStatePrx measureMotion(speed speedObj)
@@ -120,6 +125,7 @@ public abstract class _BodyTemperatureSensorDisp extends Ice.ObjectImpl implemen
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "listActions",
         "measureBodyTemperature",
         "measureMotion"
     };
@@ -164,9 +170,13 @@ public abstract class _BodyTemperatureSensorDisp extends Ice.ObjectImpl implemen
             }
             case 7:
             {
-                return ___measureBodyTemperature(this, in, __current);
+                return _DeviceDisp.___listActions(this, in, __current);
             }
             case 8:
+            {
+                return ___measureBodyTemperature(this, in, __current);
+            }
+            case 9:
             {
                 return _SensorDisp.___measureMotion(this, in, __current);
             }

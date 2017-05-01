@@ -81,9 +81,14 @@ public abstract class _SensorDisp extends Ice.ObjectImpl implements Sensor
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public final SensorStatePrx measureMotion(speed speedObj)
@@ -114,6 +119,7 @@ public abstract class _SensorDisp extends Ice.ObjectImpl implements Sensor
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "listActions",
         "measureMotion"
     };
 
@@ -156,6 +162,10 @@ public abstract class _SensorDisp extends Ice.ObjectImpl implements Sensor
                 return ___ice_ping(this, in, __current);
             }
             case 7:
+            {
+                return _DeviceDisp.___listActions(this, in, __current);
+            }
+            case 8:
             {
                 return ___measureMotion(this, in, __current);
             }

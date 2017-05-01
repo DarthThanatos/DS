@@ -82,9 +82,14 @@ public abstract class _MoistureSensorDisp extends Ice.ObjectImpl implements Mois
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public final MoistureSensorStatePrx measureMoisture(moisture moistureObj)
@@ -120,6 +125,7 @@ public abstract class _MoistureSensorDisp extends Ice.ObjectImpl implements Mois
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "listActions",
         "measureMoisture",
         "measureMotion"
     };
@@ -164,9 +170,13 @@ public abstract class _MoistureSensorDisp extends Ice.ObjectImpl implements Mois
             }
             case 7:
             {
-                return ___measureMoisture(this, in, __current);
+                return _DeviceDisp.___listActions(this, in, __current);
             }
             case 8:
+            {
+                return ___measureMoisture(this, in, __current);
+            }
+            case 9:
             {
                 return _SensorDisp.___measureMotion(this, in, __current);
             }

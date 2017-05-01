@@ -20,11 +20,6 @@
 
 package Demo;
 
-public abstract class Callback_Camera_turnLeft
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<Demo.CameraStatePrx>
+public abstract class Callback_Camera_turnLeft extends Ice.OnewayCallback
 {
-    public final void __completed(Ice.AsyncResult __result)
-    {
-        CameraPrxHelper.__turnLeft_completed(this, __result);
-    }
 }

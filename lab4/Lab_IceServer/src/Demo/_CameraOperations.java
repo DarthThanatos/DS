@@ -22,11 +22,11 @@ package Demo;
 
 public interface _CameraOperations extends _DeviceOperations
 {
-    CameraStatePrx turnLeft(float angle, Ice.Current __current);
+    void turnLeft(float angle, Ice.Current __current);
 
-    CameraStatePrx turnRight(float angle, Ice.Current __current);
+    CameraState turnRight(float angle, Ice.Current __current);
 
-    CameraStatePrx turnUp(float angle, Ice.Current __current);
+    CameraState turnUp(float angle, Ice.Current __current);
 
-    CameraStatePrx turnDown(float angle, Ice.Current __current);
+    CameraState turnDown(float angle, Ice.Current __current);
 }

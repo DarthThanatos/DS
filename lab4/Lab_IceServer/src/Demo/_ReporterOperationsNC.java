@@ -22,5 +22,5 @@ package Demo;
 
 public interface _ReporterOperationsNC
 {
-    void report(DeviceStatePrx state);
+    void report(String msg);
 }

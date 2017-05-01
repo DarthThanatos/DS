@@ -56,9 +56,9 @@ public interface DevicePrx extends Ice.ObjectPrx
 
     public String end_getName(Ice.AsyncResult __result);
 
-    public DeviceStatePrx getState();
+    public String getState();
 
-    public DeviceStatePrx getState(java.util.Map<String, String> __ctx);
+    public String getState(java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_getState();
 
@@ -72,23 +72,23 @@ public interface DevicePrx extends Ice.ObjectPrx
 
     public Ice.AsyncResult begin_getState(java.util.Map<String, String> __ctx, Callback_Device_getState __cb);
 
-    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
-    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+    public Ice.AsyncResult begin_getState(IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_getState(java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_getState(java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<DeviceStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<String> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public DeviceStatePrx end_getState(Ice.AsyncResult __result);
+    public String end_getState(Ice.AsyncResult __result);
 
     public void feedBattery();
 
@@ -123,4 +123,38 @@ public interface DevicePrx extends Ice.ObjectPrx
                                              IceInternal.Functional_BoolCallback __sentCb);
 
     public void end_feedBattery(Ice.AsyncResult __result);
+
+    public String[] listActions();
+
+    public String[] listActions(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_listActions();
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_listActions(Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_listActions(Callback_Device_listActions __cb);
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, Callback_Device_listActions __cb);
+
+    public Ice.AsyncResult begin_listActions(IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_listActions(IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                             IceInternal.Functional_BoolCallback __sentCb);
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, 
+                                             IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_listActions(java.util.Map<String, String> __ctx, 
+                                             IceInternal.Functional_GenericCallback1<String[]> __responseCb, 
+                                             IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                             IceInternal.Functional_BoolCallback __sentCb);
+
+    public String[] end_listActions(Ice.AsyncResult __result);
 }

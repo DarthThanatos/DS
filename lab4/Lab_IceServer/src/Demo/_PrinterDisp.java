@@ -81,9 +81,14 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public final void fillInk()
@@ -129,6 +134,7 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "listActions",
         "printString"
     };
 
@@ -175,6 +181,10 @@ public abstract class _PrinterDisp extends Ice.ObjectImpl implements Printer
                 return ___ice_ping(this, in, __current);
             }
             case 8:
+            {
+                return _DeviceDisp.___listActions(this, in, __current);
+            }
+            case 9:
             {
                 return ___printString(this, in, __current);
             }

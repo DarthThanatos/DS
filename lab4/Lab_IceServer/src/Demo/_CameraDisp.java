@@ -71,22 +71,22 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         return __ids[0];
     }
 
-    public final CameraStatePrx turnDown(float angle)
+    public final CameraState turnDown(float angle)
     {
         return turnDown(angle, null);
     }
 
-    public final CameraStatePrx turnLeft(float angle)
+    public final void turnLeft(float angle)
     {
-        return turnLeft(angle, null);
+        turnLeft(angle, null);
     }
 
-    public final CameraStatePrx turnRight(float angle)
+    public final CameraState turnRight(float angle)
     {
         return turnRight(angle, null);
     }
 
-    public final CameraStatePrx turnUp(float angle)
+    public final CameraState turnUp(float angle)
     {
         return turnUp(angle, null);
     }
@@ -101,9 +101,14 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         return getName(null);
     }
 
-    public final DeviceStatePrx getState()
+    public final String getState()
     {
         return getState(null);
+    }
+
+    public final String[] listActions()
+    {
+        return listActions(null);
     }
 
     public static Ice.DispatchStatus ___turnLeft(Camera __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -113,10 +118,8 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        CameraStatePrx __ret = __obj.turnLeft(angle, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        CameraStatePrxHelper.__write(__os, __ret);
-        __inS.__endWriteParams(true);
+        __obj.turnLeft(angle, __current);
+        __inS.__writeEmptyParams();
         return Ice.DispatchStatus.DispatchOK;
     }
 
@@ -127,9 +130,10 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        CameraStatePrx __ret = __obj.turnRight(angle, __current);
+        CameraState __ret = __obj.turnRight(angle, __current);
         IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        CameraStatePrxHelper.__write(__os, __ret);
+        __os.writeObject(__ret);
+        __os.writePendingObjects();
         __inS.__endWriteParams(true);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -141,9 +145,10 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        CameraStatePrx __ret = __obj.turnUp(angle, __current);
+        CameraState __ret = __obj.turnUp(angle, __current);
         IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        CameraStatePrxHelper.__write(__os, __ret);
+        __os.writeObject(__ret);
+        __os.writePendingObjects();
         __inS.__endWriteParams(true);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -155,9 +160,10 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         float angle;
         angle = __is.readFloat();
         __inS.endReadParams();
-        CameraStatePrx __ret = __obj.turnDown(angle, __current);
+        CameraState __ret = __obj.turnDown(angle, __current);
         IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        CameraStatePrxHelper.__write(__os, __ret);
+        __os.writeObject(__ret);
+        __os.writePendingObjects();
         __inS.__endWriteParams(true);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -171,6 +177,7 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "listActions",
         "turnDown",
         "turnLeft",
         "turnRight",
@@ -217,17 +224,21 @@ public abstract class _CameraDisp extends Ice.ObjectImpl implements Camera
             }
             case 7:
             {
-                return ___turnDown(this, in, __current);
+                return _DeviceDisp.___listActions(this, in, __current);
             }
             case 8:
             {
-                return ___turnLeft(this, in, __current);
+                return ___turnDown(this, in, __current);
             }
             case 9:
             {
-                return ___turnRight(this, in, __current);
+                return ___turnLeft(this, in, __current);
             }
             case 10:
+            {
+                return ___turnRight(this, in, __current);
+            }
+            case 11:
             {
                 return ___turnUp(this, in, __current);
             }

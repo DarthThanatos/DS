@@ -22,9 +22,9 @@ package Demo;
 
 public interface CameraPrx extends DevicePrx
 {
-    public CameraStatePrx turnLeft(float angle);
+    public void turnLeft(float angle);
 
-    public CameraStatePrx turnLeft(float angle, java.util.Map<String, String> __ctx);
+    public void turnLeft(float angle, java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_turnLeft(float angle);
 
@@ -39,30 +39,30 @@ public interface CameraPrx extends DevicePrx
     public Ice.AsyncResult begin_turnLeft(float angle, java.util.Map<String, String> __ctx, Callback_Camera_turnLeft __cb);
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnLeft(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_VoidCallback __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public CameraStatePrx end_turnLeft(Ice.AsyncResult __result);
+    public void end_turnLeft(Ice.AsyncResult __result);
 
-    public CameraStatePrx turnRight(float angle);
+    public CameraState turnRight(float angle);
 
-    public CameraStatePrx turnRight(float angle, java.util.Map<String, String> __ctx);
+    public CameraState turnRight(float angle, java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_turnRight(float angle);
 
@@ -77,30 +77,30 @@ public interface CameraPrx extends DevicePrx
     public Ice.AsyncResult begin_turnRight(float angle, java.util.Map<String, String> __ctx, Callback_Camera_turnRight __cb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
-                                           IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
-                                           IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
                                            java.util.Map<String, String> __ctx, 
-                                           IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnRight(float angle, 
                                            java.util.Map<String, String> __ctx, 
-                                           IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                           IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                            IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                            IceInternal.Functional_BoolCallback __sentCb);
 
-    public CameraStatePrx end_turnRight(Ice.AsyncResult __result);
+    public CameraState end_turnRight(Ice.AsyncResult __result);
 
-    public CameraStatePrx turnUp(float angle);
+    public CameraState turnUp(float angle);
 
-    public CameraStatePrx turnUp(float angle, java.util.Map<String, String> __ctx);
+    public CameraState turnUp(float angle, java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_turnUp(float angle);
 
@@ -115,30 +115,30 @@ public interface CameraPrx extends DevicePrx
     public Ice.AsyncResult begin_turnUp(float angle, java.util.Map<String, String> __ctx, Callback_Camera_turnUp __cb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
-                                        IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
-                                        IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
                                         java.util.Map<String, String> __ctx, 
-                                        IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnUp(float angle, 
                                         java.util.Map<String, String> __ctx, 
-                                        IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                         IceInternal.Functional_BoolCallback __sentCb);
 
-    public CameraStatePrx end_turnUp(Ice.AsyncResult __result);
+    public CameraState end_turnUp(Ice.AsyncResult __result);
 
-    public CameraStatePrx turnDown(float angle);
+    public CameraState turnDown(float angle);
 
-    public CameraStatePrx turnDown(float angle, java.util.Map<String, String> __ctx);
+    public CameraState turnDown(float angle, java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_turnDown(float angle);
 
@@ -153,24 +153,24 @@ public interface CameraPrx extends DevicePrx
     public Ice.AsyncResult begin_turnDown(float angle, java.util.Map<String, String> __ctx, Callback_Camera_turnDown __cb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_turnDown(float angle, 
                                           java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_GenericCallback1<CameraStatePrx> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<CameraState> __responseCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public CameraStatePrx end_turnDown(Ice.AsyncResult __result);
+    public CameraState end_turnDown(Ice.AsyncResult __result);
 }

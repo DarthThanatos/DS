@@ -29,12 +29,17 @@ public class PrinterI extends Demo._PrinterDisp{
     }
 
     @Override
-    public DeviceStatePrx getState(Current __current) {
+    public String getState(Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void feedBattery(Current __current) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String[] listActions(Current __current) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
