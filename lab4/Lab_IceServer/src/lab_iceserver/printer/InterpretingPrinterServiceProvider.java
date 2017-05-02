@@ -13,6 +13,7 @@ import Demo.OutOfInkException;
  */
 public class InterpretingPrinterServiceProvider extends PrinterServiceProvider{
     public String interpretAndPrint(String s, InterpretingPrinterState state) throws OutOfInkException{
+        state.operationName = "<<Interpret and Print>>";
         if ( 2 * s.length() > state.inkLevel)
             throw new OutOfInkException(state.inkLevel, s.length(), "Having " + state.inkLevel + " units of ink, printer could not print string of length "
                     + s.length() + " as it demands " + 2 * s.length() + " units; please call fillInk() operation first");

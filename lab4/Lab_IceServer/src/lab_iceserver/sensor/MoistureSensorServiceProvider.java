@@ -14,7 +14,7 @@ import Demo.BrokenDiodeException;
  */
 public class MoistureSensorServiceProvider extends SensorServiceProvider{
     public void measureMoisture(float moisture, MoistureSensorState state) throws BrokenDiodeException{
-        
+        state.operationName = "<<Measure Moisture>>";
         state.registeredMoisture = moisture;
         if (moisture > 0 && moisture < 60){
             state.moistureDiodeColor = "Green";

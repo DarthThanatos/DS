@@ -16,7 +16,8 @@ public class MoistureSensorState extends SensorState{
     
     @Override
     public String getState(){
-        return super.getState() + "; registered moisture:  " + registeredMoisture + "; moisture diode color: " + moistureDiodeColor;
+        return super.getState() + "registered moisture:  " + registeredMoisture + 
+                "\nmoisture diode color: " + moistureDiodeColor + "\n";
     }
     
 }

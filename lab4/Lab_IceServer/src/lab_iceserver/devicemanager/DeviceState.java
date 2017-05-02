@@ -11,10 +11,12 @@ package lab_iceserver.devicemanager;
  */
 public class DeviceState {
     public float batteryLevel = 100;
-    public long operationStartTime;
-    public long operationEndTime;
+    public long operationStartTime = 0;
+    public long operationEndTime = 0;
+    public String operationName = "";
     
     public String getState(){
-        return "Operation started at: " + operationStartTime + ", ended at: " + operationEndTime;
+        return "\nOperation " + operationName +  "\nstarted at: " + operationStartTime + "\nended at: " + operationEndTime + "\n"+
+                "battery level: "  + batteryLevel + "\n";
     }
 }

@@ -17,6 +17,6 @@ public class PrinterState extends DeviceState{
     
     @Override
     public String getState(){
-        return super.getState() + " ink level: " + inkLevel + "; last result: " + result;
+        return super.getState() + "ink level: " + inkLevel + "\nlast result: " + result + "\n";
     }
 }

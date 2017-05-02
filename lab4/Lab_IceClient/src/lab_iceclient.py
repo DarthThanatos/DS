@@ -23,7 +23,7 @@ if not topic_manager:
 
 class ReporterI(Demo.Reporter):
     def report(self,msg,curr):
-        print msg+ "\n" +  client_name + ">"
+        print "\n" + msg+ "\n" +  client_name + ">"
 
 def createDevicesTopics(devicesNamesList):
     for deviceName in devicesNamesList:
@@ -106,7 +106,6 @@ def perform_action():
 	for (type_and_name,arg_type,arg_name) in args:
 		arg_val = input("Type value for " + arg_name + " of type " + arg_type+" (please, input strings in quotes, e.g. \"ala\"): ")
 		arg_list.append(arg_val)
-	print arg_list
     except :
 	print "Not a valid value"
         msvcrt.getch()
@@ -121,8 +120,8 @@ def perform_action():
         res = getattr(derived_type, operationName)(*arg_list)
         if res:
             print res
-        msg = client_name + " has changed the state of device " + device + ": " + controlled_devices[device].getState()
-        print "msg:",msg,"will be sent to all subscribers"
+        msg = "\n" + client_name + " has changed the state of device " + device + ":" + controlled_devices[device].getState()
+        print "msg will be sent to all subscribers"
         pub = topic.getPublisher().ice_oneway()
         reporter = Demo.ReporterPrx.uncheckedCast(pub)
         reporter.report(msg) #notify subscribers about changed state of the device
@@ -208,6 +207,11 @@ def release_device():
 def actionsAtExit():
     for device in controlled_devices:
         laboratory_room.releaseDevice(device, client_name)
+    channels_list = observed_devices.keys()
+    for channel in channels_list:
+        proxy,topic = observed_devices[channel]
+        topic.unsubscribe(proxy)
+        observed_devices.__delitem__(channel)
 
 status = 0
 try:

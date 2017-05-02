@@ -15,8 +15,9 @@ import Demo.BrokenDiodeException;
 public class BodyTemperatureSensorServiceProvider extends SensorServiceProvider{
     
     public void measureBodyTemperature(float temperature, BodyTemperatureSensorState state) throws BrokenDiodeException{
+        state.operationName = "<<Measure Body Temperature>>";
         state.temperatureInCelsius = temperature;
-        state.temperatureInFahrenheits = 0;
+        state.temperatureInFahrenheits = (float) (temperature * 9.0/5.0 + 32.0);
         if (temperature > 0 && temperature < 60){
             state.temperatureDiodeColor = "Green";
         }

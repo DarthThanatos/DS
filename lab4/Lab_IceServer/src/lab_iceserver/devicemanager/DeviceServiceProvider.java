@@ -25,6 +25,7 @@ public class DeviceServiceProvider {
     }
     
     public void feedBattery(DeviceState state){
+        state.operationName = "<<Feed Battery>>";
         state.batteryLevel = 100;
     }
 }

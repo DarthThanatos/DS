@@ -14,6 +14,6 @@ public class AsciiPrinterState extends PrinterState{
     
     @Override
     public String getState(){
-        return super.getState() + "; pretty result: " + prettyResult;
+        return super.getState() + "pretty result:\n" + prettyResult + "\n";
     }
 }

@@ -21,9 +21,10 @@ public class CameraServiceProvider extends DeviceServiceProvider{
                     state.amplitude,
                     (state.horizontalAngle - angle),
                     "Max amplitude: " + state.amplitude + "; you tried to turn it with the resulting angle: " + (state.horizontalAngle - angle));
+        state.operationName = "<<Turn Left>>";
         waitRandom(state);
         state.batteryLevel -= 5;
-        state.horizontalAngle += angle;
+        state.horizontalAngle -= angle;
     }
     
     public void turnRight(float angle, CameraState state) throws RotationOutOfRangeException{
@@ -33,6 +34,7 @@ public class CameraServiceProvider extends DeviceServiceProvider{
                     state.amplitude,
                     (state.horizontalAngle + angle),
                     "Max amplitude: " + state.amplitude + "; you tried to turn it with the resulting angle: " + (state.horizontalAngle + angle));
+        state.operationName = "<<Turn Right>>";
         waitRandom(state);
         state.batteryLevel -= 5;
         state.horizontalAngle += angle;
@@ -46,6 +48,7 @@ public class CameraServiceProvider extends DeviceServiceProvider{
                     state.amplitude,
                     (state.verticalAngle - angle),
                     "Max amplitude: " + state.amplitude + "; you tried to turn it with the resulting angle: " + (state.verticalAngle - angle));
+        state.operationName = "<<Turn Down>>";
         waitRandom(state);
         state.batteryLevel -= 5;
         state.verticalAngle -= angle;
@@ -58,6 +61,7 @@ public class CameraServiceProvider extends DeviceServiceProvider{
                     state.amplitude,
                     (state.verticalAngle + angle),
                     "Max amplitude: " + state.amplitude + "; you tried to turn it with the resulting angle: " + (state.verticalAngle + angle));
+        state.operationName = "<<Turn Up>>";
         waitRandom(state);
         state.batteryLevel -= 5;
         state.verticalAngle += angle;        

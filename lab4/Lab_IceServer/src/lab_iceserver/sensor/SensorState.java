@@ -18,6 +18,6 @@ public class SensorState extends DeviceState{
     
     @Override 
     public String getState(){
-        return super.getState() + "; diode color: " + diodeColor + "; reacted on speed: " + registeredSpeed;
+        return super.getState() + "diode color: " + diodeColor + "\nreacted on speed: " + registeredSpeed + "\n";
     }
 }

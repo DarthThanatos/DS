@@ -13,7 +13,7 @@ import lab_iceserver.devicemanager.DeviceOperationsLister;
  *
  * @author Robert
  */
-public class AsciiPrinterOperationsLister extends DeviceOperationsLister{
+public class AsciiPrinterOperationsLister extends PrinterOperationsLister{
     
     @Override
     public String[] getListOfOperations(){

@@ -17,6 +17,6 @@ public class BodyTemperatureSensorState extends SensorState{
     
     @Override
     public String getState(){
-        return super.getState() + "; measured temperature in Celsius: " + temperatureInCelsius + "; temperature in Fahrenheit: " + temperatureInFahrenheits + "; temperature diode color: " + temperatureDiodeColor;
+        return super.getState() + "measured temperature in Celsius: " + temperatureInCelsius + "\ntemperature in Fahrenheit: " + temperatureInFahrenheits + "\ntemperature diode color: " + temperatureDiodeColor + "\n";
     }
 }

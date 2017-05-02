@@ -5,8 +5,6 @@
 #
 Adapter1.Endpoints=tcp -h localhost -p 10000:udp -h localhost -p 10000
 
-SimplePrinter.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
-
 LaboratoryRoom.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000
 
 MoistureSensor_One.Proxy=tcp -h localhost -p 10000:udp -h localhost -p 10000

@@ -15,6 +15,7 @@ import lab_iceserver.devicemanager.DeviceServiceProvider;
 public class SensorServiceProvider extends DeviceServiceProvider{
     
     public void measureMotion(float speed, SensorState state) throws BrokenDiodeException{
+        state.operationName = "<<Measure Motion>>";
         state.registeredSpeed = speed;
         if (speed > 0 && speed < 60){
             state.diodeColor = "Green";

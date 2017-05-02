@@ -19,6 +19,7 @@ public class PrinterServiceProvider extends DeviceServiceProvider{
             throw new OutOfInkException(state.inkLevel, s.length(), "Having " + state.inkLevel + " units of ink, printer could not print string of length "
                     + s.length() + "; please call fillInk() operation first");
         waitRandom(state);
+        state.operationName = "<<Print String>>";
         state.inkLevel -= s.length();
         state.result = s;
         return "printed string " + s + "on a console";
@@ -26,5 +27,6 @@ public class PrinterServiceProvider extends DeviceServiceProvider{
     
     public void fillInk(PrinterState state){
         state.inkLevel = 100;
+        state.operationName = "<<Fill Ink>>";
     }
 }

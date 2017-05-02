@@ -12,12 +12,16 @@ package lab_iceserver.printer;
 public class InterpretingPrinterState extends PrinterState{
     public String[] interpretedParts;
     
+    public InterpretingPrinterState(){
+        interpretedParts = new String[]{""};
+    }
+    
     @Override
     public String getState(){
         String interpreted = "";
         for (String interpretedPart : interpretedParts){
             interpreted += "\t-> " + interpretedPart + "\n";
         }
-        return super.getState() + "; interpreted result:\n"+interpreted;
+        return super.getState() + "interpreted result:\n"+interpreted;
     }
 }

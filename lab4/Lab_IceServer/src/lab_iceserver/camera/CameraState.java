@@ -18,6 +18,6 @@ public class CameraState extends DeviceState{
     
     @Override 
     public String getState(){
-        return super.getState() + "; vertical angle of camera: " + verticalAngle + "; horizontal angle of camera: " + horizontalAngle;
+        return super.getState() + "vertical angle of camera: " + verticalAngle + "\nhorizontal angle of camera: " + horizontalAngle + "\n";
     }
 }

@@ -14,6 +14,7 @@ import Demo.ZoomOutOfRangeException;
 public class ZoomingCameraServiceProvider extends CameraServiceProvider{
     public void zoom(int lvl, ZoomCameraState state) throws ZoomOutOfRangeException{
         waitRandom(state);
+        state.operationName = "<<Zoom>>";
         if (lvl<0 || lvl > state.maxZoom) 
             throw new ZoomOutOfRangeException(
                     state.maxZoom, 

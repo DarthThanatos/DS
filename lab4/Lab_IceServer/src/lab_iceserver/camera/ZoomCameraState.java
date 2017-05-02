@@ -15,6 +15,6 @@ public class ZoomCameraState extends CameraState{
     
     @Override
     public String getState(){
-        return super.getState() + "; zoom level: " + zoom;
+        return super.getState() + "zoom level: " + zoom + "\n";
     }
 }
