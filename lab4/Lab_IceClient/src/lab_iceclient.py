@@ -183,6 +183,10 @@ def lock_device(devicesNamesList):
     except:
         traceback.print_exc()
         return
+    topic = topic_manager.retrieve(device)
+    pub = topic.getPublisher().ice_oneway()
+    reporter = Demo.ReporterPrx.uncheckedCast(pub)
+    reporter.report(client_name + " has locked " + device) #notify subscribers about changed state of the device
     print "You successfully locked ", device
     msvcrt.getch()
         
@@ -200,6 +204,12 @@ def release_device():
         traceback.print_exc()
         return
     controlled_devices.__delitem__(device)
+    #letting others know that we got a lock
+    topic = topic_manager.retrieve(device)
+    pub = topic.getPublisher().ice_oneway()
+    reporter = Demo.ReporterPrx.uncheckedCast(pub)
+    reporter.report(client_name + " has released " + device) #notify subscribers about changed state of the device
+    
     print "You successfully released", device
     msvcrt.getch()
 
