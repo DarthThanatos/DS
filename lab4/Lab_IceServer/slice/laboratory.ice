@@ -3,7 +3,6 @@ module Demo {
     sequence<string> stringSeq;
 
     interface Device{
-        string getName();
         string getState();
         void feedBattery();
         stringSeq listActions();

@@ -22,40 +22,6 @@ package Demo;
 
 public interface DevicePrx extends Ice.ObjectPrx
 {
-    public String getName();
-
-    public String getName(java.util.Map<String, String> __ctx);
-
-    public Ice.AsyncResult begin_getName();
-
-    public Ice.AsyncResult begin_getName(java.util.Map<String, String> __ctx);
-
-    public Ice.AsyncResult begin_getName(Ice.Callback __cb);
-
-    public Ice.AsyncResult begin_getName(java.util.Map<String, String> __ctx, Ice.Callback __cb);
-
-    public Ice.AsyncResult begin_getName(Callback_Device_getName __cb);
-
-    public Ice.AsyncResult begin_getName(java.util.Map<String, String> __ctx, Callback_Device_getName __cb);
-
-    public Ice.AsyncResult begin_getName(IceInternal.Functional_GenericCallback1<String> __responseCb, 
-                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
-
-    public Ice.AsyncResult begin_getName(IceInternal.Functional_GenericCallback1<String> __responseCb, 
-                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                         IceInternal.Functional_BoolCallback __sentCb);
-
-    public Ice.AsyncResult begin_getName(java.util.Map<String, String> __ctx, 
-                                         IceInternal.Functional_GenericCallback1<String> __responseCb, 
-                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
-
-    public Ice.AsyncResult begin_getName(java.util.Map<String, String> __ctx, 
-                                         IceInternal.Functional_GenericCallback1<String> __responseCb, 
-                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                         IceInternal.Functional_BoolCallback __sentCb);
-
-    public String end_getName(Ice.AsyncResult __result);
-
     public String getState();
 
     public String getState(java.util.Map<String, String> __ctx);

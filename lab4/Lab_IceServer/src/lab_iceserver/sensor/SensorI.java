@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package lab_iceserver.sensor;
+import Demo.BrokenDiodeException;
 import Demo.DeviceStatePrx;
 import Demo.SensorStatePrx;
 import Demo.speed;
@@ -14,29 +15,35 @@ import Ice.Current;
  */
 public class SensorI extends Demo._SensorDisp{
 
-    @Override
-    public SensorStatePrx measureMotion(speed speedObj, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private SensorState state;
+    private SensorOperationsLister lister;
+    private SensorServiceProvider provider;
+    
+    public SensorI(){
+        state = new SensorState();
+        lister = new SensorOperationsLister();
+        provider = new SensorServiceProvider();
     }
-
+    
     @Override
-    public String getName(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void measureMotion(float speed, Current __current) throws BrokenDiodeException {
+        provider.measureMotion(speed, state);
     }
 
     @Override
     public String getState(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return state.getState();
     }
 
     @Override
     public void feedBattery(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        provider.feedBattery(state);
     }
 
     @Override
     public String[] listActions(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lister.getListOfOperations();
     }
-    
+
+       
 }

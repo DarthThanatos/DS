@@ -75,11 +75,6 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
         feedBattery(null);
     }
 
-    public final String getName()
-    {
-        return getName(null);
-    }
-
     public final String getState()
     {
         return getState(null);
@@ -88,17 +83,6 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
     public final String[] listActions()
     {
         return listActions(null);
-    }
-
-    public static Ice.DispatchStatus ___getName(Device __obj, IceInternal.Incoming __inS, Ice.Current __current)
-    {
-        __checkMode(Ice.OperationMode.Normal, __current.mode);
-        __inS.readEmptyParams();
-        String __ret = __obj.getName(__current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeString(__ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
     }
 
     public static Ice.DispatchStatus ___getState(Device __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -135,7 +119,6 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
     private final static String[] __all =
     {
         "feedBattery",
-        "getName",
         "getState",
         "ice_id",
         "ice_ids",
@@ -160,29 +143,25 @@ public abstract class _DeviceDisp extends Ice.ObjectImpl implements Device
             }
             case 1:
             {
-                return ___getName(this, in, __current);
+                return ___getState(this, in, __current);
             }
             case 2:
             {
-                return ___getState(this, in, __current);
+                return ___ice_id(this, in, __current);
             }
             case 3:
             {
-                return ___ice_id(this, in, __current);
+                return ___ice_ids(this, in, __current);
             }
             case 4:
             {
-                return ___ice_ids(this, in, __current);
+                return ___ice_isA(this, in, __current);
             }
             case 5:
             {
-                return ___ice_isA(this, in, __current);
-            }
-            case 6:
-            {
                 return ___ice_ping(this, in, __current);
             }
-            case 7:
+            case 6:
             {
                 return ___listActions(this, in, __current);
             }

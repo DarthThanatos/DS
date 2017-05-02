@@ -10,28 +10,32 @@ import Ice.Current;
  *
  * @author Robert
  */
-public class Device extends Demo._DeviceDisp{
+public class DeviceI extends Demo._DeviceDisp{
 
     protected int batteryLevel;
+    private DeviceState state;
+    private DeviceServiceProvider provider;
+    private DeviceOperationsLister lister;
+
+    public DeviceI(){
+        state = new DeviceState();
+        provider = new DeviceServiceProvider();
+        lister = new DeviceOperationsLister();
+    }
     
     @Override
-    public String getName(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public String getState(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return state.getState();
     }
 
     @Override
     public void feedBattery(Current __current) {
-        
+        provider.feedBattery(state);
     }
 
     @Override
     public String[] listActions(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lister.getListOfOperations();
     }
     
 }

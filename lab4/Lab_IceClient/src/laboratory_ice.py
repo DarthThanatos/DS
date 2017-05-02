@@ -46,9 +46,6 @@ if 'Device' not in _M_Demo.__dict__:
             return '::Demo::Device'
         ice_staticId = staticmethod(ice_staticId)
 
-        def getName(self, current=None):
-            pass
-
         def getState(self, current=None):
             pass
 
@@ -65,15 +62,6 @@ if 'Device' not in _M_Demo.__dict__:
 
     _M_Demo.DevicePrx = Ice.createTempClass()
     class DevicePrx(Ice.ObjectPrx):
-
-        def getName(self, _ctx=None):
-            return _M_Demo.Device._op_getName.invoke(self, ((), _ctx))
-
-        def begin_getName(self, _response=None, _ex=None, _sent=None, _ctx=None):
-            return _M_Demo.Device._op_getName.begin(self, ((), _response, _ex, _sent, _ctx))
-
-        def end_getName(self, _r):
-            return _M_Demo.Device._op_getName.end(self, _r)
 
         def getState(self, _ctx=None):
             return _M_Demo.Device._op_getState.invoke(self, ((), _ctx))
@@ -119,7 +107,6 @@ if 'Device' not in _M_Demo.__dict__:
     _M_Demo._t_Device = IcePy.defineClass('::Demo::Device', Device, -1, (), True, False, None, (), ())
     Device._ice_type = _M_Demo._t_Device
 
-    Device._op_getName = IcePy.Operation('getName', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), IcePy._t_string, False, 0), ())
     Device._op_getState = IcePy.Operation('getState', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), IcePy._t_string, False, 0), ())
     Device._op_feedBattery = IcePy.Operation('feedBattery', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), None, ())
     Device._op_listActions = IcePy.Operation('listActions', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_Demo._t_stringSeq, False, 0), ())

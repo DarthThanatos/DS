@@ -22,8 +22,6 @@ package Demo;
 
 public interface _DeviceOperations
 {
-    String getName(Ice.Current __current);
-
     String getState(Ice.Current __current);
 
     void feedBattery(Ice.Current __current);

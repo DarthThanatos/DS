@@ -6,6 +6,7 @@
 package lab_iceserver.printer;
 import Demo.DeviceStatePrx;
 import Demo.InterpretingPrinterStatePrx;
+import Demo.OutOfInkException;
 import Demo.PrinterStatePrx;
 import Ice.Current;
 /**
@@ -14,39 +15,44 @@ import Ice.Current;
  */
 public class InterpretingPrinterI extends Demo._InterpretingPrinterDisp{
 
+    private InterpretingPrinterState state;
+    private InterpretingPrinterOperationsLister lister;
+    private InterpretingPrinterServiceProvider provider;
+    
+    public InterpretingPrinterI(){
+        provider =  new InterpretingPrinterServiceProvider();
+        lister = new InterpretingPrinterOperationsLister();
+        state = new InterpretingPrinterState();
+    }
+    
     @Override
-    public InterpretingPrinterStatePrx interpretAndPrint(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String interpretAndPrint(String s, Current __current) throws OutOfInkException {
+        return provider.interpretAndPrint(s, state);
     }
 
     @Override
-    public PrinterStatePrx printString(String s, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String printString(String s, Current __current) throws OutOfInkException {
+        return provider.printString(s, state);
     }
 
     @Override
     public void fillInk(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getName(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        provider.fillInk(state);
     }
 
     @Override
     public String getState(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return state.getState();
     }
 
     @Override
     public void feedBattery(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        provider.feedBattery(state);
     }
 
     @Override
     public String[] listActions(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lister.getListOfOperations();
     }
-    
+   
 }

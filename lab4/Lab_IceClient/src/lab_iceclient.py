@@ -21,15 +21,6 @@ controlled_devices = {}
 if not topic_manager:
     raise RuntimeError("Invalid topic manager")
 
-class MonitorI(Demo.Monitor):
-    def report(self,m,curr):
-        print "Measurement report:\n" +\
-            "  Tower: " + str(m.tower) + "\n" +\
-            "  W Spd: " + str(m.windSpeed) + "\n" +\
-            "  W Dir: " + str(m.windDirection) + "\n" +\
-            "   Temp: " + str(m.temperature) + "\n" +\
-            client_name + ">"
-
 class ReporterI(Demo.Reporter):
     def report(self,msg,curr):
         print msg+ "\n" +  client_name + ">"
@@ -124,17 +115,23 @@ def perform_action():
     #provide us with the most derived type of the Proxy in a stringified form, e.g. ::Demo::Camera; hence we first must skip the initial double colon symbol,
     #change the remaining to the dot symbol (.) and then prepend Prx.checkedCast suffix; this expression, when presented to eval() funtion, will produce the most derived 
     #type of our Proxy
-    
-    prx_derived_type_desc = controlled_devices[device].ice_id()
-    derived_type = eval(prx_derived_type_desc[2:].replace("::",".") + "Prx.checkedCast(controlled_devices[device])")
-    getattr(derived_type, operationName)(*arg_list)
-    msg = client_name + " has changed the state of device " + device + ": " + controlled_devices[device].getState()
-    print "msg:",msg,"will be sent to all subscribers"
-    pub = topic.getPublisher().ice_oneway()
-    reporter = Demo.ReporterPrx.uncheckedCast(pub)
-    reporter.report(msg) #notify subscribers about changed state of the device
-    print "Sent report"
-    msvcrt.getch()
+    try:
+        prx_derived_type_desc = controlled_devices[device].ice_id()
+        derived_type = eval(prx_derived_type_desc[2:].replace("::",".") + "Prx.checkedCast(controlled_devices[device])")
+        res = getattr(derived_type, operationName)(*arg_list)
+        if res:
+            print res
+        msg = client_name + " has changed the state of device " + device + ": " + controlled_devices[device].getState()
+        print "msg:",msg,"will be sent to all subscribers"
+        pub = topic.getPublisher().ice_oneway()
+        reporter = Demo.ReporterPrx.uncheckedCast(pub)
+        reporter.report(msg) #notify subscribers about changed state of the device
+        print "Sent report"
+        msvcrt.getch()
+    except:
+        traceback.print_exc()
+        print "Sth went wrong, check exception content above"
+        msvcrt.getch()
             
 def subscribe(channel):
     reporter = ReporterI()
@@ -148,7 +145,6 @@ def subscribe(channel):
         print "Started to observe device",channel
     except IceStorm.NoSuchTopic:
         print "invalid topic"
-        msvcrt.getch()
     
 def start_observing(devicesNamesList):
     list_devices(devicesNamesList, wait_for_input=False)

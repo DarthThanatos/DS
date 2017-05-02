@@ -4,66 +4,61 @@
  * and open the template in the editor.
  */
 package lab_iceserver.camera;
-import Demo.CameraState;
-import Demo.CameraStatePrx;
-import Demo.CameraStatePrxHelper;
-import Demo.DeviceStatePrx;
+
+import Demo.RotationOutOfRangeException;
 import Ice.Current;
+import java.util.Date;
 /**
  *
  * @author Robert
  */
 public class CameraI extends Demo._CameraDisp{
 
-    Ice.Communicator ic;
-    float batteryLevel = 100;
-    float horizontalAngle = 45;
-    float verticalAngle = 0;
-    float operationTime = 10;
-    String lastUserName = "";
-    
-    public CameraI(Ice.Communicator ic){
-        this.ic = ic;        
-    }
-    
-    @Override
-    public String getName(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private CameraState state;
+    private CameraServiceProvider provider;
+    private CameraOperationsLister lister;
 
-    @Override
-    public String getState(Current __current) {
-        return "horizontal angle: " + horizontalAngle + " vertical angle: " + verticalAngle;        
+    public CameraI(){
+        state = new CameraState();
+        provider = new CameraServiceProvider();
+        lister = new CameraOperationsLister();
     }
     
+    
     @Override
-    public void turnLeft(float angle, Current __current) {
-        horizontalAngle -= angle;
+    public String getState(Current __current) { 
+        return state.getState();
     }
 
     @Override
-    public void turnRight(float angle, Current __current) {
-        horizontalAngle += angle;
+    public void turnLeft(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnLeft(angle, state);
     }
 
     @Override
-    public void turnUp(float angle, Current __current) {
-        verticalAngle += angle;
+    public void turnRight(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnRight(angle, state);
     }
 
     @Override
-    public void turnDown(float angle, Current __current) {
-        verticalAngle -= angle;
+    public void turnUp(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnUp(angle, state);
     }
+
+    @Override
+    public void turnDown(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnDown(angle, state);
+    }
+
 
     @Override
     public String[] listActions(Current __current) {
-        return new String[] {"turnUp (float angle)", "turnDown(float angle)", "turRight (float angle)", "turnLeft (float angle)"};
+        return lister.getListOfOperations();
     }
 
     @Override
     public void feedBattery(Current __current) {
-        batteryLevel = 100;
+        provider.feedBattery(state);
     }
     
 }

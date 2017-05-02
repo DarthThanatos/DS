@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package lab_iceserver.sensor;
+import Demo.BrokenDiodeException;
 import Demo.DeviceStatePrx;
 import Demo.MoistureSensorStatePrx;
 import Demo.SensorStatePrx;
@@ -16,34 +17,40 @@ import Ice.Current;
  */
 public class MoistureSensorI extends Demo._MoistureSensorDisp{
 
+    private MoistureSensorState state;
+    private MoistureSensorOperationsLister lister;
+    private MoistureSensorServiceProvider provider;
+    
+    public MoistureSensorI(){
+        state = new MoistureSensorState();
+        provider = new MoistureSensorServiceProvider();
+        lister = new MoistureSensorOperationsLister();
+    }
+    
     @Override
-    public MoistureSensorStatePrx measureMoisture(moisture moistureObj, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void measureMoisture(float moisture, Current __current) throws BrokenDiodeException {
+        provider.measureMoisture(moisture, state);
     }
 
     @Override
-    public SensorStatePrx measureMotion(speed speedObj, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getName(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void measureMotion(float speed, Current __current) throws BrokenDiodeException {
+        provider.measureMotion(speed, state);
     }
 
     @Override
     public String getState(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return state.getState();
     }
 
     @Override
     public void feedBattery(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        provider.feedBattery(state);
     }
 
     @Override
     public String[] listActions(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lister.getListOfOperations();
     }
+
     
 }

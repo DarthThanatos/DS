@@ -22,8 +22,6 @@ package Demo;
 
 public interface _DeviceOperationsNC
 {
-    String getName();
-
     String getState();
 
     void feedBattery();

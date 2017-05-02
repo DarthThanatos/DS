@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package lab_iceserver.camera;
-import Demo.CameraState;
-import Demo.CameraStatePrx;
-import Demo.DeviceStatePrx;
-import Demo.ZoomingCameraStatePrx;
+import Demo.RotationOutOfRangeException;
+import Demo.ZoomOutOfRangeException;
 import Ice.Current;
 /**
  *
@@ -15,49 +13,54 @@ import Ice.Current;
  */
 public class ZoomingCameraI extends Demo._ZoomingCameraDisp{
 
-    @Override
-    public void zoom(int lvl, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private ZoomCameraState state;
+    private ZoomingCameraOperationsLister lister;
+    private ZoomingCameraServiceProvider provider;
+    
+    public ZoomingCameraI(){
+        state = new ZoomCameraState();
+        provider = new ZoomingCameraServiceProvider();                
+        lister = new ZoomingCameraOperationsLister();
     }
 
     @Override
-    public String getName(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void zoom(int lvl, Current __current) throws ZoomOutOfRangeException {
+        provider.zoom(lvl, state);
+    }
+
+    @Override
+    public void turnLeft(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnLeft(angle, state);
+    }
+
+    @Override
+    public void turnRight(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnRight(angle, state);
+    }
+
+    @Override
+    public void turnUp(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnUp(angle, state);
+    }
+
+    @Override
+    public void turnDown(float angle, Current __current) throws RotationOutOfRangeException {
+        provider.turnDown(angle, state);
     }
 
     @Override
     public String getState(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return state.getState();
     }
 
     @Override
     public void feedBattery(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void turnLeft(float angle, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void turnRight(float angle, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void turnUp(float angle, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void turnDown(float angle, Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        provider.feedBattery(state);
     }
 
     @Override
     public String[] listActions(Current __current) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lister.getListOfOperations();
     }
-    
+   
 }
