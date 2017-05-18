@@ -151,6 +151,7 @@ def start_observing(devicesNamesList):
     channel = raw_input("Type the device you want to observe:\n"+ client_name + ">")
     if not channel in observed_devices:
         thread.start_new_thread(subscribe, (channel,))
+        #subscribe(channel)
         msvcrt.getch()
     else:
         print "You already observe that device!"
