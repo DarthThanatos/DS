@@ -18,9 +18,10 @@ public class Z2_AppLocal {
         File configFile = new File("remote_app.conf");
         Config config = ConfigFactory.parseFile(configFile);
         
-        // create actor system & actors
+        // create actor system & actors        
         final ActorSystem system = ActorSystem.create("local_system", config);
         final ActorRef local = system.actorOf(Props.create(Z2_LocalActor.class), "local");
+        
         System.out.println("Started z2 local with path: " + local.path());
         // interaction
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

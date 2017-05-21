@@ -14,5 +14,6 @@ public class Z3_SinkActor extends AbstractActor{
                 })
                 .match(Integer.class, s->{System.out.println("Actor printing integer: " + s);})
                 .build();
+      
     }
 }

@@ -1,0 +1,6 @@
+bible 100
+czarne_oceany 150
+got 300
+inne_piesni 250
+krol_bolu 300
+lod 255

@@ -1,0 +1,5 @@
+czarne_oceany 150
+inne_piesni 250
+krol_bolu 300
+inferno 99
+me_objawienie 149
