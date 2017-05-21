@@ -37,21 +37,27 @@ public class TempStreamSender extends AbstractActor{
     public Receive createReceive() {
         return receiveBuilder()
                 .match(StreamRequest.class, r ->{
-                    System.out.println("Stream sender running " + bookPath);
+                    System.out.println("Stream sender running " + bookPath + " path: " + getSelf().path());
                     Path file = Paths.get(bookPath);
                     Materializer materializer = ActorMaterializer.create(getContext());
-                    Sink<ByteString, NotUsed> sinkOfClient = Sink.actorRef(getSender(), new EndOfFileStream(r.getTitle()));
+                    Sink<ByteString, NotUsed> sinkOfClient = Sink.actorRef(getSender(), new EndOfFileStream(r.getTitle(), getSelf().path().toString()));
                     FileIO
                         .fromPath(file)
                         .via(Framing.delimiter(ByteString.fromString("\n"), Int.MaxValue()))
                         .throttle(1, Duration.create(1, TimeUnit.SECONDS), 1, ThrottleMode.shaping())
                         .to(sinkOfClient)
                         .run(materializer);
+                    
                         /*.thenRun(() -> {
                             System.out.println("Sender terminating");
                             getContext().stop(getSelf());
                         });*/
                 })
+                .match(EndOfFileStream.class, e -> {
+                            System.out.println("Sender terminating");
+                            getContext().stop(getSelf());
+                        }
+                )
                 .build();
     }
     

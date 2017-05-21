@@ -13,12 +13,18 @@ import java.io.Serializable;
  */
 public class EndOfFileStream implements Serializable{
     private final String title;
+    private final String temppath;
     
-    public EndOfFileStream(String title){
+    public EndOfFileStream(String title, String temppath){
+        this.temppath = temppath;
         this.title = title;
     }
     
     public String getTitle(){
         return title;
+    }
+    
+    public String getTempPath(){
+        return temppath;
     }
 }
