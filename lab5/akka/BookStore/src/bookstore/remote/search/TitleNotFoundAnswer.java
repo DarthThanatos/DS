@@ -5,18 +5,17 @@
  */
 package bookstore.remote.search;
 
-import bookstore.remote.Answer;
+import java.io.Serializable;
 
 /**
  *
  * @author Robert
  */
-public class TitleNotFoundAnswer extends Answer{
+public class TitleNotFoundAnswer implements Serializable{
     
     private final String title;
     
     public TitleNotFoundAnswer(String title){
-        remotePath += "/SearchActor";
         this.title = title;
     }
     

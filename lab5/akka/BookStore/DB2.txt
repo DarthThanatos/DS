@@ -1,4 +1,4 @@
-bible 100
+biblia 100
 czarne_oceany 150
 got 300
 inne_piesni 250

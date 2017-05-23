@@ -7,8 +7,15 @@ package bookstore.remote.stream;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import akka.actor.OneForOneStrategy;
 import akka.actor.Props;
+import akka.actor.SupervisorStrategy;
+import static akka.actor.SupervisorStrategy.escalate;
+import static akka.actor.SupervisorStrategy.resume;
+import akka.japi.pf.DeciderBuilder;
 import bookstore.local.stream.StreamRequest;
+import java.io.FileNotFoundException;
+import scala.concurrent.duration.Duration;
 
 /**
  *
@@ -20,10 +27,35 @@ public class Streamer extends AbstractActor{
     public Receive createReceive() {
         return receiveBuilder()
                 .match(StreamRequest.class, r->{
-                    ActorRef temp = getContext().actorOf(Props.create(TempStreamSender.class, () -> new TempStreamSender("books/" + r.getTitle() + ".txt")));
+                    String remoteRecipentPath = getSender().path().toString();
+                    System.out.println("Streamer: got client " + remoteRecipentPath);
+                    ActorRef temp = getContext()
+                            .actorOf(
+                                    Props.create(
+                                            TempStreamSender.class,
+                                            () -> new TempStreamSender("books/" + r.getTitle() + ".txt",remoteRecipentPath)
+                                    )
+                            );
                     temp.tell(r, getSender());
                 })
                 .build();
     }
     
+    @Override
+    public void postStop(){
+        System.out.println(getSelf().path() + " of tmp terminated");
+    }
+    
+        private static SupervisorStrategy ofos = 
+            new OneForOneStrategy(
+                    -1,
+                    Duration.Inf(),
+                    DeciderBuilder
+                            .match(Exception.class, e->escalate())
+                            .build()
+            );
+    @Override
+    public SupervisorStrategy supervisorStrategy(){
+        return ofos;
+    }
 }

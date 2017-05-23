@@ -6,10 +6,19 @@
 package bookstore.remote.search;
 
 import akka.actor.AbstractActor;
+import akka.actor.AllForOneStrategy;
+import akka.actor.SupervisorStrategy;
+import static akka.actor.SupervisorStrategy.escalate;
+import static akka.actor.SupervisorStrategy.restart;
+import static akka.actor.SupervisorStrategy.resume;
+import akka.japi.pf.DeciderBuilder;
 import bookstore.local.search.SearchRequest;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import scala.concurrent.duration.Duration;
 
 /**
  *
@@ -32,7 +41,7 @@ public class DBSearcher extends AbstractActor{
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(SearchRequest.class, r -> {
+                .match(SearchTriggerMsg.class, r -> {
                     try{
                         int price = searchDB(r.getSearchedTitle());
                         System.out.println("Found title: " + r.getSearchedTitle() + "; its price: " + price);
@@ -46,8 +55,21 @@ public class DBSearcher extends AbstractActor{
     }
     
     
+        private static SupervisorStrategy ofos = 
+            new AllForOneStrategy(
+                    -1,
+                    Duration.Inf(),
+                    DeciderBuilder
+                            .match(FileNotFoundException.class, e ->  resume())
+                            .match(Exception.class, e -> escalate())
+                            .build()
+            );
+    @Override
+    public SupervisorStrategy supervisorStrategy(){
+        return ofos;
+    }
     
-    private int searchDB(String searchedTitle) throws Exception{
+    private int searchDB(String searchedTitle) throws FileNotFoundException, IOException, TitleNotFoundException{
         BufferedReader br = new BufferedReader(new FileReader(new File(databaseName)));
         String entry;
         while((entry = br.readLine())!= null){

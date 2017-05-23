@@ -5,13 +5,13 @@
  */
 package bookstore.remote.Order;
 
-import bookstore.remote.Answer;
+import java.io.Serializable;
 
 /**
  *
  * @author Robert
  */
-public class OrderAck extends Answer{
+public class OrderAck implements Serializable{
     
     private String acknowledgedTitle;
     

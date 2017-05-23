@@ -18,9 +18,10 @@ public class OrderActor extends AbstractActor{
     public Receive createReceive() {
         return receiveBuilder()
                 .match(OrderRequest.class, r->{
+                    String remotePath = "akka.tcp://remote_system@127.0.0.1:3552/user/remote/OrdersTaker";
                     System.out.println("Got order request for title: " + r.getTitle()
-                        + "; sending to " + r.getRemotePath());
-                    getContext().actorSelection(r.getRemotePath()).tell(r, getSelf());
+                        + "; sending to " + remotePath);
+                    getContext().actorSelection(remotePath).tell(r, getSelf());
                 })
                 .match(OrderAck.class, a -> {
                     System.out.println("Bookstore acknowledged "  + a.getAcknowledgedTitle());

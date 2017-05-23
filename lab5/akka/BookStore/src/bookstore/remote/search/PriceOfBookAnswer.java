@@ -5,13 +5,13 @@
  */
 package bookstore.remote.search;
 
-import bookstore.remote.Answer;
+import java.io.Serializable;
 
 /**
  *
  * @author Robert
  */
-public class PriceOfBookAnswer extends Answer{
+public class PriceOfBookAnswer implements Serializable{
     
     private final int price;
     private final String title;
@@ -19,7 +19,6 @@ public class PriceOfBookAnswer extends Answer{
     public PriceOfBookAnswer(String title, int price){
         this.price = price;
         this.title = title;
-        remotePath += "/SearchActor";
     }
     
     public String getTitle(){

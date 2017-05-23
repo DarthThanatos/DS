@@ -5,25 +5,18 @@
  */
 package bookstore.local.search;
 
-import bookstore.local.Request;
-import java.util.UUID;
+import java.io.Serializable;
+
 /**
  *
  * @author Robert
  */
-public class SearchRequest extends Request{
+public class SearchRequest implements Serializable{
     
     private final String searchedTitle;
-    private final String uuid;
     
     public SearchRequest(String searchedTitle){
         this.searchedTitle = searchedTitle;
-        uuid = UUID.randomUUID().toString();
-        remotePath += "/SearchManager";
-    }
-    
-    public String getUUID(){
-        return uuid;
     }
     
     public String getSearchedTitle(){

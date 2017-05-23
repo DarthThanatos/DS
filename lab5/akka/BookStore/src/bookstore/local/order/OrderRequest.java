@@ -5,20 +5,19 @@
  */
 package bookstore.local.order;
 
-import bookstore.local.Request;
+import java.io.Serializable;
+
 
 /**
  *
  * @author Robert
  */
-public class OrderRequest extends Request{
+public class OrderRequest implements Serializable{
     
     private final String title;
     
     public OrderRequest(String title){
         this.title = title;
-        localPath += "/OrderActor";
-        remotePath += "/OrdersTaker";
     }
     
     public String getTitle(){

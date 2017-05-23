@@ -19,8 +19,10 @@ public class StreamActor extends AbstractActor{
     public Receive createReceive() {
         return receiveBuilder()
                 .match(StreamRequest.class, r -> {
+                    
+                    String remotePath = "akka.tcp://remote_system@127.0.0.1:3552/user/remote/Streamer";
                     getContext()
-                            .actorSelection(r.getRemotePath())
+                            .actorSelection(remotePath)
                             .tell(r, getSelf());
                 })
                 .match(ByteString.class, b -> {
@@ -28,10 +30,6 @@ public class StreamActor extends AbstractActor{
                 })
                 .match(EndOfFileStream.class, e -> {
                     System.out.println("Ended streaming " + e.getTitle());
-                    getContext().actorSelection(e.getTempPath()
-                            .replace("akka", "akka.tcp")
-                            .replace("remote_system", "remote_system@127.0.0.1:3552"))
-                        .tell(e, getSelf());
                 })
                 .build();
     }

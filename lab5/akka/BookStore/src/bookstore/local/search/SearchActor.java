@@ -19,7 +19,8 @@ public class SearchActor extends AbstractActor{
     public Receive createReceive() {
         return receiveBuilder()
                 .match(SearchRequest.class, r -> {
-                    getContext().actorSelection(r.getRemotePath()).tell(r, getSender());
+                    String remotePath = "akka.tcp://remote_system@127.0.0.1:3552/user/remote/SearchManager";
+                    getContext().actorSelection(remotePath).tell(r, getSelf());
                 })
                 .match(PriceOfBookAnswer.class, a->{
                     System.out.println("Title " + a.getTitle() + " has price " + a.getPrice());

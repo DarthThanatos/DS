@@ -5,19 +5,19 @@
  */
 package bookstore.local.stream;
 
-import bookstore.local.Request;
+import java.io.Serializable;
+
 
 /**
  *
  * @author Robert
  */
-public class StreamRequest extends Request{
+public class StreamRequest implements Serializable{
     
     private final String title;
     
     public StreamRequest(String title) {
         this.title = title;
-        remotePath += "/Streamer";
     }
     
     public String getTitle(){
