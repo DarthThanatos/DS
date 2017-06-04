@@ -55,7 +55,7 @@ public class ChildrenWatcher implements Watcher {
 		List <String> children = zk.getChildren(path, false);
         for(int i = 0; i < children.size(); i++){
         	String childPath = path + "/" + children.get(i);
-        	zk.getChildren(childPath, new ChildrenWatcher(connectedSignal, childPath, zk, "Adding observer in subtree"));
+        	zk.getChildren(childPath, new ChildrenWatcher(connectedSignal, childPath, zk, "Adding observer in subtree " + childPath));
       		startObservingSubTree(childPath);
         }	
 	}
