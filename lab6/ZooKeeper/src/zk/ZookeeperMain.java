@@ -14,7 +14,7 @@ import org.apache.zookeeper.data.Stat;
 public class ZookeeperMain{
    private static ZooKeeper zk;
    private static ZooKeeperConnection conn;
-   
+   public  static final String ROOT =  "/znode_tmp";
 
    public static void printTree(String parent, int indent) throws Exception{
 	   String path = parent;
@@ -28,24 +28,17 @@ public class ZookeeperMain{
    }
    
    public static void main(String[] args) throws InterruptedException,KeeperException {
-      String path = "/znode_tmp"; // Assign path to the znode
       if(args.length == 0){
     	  System.out.println("Usage: java ZKExists code_to_execute");
     	  System.exit(-1);
       }
-		
+
+      ProcessHandle p = new ProcessHandle();
       try {
          conn = new ZooKeeperConnection();
          zk = conn.connect("localhost");
          final CountDownLatch connectedSignal = new CountDownLatch(1);
-         
-         Stat stat =  zk.exists(path,new NodeWatcher(connectedSignal, args[0]) );
-
-         if(stat!= null) {
-        	 zk.getChildren(path,new ChildrenWatcher(connectedSignal, path, zk), null);
-         } else {
-            System.out.println("Node " + path + " does not exists");
-         }
+         zk.exists(ROOT,new NodeWatcher(connectedSignal, ROOT, zk, args[0], p) );
          
          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
          String line = "";
@@ -54,12 +47,15 @@ public class ZookeeperMain{
    	      line =  br.readLine();
    	      if (line.equals("q")) break;
    	      if(line.equals("t")) {
-   	    	  System.out.println(path);
-   	    	  printTree(path,1);
+   	    	  System.out.println(ROOT);
+   	    	  printTree(ROOT, 1);
    	      }
          }
       } catch(Exception e) {
          System.out.println(e.getMessage());
+      }
+      finally{
+          p.endProcess();
       }
 
    }
